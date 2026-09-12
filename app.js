@@ -34,70 +34,54 @@ fixProductsImageSchema();
  */
 
 // Supabase Initialization
-
-// Supabase removed, using localStorage mock client
-const SUPABASE_KEY = "";
-const supaClient = {
-    from: (table) => ({
-        select: (cols) => ({
-            then: (cb) => { 
-                let data = JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
-                cb({data, error: null}); 
-                return { catch: ()=>{} }; 
-            },
-            like: (col, val) => ({ then: (cb) => {
-                let data = JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
-                cb({data: data.filter(x => x[col] && String(x[col]).includes(val.replace('%',''))), error:null});
-            } }),
-            eq: (col, val) => ({
-                single: () => Promise.resolve({ data: JSON.parse(localStorage.getItem('mock_db_' + table) || '[]').find(x => x[col] === val) || null }),
-                then: (cb) => { 
-                    let data = JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
-                    cb({data: data.filter(x => x[col] === val), error:null});
-                }
-            }),
-            limit: (n) => Promise.resolve({ data: JSON.parse(localStorage.getItem('mock_db_' + table) || '[]').slice(0, n), error: null })
-        }),
-        insert: (arr) => {
-            let data = JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
-            data.push(...arr);
-            localStorage.setItem('mock_db_' + table, JSON.stringify(data));
-            return Promise.resolve({ error: null });
-        },
-        upsert: (arr) => {
-            let data = JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
-            arr.forEach(item => {
-                const idx = data.findIndex(x => x.id === item.id);
-                if (idx >= 0) data[idx] = { ...data[idx], ...item };
-                else data.push(item);
-            });
-            localStorage.setItem('mock_db_' + table, JSON.stringify(data));
-            return Promise.resolve({ error: null });
-        },
-        update: (obj) => ({
-            eq: (col, val) => {
-                let data = JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
-                data = data.map(x => x[col] === val ? { ...x, ...obj } : x);
-                localStorage.setItem('mock_db_' + table, JSON.stringify(data));
-                return { then: (cb) => { if(cb) cb({data: [], error: null}); return { catch: ()=>{} }; }, catch: ()=>{} };
-            }
-        }),
-        delete: () => ({
-            eq: (col, val) => {
-                let data = JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
-                data = data.filter(x => x[col] !== val);
-                localStorage.setItem('mock_db_' + table, JSON.stringify(data));
-                return Promise.resolve({ error: null });
-            }
-        })
-    }),
-    storage: {
-        from: (bucket) => ({
-            upload: () => Promise.resolve({ data: { path: '' }, error: null }),
-            getPublicUrl: () => ({ data: { publicUrl: '' } })
-        })
-    }
-};
+const SUPABASE_URL = "https://zimapfcyfxiqdnxaaonp.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InppbWFwZmN5ZnhpcWRueGFhb25wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyMTE4NjEsImV4cCI6MjEwNDc4Nzg2MX0.n7UVMBY-5iBiaasKw34TkDdD04JgSTo9r7ombxXqnZk";
+const supaClient = (window.supabase && window.supabase.createClient) 
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+  : {
+      from: (table) => ({
+          select: (cols) => ({
+              then: (cb) => { 
+                  let data = JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
+                  cb({data, error: null}); 
+                  return { catch: ()=>{} }; 
+              },
+              like: (col, val) => ({ then: (cb) => {
+                  let data = JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
+                  cb({data: data.filter(x => x[col] && String(x[col]).includes(val.replace('%',''))), error:null});
+              } }),
+              eq: (col, val) => ({
+                  single: () => Promise.resolve({ data: JSON.parse(localStorage.getItem('mock_db_' + table) || '[]').find(x => x[col] === val) || null }),
+                  then: (cb) => { 
+                      let data = JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
+                      cb({data: data.filter(x => x[col] === val), error:null});
+                  }
+              }),
+              limit: (n) => Promise.resolve({ data: JSON.parse(localStorage.getItem('mock_db_' + table) || '[]').slice(0, n), error: null })
+          }),
+          insert: (arr) => {
+              let data = JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
+              data.push(...arr);
+              localStorage.setItem('mock_db_' + table, JSON.stringify(data));
+              return Promise.resolve({ error: null });
+          },
+          upsert: (arr) => {
+              let data = JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
+              arr.forEach(item => {
+                  let idx = data.findIndex(x => x.id === item.id || x.key === item.key);
+                  if (idx >= 0) data[idx] = item; else data.push(item);
+              });
+              localStorage.setItem('mock_db_' + table, JSON.stringify(data));
+              return Promise.resolve({ error: null });
+          },
+          delete: () => ({ eq: (col, val) => {
+              let data = JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
+              data = data.filter(x => x[col] !== val);
+              localStorage.setItem('mock_db_' + table, JSON.stringify(data));
+              return Promise.resolve({ error: null });
+          }})
+      })
+  };
 
 
 const DEFAULT_PRODUCTS = []; // Now loaded from Supabase
