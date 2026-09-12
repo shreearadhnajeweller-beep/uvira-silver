@@ -3836,3 +3836,67 @@ footer {
         height: 26px;
     }
 }
+
+
+/* ============================================== */
+/* FIXED MOBILE VIEWPORT & APP ENHANCEMENTS        */
+/* ============================================== */
+
+html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    -webkit-text-size-adjust: 100%;
+}
+
+*, *::before, *::after {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: calc(var(--header-height) + 32px);
+    }
+    
+    .container {
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+        width: 100% !important;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+    
+    .cat-circle-item {
+        flex: 1 1 calc(20% - 10px);
+        min-width: 65px;
+    }
+    
+    .flash-sale-banner {
+        padding: 40px 16px !important;
+        border-radius: var(--border-radius-sm) !important;
+    }
+    
+    .flash-sale-title {
+        font-size: 1.8rem !important;
+    }
+    
+    .countdown-timer {
+        gap: 8px !important;
+    }
+    
+    .countdown-box {
+        min-width: 60px !important;
+        padding: 10px 6px !important;
+    }
+    
+    .countdown-num {
+        font-size: 1.3rem !important;
+    }
+}
