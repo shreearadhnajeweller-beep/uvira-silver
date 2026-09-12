@@ -1,0 +1,23 @@
+{
+  "name": "uvira-jewellers",
+  "version": "1.0.0",
+  "description": "Premium 925 Sterling Silver E-Commerce Web Application",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx -y http-server -c-1 -p 3000"
+  },
+  "keywords": [
+    "silver",
+    "ecommerce",
+    "jewelry",
+    "hallmark"
+  ],
+  "author": "MRT Jewelers",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "jsdom": "^29.1.1",
+    "pg": "^8.21.0",
+    "puppeteer": "^25.1.0"
+  }
+}
