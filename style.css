@@ -3900,3 +3900,117 @@ html, body {
         font-size: 1.3rem !important;
     }
 }
+
+
+/* ============================================== */
+/* COMPREHENSIVE MOBILE RESPONSIVE OPTIMIZATIONS   */
+/* ============================================== */
+
+@media (max-width: 768px) {
+    /* Header & Navigation */
+    .header-content {
+        height: 70px !important;
+        padding: 0 10px !important;
+    }
+    .logo img {
+        height: 48px !important;
+    }
+    .logo-main {
+        font-size: 1.1rem !important;
+        letter-spacing: 1px !important;
+    }
+    .logo-sub {
+        font-size: 0.65rem !important;
+        letter-spacing: 2px !important;
+    }
+    
+    /* Hero Banner */
+    .hero-slide-content {
+        padding: 24px 16px !important;
+        text-align: center !important;
+    }
+    .hero-title {
+        font-size: 1.6rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 8px !important;
+    }
+    .hero-subtitle {
+        font-size: 0.85rem !important;
+        margin-bottom: 16px !important;
+    }
+    
+    /* Section Titles */
+    .section-title {
+        font-size: 1.5rem !important;
+    }
+    .section-subtitle {
+        font-size: 0.85rem !important;
+        margin-bottom: 24px !important;
+    }
+    
+    /* Products Grid */
+    .products-grid, #shop-products-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+    .product-info {
+        padding: 12px 8px !important;
+    }
+    .product-title {
+        font-size: 0.88rem !important;
+        height: 34px !important;
+        line-height: 1.3 !important;
+    }
+    .product-price {
+        font-size: 0.95rem !important;
+    }
+    .product-btn-add {
+        padding: 8px 0 !important;
+        font-size: 0.7rem !important;
+        letter-spacing: 1px !important;
+    }
+    
+    /* Drawers & Modals */
+    .drawer {
+        width: 100% !important;
+        max-width: 100vw !important;
+    }
+    .custom-form-panel {
+        width: 95% !important;
+        padding: 16px !important;
+    }
+    
+    /* Footer Mobile */
+    .footer-content {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+        text-align: center !important;
+    }
+    .footer-logo {
+        justify-content: center !important;
+    }
+    .footer-contact-item {
+        justify-content: center !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-grid, #shop-products-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+    }
+    .countdown-timer {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+    .countdown-box {
+        min-width: 55px !important;
+        padding: 8px 4px !important;
+    }
+    .countdown-num {
+        font-size: 1.1rem !important;
+    }
+    .countdown-label {
+        font-size: 0.6rem !important;
+    }
+}
