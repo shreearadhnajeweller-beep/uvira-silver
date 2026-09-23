@@ -556,7 +556,8 @@ function renderShopCatalog() {
     // Filter Pipeline
     let filtered = STATE.products.filter(p => {
         // Price Filter
-        if (p.price > maxPrice) return false;
+        const prodPrice = parseFloat(p.price || 0);
+        if (!isNaN(prodPrice) && prodPrice > maxPrice) return false;
         
         // Stock Filter
         if (inStockOnly && !p.inStock) return false;
