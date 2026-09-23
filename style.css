@@ -4014,3 +4014,58 @@ html, body {
         font-size: 0.6rem !important;
     }
 }
+
+
+/* ============================================== */
+/* PRODUCT DETAIL PAGE MOBILE RESPONSIVE FIXES     */
+/* ============================================== */
+
+@media (max-width: 768px) {
+    .detail-layout {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        margin-top: 15px !important;
+    }
+    .detail-gallery {
+        width: 100% !important;
+    }
+    .detail-main-img-wrap {
+        width: 100% !important;
+        max-height: 380px !important;
+        border-radius: var(--border-radius-md) !important;
+    }
+    .detail-main-img-wrap img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+    .detail-info {
+        width: 100% !important;
+    }
+    .detail-title {
+        font-size: 1.4rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 12px !important;
+    }
+    .detail-price-row {
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        align-items: center !important;
+    }
+    .detail-price {
+        font-size: 1.5rem !important;
+    }
+    .detail-spec-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .detail-spec-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .detail-main-img-wrap {
+        max-height: 320px !important;
+    }
+}
