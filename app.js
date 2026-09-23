@@ -457,7 +457,7 @@ function applyQuickFilter(filterType) {
     const priceMaxSlider = document.getElementById("filter-price-max");
     const priceDisplay = document.getElementById("filter-price-val");
     
-    const categoriesList = ["rings", "earrings", "pendants", "anklets", "chains", "chain_pendant", "coins", "gold", "gold_coins", "kids", "customised", "kada", "bracelet", "bracelets"];
+    const categoriesList = ["whoop", "whoop_accessories", "rings", "earrings", "pendants", "anklets", "chains", "chain_pendant", "coins", "gold", "gold_coins", "kids", "customised", "kada", "bracelet", "bracelets"];
     
     if (filterType === "search") {
         // Keep current filters, just perform search

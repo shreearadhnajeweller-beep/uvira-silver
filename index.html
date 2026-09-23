@@ -137,31 +137,20 @@
         </section>
 
         <!-- 3. Category Quick Circles -->
+        <!-- Single Category: Explore Whoop Accessories -->
         <section class="container" style="margin-bottom: 50px;">
-            <h2 class="section-title text-center">Shop by Category</h2>
-            <div class="categories-circles-grid">
-                  <div class="cat-circle-item" onclick="navigateTo('shop', 'bracelet')">
-                      <div class="cat-circle-img-wrap"><img src="bracelet.jpeg" alt="Bracelets"></div>
-                      <div class="cat-circle-title">Bracelets</div>
-                  </div>
-                  <div class="cat-circle-item" onclick="navigateTo('shop', 'kada')">
-                      <div class="cat-circle-img-wrap"><img src="kada.jpeg" alt="Kada"></div>
-                      <div class="cat-circle-title">Kada</div>
-                  </div>
-                  <div class="cat-circle-item" onclick="navigateTo('shop', 'rings')">
-                      <div class="cat-circle-img-wrap"><img src="ring.jpeg" alt="Ring"></div>
-                      <div class="cat-circle-title">Ring</div>
-                  </div>
-                  <div class="cat-circle-item" onclick="navigateTo('shop', 'chains')">
-                      <div class="cat-circle-img-wrap"><img src="chains.jpeg" alt="Chain"></div>
-                      <div class="cat-circle-title">Chain</div>
-                  </div>
-                  <div class="cat-circle-item" onclick="navigateTo('shop', 'pendants')">
-                      <div class="cat-circle-img-wrap"><img src="pendant.jpeg" alt="Pendant"></div>
-                      <div class="cat-circle-title">Pendant</div>
-                  </div>
-              </div>
-          </section>
+            <div style="background: linear-gradient(135deg, var(--color-primary) 0%, #2A486C 100%); border-radius: var(--border-radius-md); padding: 50px 30px; text-align: center; color: #FFFFFF; box-shadow: var(--shadow-medium); position: relative; overflow: hidden;">
+                <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: rgba(255,255,255,0.05); border-radius: 50%; pointer-events: none;"></div>
+                <div style="position: absolute; bottom: -50px; left: -50px; width: 200px; height: 200px; background: rgba(255,255,255,0.05); border-radius: 50%; pointer-events: none;"></div>
+                
+                <div style="max-width: 650px; margin: 0 auto; position: relative; z-index: 2;">
+                    <span style="background-color: var(--color-accent-pink); color: #FFFFFF; padding: 6px 16px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; border-radius: 20px; display: inline-block; margin-bottom: 16px;">EXCLUSIVE CATEGORY</span>
+                    <h2 style="font-family: var(--font-heading); font-size: 2.4rem; font-weight: 700; margin-bottom: 14px; letter-spacing: 1px;">Explore Whoop Accessories</h2>
+                    <p style="font-size: 1rem; color: rgba(255,255,255,0.9); margin-bottom: 28px; line-height: 1.6;">Discover our exclusive, handcrafted 925 sterling silver Whoop bands, custom covers, and premium bespoke accessories.</p>
+                    <button class="btn-primary" onclick="navigateTo('shop', 'whoop')" style="background-color: #FFFFFF; color: var(--color-primary); border: none; padding: 14px 36px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">Explore Whoop Accessories</button>
+                </div>
+            </div>
+        </section>
 
         
         <!-- 4. Featured Collections Slider -->
@@ -218,31 +207,7 @@
             </div>
         </section>
 
-        <!-- 5. Shop for Him / Her Promo Banners -->
-        <section class="container" style="margin-bottom: 60px;">
-            <div class="gender-banners">
-                <div class="gender-banner-card" onclick="navigateTo('shop')">
-                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=600&q=80" alt="Shop for Her" class="gender-banner-img">
-                    <div class="gender-banner-overlay">
-                        <div>
-                            <div style="font-size: 1.8rem; font-family: var(--font-heading); font-weight: 700; margin-bottom: 8px;">Shop For Her</div>
-                            <div style="font-size: 0.95rem; opacity: 0.9; margin-bottom: 15px;">Discover timeless elegance</div>
-                            <div class="gender-link" style="display:inline-flex; align-items:center; gap:6px; font-weight:600; text-transform:uppercase; font-size:0.8rem; letter-spacing:1px; border-bottom:1px solid white; padding-bottom:2px;">Explore <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="gender-banner-card" onclick="navigateTo('customisation')">
-                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80" alt="Bespoke Customisation" class="gender-banner-img">
-                    <div class="gender-banner-overlay">
-                        <div>
-                            <div style="font-size: 1.8rem; font-family: var(--font-heading); font-weight: 700; margin-bottom: 8px;">Bespoke Designs</div>
-                            <div style="font-size: 0.95rem; opacity: 0.9; margin-bottom: 15px;">Bring your vision to life</div>
-                            <div class="gender-link" style="display:inline-flex; align-items:center; gap:6px; font-weight:600; text-transform:uppercase; font-size:0.8rem; letter-spacing:1px; border-bottom:1px solid white; padding-bottom:2px;">Customise ✨ <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
 
     </div> <!-- Close home-view -->
 
@@ -282,11 +247,7 @@
                 
                 <div style="margin-bottom: 15px;">
                     <h4 style="margin-bottom: 10px; color: var(--color-primary); font-size: 0.95rem;">Categories</h4>
-                    <label style="display:flex; align-items:center; gap:8px; margin-bottom:5px; font-size:0.9rem"><input type="checkbox" id="filter-type-bracelet" onchange="renderShopCatalog()"> Bracelets</label>
-                    <label style="display:flex; align-items:center; gap:8px; margin-bottom:5px; font-size:0.9rem"><input type="checkbox" id="filter-type-kada" onchange="renderShopCatalog()"> Kada</label>
-                    <label style="display:flex; align-items:center; gap:8px; margin-bottom:5px; font-size:0.9rem"><input type="checkbox" id="filter-type-rings" onchange="renderShopCatalog()"> Ring</label>
-                    <label style="display:flex; align-items:center; gap:8px; margin-bottom:5px; font-size:0.9rem"><input type="checkbox" id="filter-type-chains" onchange="renderShopCatalog()"> Chain</label>
-                    <label style="display:flex; align-items:center; gap:8px; margin-bottom:5px; font-size:0.9rem"><input type="checkbox" id="filter-type-pendants" onchange="renderShopCatalog()"> Pendant</label>
+                    <label style="display:flex; align-items:center; gap:8px; margin-bottom:5px; font-size:0.9rem"><input type="checkbox" id="filter-type-whoop" onchange="renderShopCatalog()" checked> Whoop Accessories</label>
                 </div>
                 <div style="margin-bottom: 15px;">
                     <h4 style="margin-bottom: 10px; color: var(--color-primary); font-size: 0.95rem;">Max Price: ₹<span id="filter-price-val">50000</span></h4>
