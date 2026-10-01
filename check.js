@@ -1,0 +1,1 @@
+const fs = require('fs'); const html = fs.readFileSync('index.html', 'utf8'); const start = html.indexOf('<div id="home-view"'); const end = html.indexOf('<div id="shop-view"'); const slice = html.substring(start, end); console.log('home-view opens:', (slice.match(/<div/g)||[]).length, 'closes:', (slice.match(/<\/div/g)||[]).length);
