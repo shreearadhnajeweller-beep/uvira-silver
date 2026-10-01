@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>UVIRA JEWELS | Premium 925 Sterling Silver Jewellery</title>
     <meta name="description" content="Explore pure 92.5 Sterling Silver & Gold jewellery at UVIRA JEWELS. From classic chains to custom designs, experience premium quality.">
+    
+    <!-- Web App & Favicon Icons -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="shortcut icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1C334E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UVIRA JEWELS">
+    
     <link rel="stylesheet" href="style.css?v=28">
 </head>
 <body>
@@ -306,7 +317,7 @@
                     <h4 class="filter-block-title">Collection Category</h4>
                     <label class="filter-checkbox-row">
                         <input type="checkbox" id="filter-type-whoop" onchange="renderShopCatalog()" checked>
-                        <span>Whoop 4.0 Gem-Set Cases</span>
+                        <span>Whoop 4.0 / 5.0 Gem-Set Cases</span>
                     </label>
                 </div>
 
@@ -2122,22 +2133,45 @@
 
     <!-- Auth Modal -->
     <div class="drawer-overlay" id="auth-overlay" style="z-index: 400; display: none; background-color: rgba(18, 18, 20, 0.75);" onclick="closeAuthModal()"></div>
-    <div id="auth-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 410; width: 90%; max-width: 360px; background-color: #FFFFFF; border-radius: var(--border-radius-md); padding: 30px; box-shadow: var(--shadow-lux);">
-        <h3 id="auth-title" style="margin: 0 0 20px 0; color: var(--color-primary); font-family: var(--font-heading); text-align: center;">Login to UVIRA JEWELS</h3>
-        <div class="custom-form-group">
-            <label class="custom-form-label">Email</label>
-            <input type="email" id="auth-email" class="custom-input" placeholder="you@example.com">
+    <div id="auth-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 410; width: 92%; max-width: 390px; background-color: #FFFFFF; border-radius: 16px; padding: 28px 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.25); max-height: 90vh; overflow-y: auto;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
+            <h3 id="auth-title" style="margin: 0; color: var(--color-primary); font-family: var(--font-heading); font-size: 1.3rem;">Login to UVIRA</h3>
+            <button onclick="closeAuthModal()" style="background: none; border: none; font-size: 1.5rem; line-height: 1; cursor: pointer; color: var(--color-silver-dark); padding: 4px;">&times;</button>
         </div>
-        <div class="custom-form-group">
+
+        <div class="custom-form-group" id="auth-name-group" style="display: none; margin-bottom: 14px;">
+            <label class="custom-form-label">Full Name</label>
+            <input type="text" id="auth-name" class="custom-input" placeholder="e.g. Rahul Sharma" style="width: 100%;">
+        </div>
+
+        <div class="custom-form-group" style="margin-bottom: 14px;">
+            <label class="custom-form-label">Email Address</label>
+            <input type="email" id="auth-email" class="custom-input" placeholder="you@example.com" style="width: 100%;">
+        </div>
+
+        <div class="custom-form-group" style="margin-bottom: 14px;">
             <label class="custom-form-label">Password</label>
-            <input type="password" id="auth-password" class="custom-input" placeholder="••••••••">
+            <input type="password" id="auth-password" class="custom-input" placeholder="••••••••" style="width: 100%;">
+        </div>
+
+        <div class="custom-form-group" id="auth-confirm-group" style="display: none; margin-bottom: 14px;">
+            <label class="custom-form-label">Confirm Password</label>
+            <input type="password" id="auth-confirm-password" class="custom-input" placeholder="••••••••" style="width: 100%;">
+        </div>
+
+        <div class="custom-form-group" id="auth-referral-group" style="display: none; margin-bottom: 14px;">
+            <label class="custom-form-label">Referral Code (Optional)</label>
+            <input type="text" id="auth-referral-code" class="custom-input" placeholder="e.g. REF123" style="width: 100%; text-transform: uppercase;">
         </div>
         
-        <div id="auth-error" style="color: #EF4444; font-size: 0.8rem; margin-bottom: 15px; text-align: center; display: none;"></div>
-        <button id="auth-submit-btn" class="btn-checkout" style="width: 100%; margin: 0 0 15px 0;" onclick="handleAuthSubmit()">Login</button>
+        <div id="auth-error" style="color: #DC2626; background: #FEE2E2; border: 1px solid #FCA5A5; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; margin-bottom: 14px; text-align: center; display: none;"></div>
+        <div id="auth-success" style="color: #15803D; background: #DCFCE7; border: 1px solid #86EFAC; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; margin-bottom: 14px; text-align: center; display: none;"></div>
+
+        <button id="auth-submit-btn" class="btn-checkout" style="width: 100%; margin: 0 0 15px 0; padding: 12px 0; font-size: 0.95rem; font-weight: 600; border-radius: 8px;" onclick="handleAuthSubmit()">Login</button>
+        
         <div style="text-align: center; font-size: 0.85rem; color: var(--color-silver-dark);">
             <span id="auth-toggle-text">Don't have an account?</span> 
-            <a href="#" onclick="toggleAuthMode(); return false;" style="color: var(--color-accent-pink); font-weight: 600; text-decoration: none;" id="auth-toggle-link">Sign up</a>
+            <a href="#" onclick="toggleAuthMode(); return false;" style="color: var(--color-primary); font-weight: 700; text-decoration: underline; margin-left: 4px;" id="auth-toggle-link">Sign up</a>
         </div>
     </div>
 

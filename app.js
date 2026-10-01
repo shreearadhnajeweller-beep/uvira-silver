@@ -38,7 +38,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_1_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted Batman dark knight crest embedded with brilliant-cut micro pavé crystals. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted Batman dark knight crest embedded with brilliant-cut micro pavé crystals. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -61,7 +61,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_2_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted Ferrari Scuderia crest embedded with brilliant-cut micro pavé crystals and ruby-emerald accent stripes. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted Ferrari Scuderia crest embedded with brilliant-cut micro pavé crystals and ruby-emerald accent stripes. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -84,7 +84,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_3_1.webp",
-        "description": "Bespoke 925 Sterling Silver Whoop band case in a sleek, minimalist high-polish finish with brilliant-cut crystal border accents. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver Whoop band case in a sleek, minimalist high-polish finish with brilliant-cut crystal border accents. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -107,7 +107,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_4_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case Nicole Edition featuring intricate artisan crest work and pavé-set stones. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case Nicole Edition featuring intricate artisan crest work and pavé-set stones. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -130,7 +130,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_5_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an avant-garde geometric uneven-cut crystal pattern in solid 925 sterling silver. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an avant-garde geometric uneven-cut crystal pattern in solid 925 sterling silver. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -153,7 +153,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_6_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted Shopify crest embedded with vivid emerald-green micro pavé crystals. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted Shopify crest embedded with vivid emerald-green micro pavé crystals. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -176,7 +176,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_7_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an iconic Calatrava Cross Patek Philippe style crest embedded with immaculate micro pavé diamond-equivalent stones. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an iconic Calatrava Cross Patek Philippe style crest embedded with immaculate micro pavé diamond-equivalent stones. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -199,7 +199,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_8_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an equestrian stallion crest handset with brilliant-cut stones. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an equestrian stallion crest handset with brilliant-cut stones. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -222,7 +222,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_9_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring baguette and emerald-cut rectangular stones with high-precision pavé setting. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring baguette and emerald-cut rectangular stones with high-precision pavé setting. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -245,7 +245,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_10_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring clean architectural lines and pure sterling silver rhodium polish. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring clean architectural lines and pure sterling silver rhodium polish. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -268,7 +268,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_11_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case inspired by Formula 1 motorsport racing with precision-set stones. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case inspired by Formula 1 motorsport racing with precision-set stones. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -291,7 +291,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_12_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case Coach Edition featuring signature monogram styling and micro pavé accents. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case Coach Edition featuring signature monogram styling and micro pavé accents. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -314,7 +314,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_13_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case F1 Silver edition in solid 92.5% sterling silver with racing emblem detailing. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case F1 Silver edition in solid 92.5% sterling silver with racing emblem detailing. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -337,7 +337,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_14_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case Dior Edition featuring haute couture inspired crestwork with sparkling pavé crystals. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case Dior Edition featuring haute couture inspired crestwork with sparkling pavé crystals. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -360,7 +360,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_15_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted United Arab Emirates national flag embedded with ruby, emerald, and diamond-equivalent stones. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted United Arab Emirates national flag embedded with ruby, emerald, and diamond-equivalent stones. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -383,7 +383,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_16_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case Monaco Edition featuring the regal principality crest in micro pavé setting. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case Monaco Edition featuring the regal principality crest in micro pavé setting. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -406,7 +406,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_17_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an architectural silhouette of Burj Khalifa rendered in radiant gem stones. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an architectural silhouette of Burj Khalifa rendered in radiant gem stones. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -429,7 +429,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_18_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a majestic royal lion crest embedded with brilliant-cut micro pavé jewels. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a majestic royal lion crest embedded with brilliant-cut micro pavé jewels. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -452,7 +452,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_19_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a soaring imperial eagle crest with intricate plumage gem setting. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a soaring imperial eagle crest with intricate plumage gem setting. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -475,7 +475,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_20_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case LK monogram crest featuring master artisan hand-setting in solid 925 sterling silver. Compatible with Whoop 4.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case LK monogram crest featuring master artisan hand-setting in solid 925 sterling silver. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -498,52 +498,111 @@ seedMockProducts();
 const SUPABASE_URL = "https://zimapfcyfxiqdnxaaonp.supabase.co";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InppbWFwZmN5ZnhpcWRueGFhb25wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyMTE4NjEsImV4cCI6MjEwNDc4Nzg2MX0.n7UVMBY-5iBiaasKw34TkDdD04JgSTo9r7ombxXqnZk";
 
-const supaClient = (window.supabase && window.supabase.createClient) 
-  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
-  : {
-      from: (table) => ({
-          select: (cols) => ({
-              then: (cb) => { 
-                  let data = JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
-                  cb({data, error: null}); 
-                  return { catch: ()=>{} }; 
-              },
-              like: (col, val) => ({ then: (cb) => {
-                  let data = JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
-                  cb({data: data.filter(x => x[col] && String(x[col]).includes(val.replace('%',''))), error:null});
-              } }),
-              eq: (col, val) => ({
-                  single: () => Promise.resolve({ data: JSON.parse(localStorage.getItem('mock_db_' + table) || '[]').find(x => x[col] === val) || null }),
-                  then: (cb) => { 
-                      let data = JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
-                      cb({data: data.filter(x => x[col] === val), error:null});
-                  }
-              }),
-              limit: (n) => Promise.resolve({ data: JSON.parse(localStorage.getItem('mock_db_' + table) || '[]').slice(0, n), error: null })
-          }),
-          insert: (arr) => {
-              let data = JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
-              data.push(...arr);
-              localStorage.setItem('mock_db_' + table, JSON.stringify(data));
-              return Promise.resolve({ error: null });
-          },
-          upsert: (arr) => {
-              let data = JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
-              arr.forEach(item => {
-                  let idx = data.findIndex(x => x.id === item.id || x.key === item.key);
-                  if (idx >= 0) data[idx] = item; else data.push(item);
-              });
-              localStorage.setItem('mock_db_' + table, JSON.stringify(data));
-              return Promise.resolve({ error: null });
-          },
-          delete: () => ({ eq: (col, val) => {
-              let data = JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
-              data = data.filter(x => x[col] !== val);
-              localStorage.setItem('mock_db_' + table, JSON.stringify(data));
-              return Promise.resolve({ error: null });
-          }})
-      })
-  };
+// Resilient Storage & Database Client (Primary Local In-Memory / LocalStorage with full PostgREST-compatible API)
+const supaClient = {
+    from: (table) => {
+        const getTableData = () => {
+            try {
+                return JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
+            } catch(e) {
+                return [];
+            }
+        };
+        const setTableData = (data) => {
+            try {
+                localStorage.setItem('mock_db_' + table, JSON.stringify(data));
+            } catch(e) {
+                console.error("Storage write error for table:", table, e);
+            }
+        };
+
+        const createQuery = () => {
+            let current = getTableData();
+            const queryObj = {
+                then: (resolve, reject) => {
+                    const res = { data: current, error: null };
+                    if (resolve) resolve(res);
+                    return Promise.resolve(res);
+                },
+                catch: (reject) => Promise.resolve({ data: current, error: null }),
+                like: (col, val) => {
+                    const needle = String(val).replace(/%/g, '').toLowerCase();
+                    current = current.filter(x => x && x[col] && String(x[col]).toLowerCase().includes(needle));
+                    return queryObj;
+                },
+                order: (col, opts = {}) => {
+                    current.sort((a, b) => (opts.ascending ? (a[col] > b[col] ? 1 : -1) : (b[col] > a[col] ? 1 : -1)));
+                    return queryObj;
+                },
+                limit: (n) => {
+                    current = current.slice(0, n);
+                    return queryObj;
+                },
+                eq: (col, val) => {
+                    current = current.filter(x => x && x[col] === val);
+                    return {
+                        ...queryObj,
+                        single: () => Promise.resolve({ 
+                            data: current[0] || null, 
+                            error: current.length === 0 ? { message: 'Row not found', code: 'PGRST116' } : null 
+                        }),
+                        maybeSingle: () => Promise.resolve({ 
+                            data: current[0] || null, 
+                            error: null 
+                        })
+                    };
+                }
+            };
+            return queryObj;
+        };
+
+        return {
+            select: (cols = '*') => createQuery(),
+            insert: (arr) => {
+                const items = Array.isArray(arr) ? arr : [arr];
+                let data = getTableData();
+                data.push(...items);
+                setTableData(data);
+                return Promise.resolve({ data: items, error: null });
+            },
+            upsert: (arr) => {
+                const items = Array.isArray(arr) ? arr : [arr];
+                let data = getTableData();
+                items.forEach(item => {
+                    const idx = data.findIndex(x => (item.id && x.id === item.id) || (item.key && x.key === item.key));
+                    if (idx >= 0) data[idx] = { ...data[idx], ...item };
+                    else data.push(item);
+                });
+                setTableData(data);
+                return Promise.resolve({ data: items, error: null });
+            },
+            update: (obj) => ({
+                eq: (col, val) => {
+                    let data = getTableData();
+                    let updated = [];
+                    data = data.map(item => {
+                        if (item && item[col] === val) {
+                            const mod = { ...item, ...obj };
+                            updated.push(mod);
+                            return mod;
+                        }
+                        return item;
+                    });
+                    setTableData(data);
+                    return Promise.resolve({ data: updated, error: null });
+                }
+            }),
+            delete: () => ({
+                eq: (col, val) => {
+                    let data = getTableData();
+                    data = data.filter(x => !x || x[col] !== val);
+                    setTableData(data);
+                    return Promise.resolve({ error: null });
+                }
+            })
+        };
+    }
+};
 
 
 const DEFAULT_PRODUCTS = []; // Now loaded from Supabase
@@ -1124,7 +1183,7 @@ function createProductCardHtml(p, idx = 0) {
                 <div class="product-tags-row">
                     <span class="prod-tag-pill">925 Silver</span>
                     <span class="prod-tag-pill">${weightVal}</span>
-                    <span class="prod-tag-pill">Whoop 4.0</span>
+                    <span class="prod-tag-pill">Whoop 4.0 / 5.0</span>
                 </div>
                 <h3 class="product-title" onclick="viewProductDetail('${p.id}')" title="${p.title}">${p.title}</h3>
                 <div class="product-price-row">
@@ -3896,7 +3955,7 @@ async function loadLiveStats() {
 }
 
 // --- WINDOW LOAD INITIALIZER ---
-window.addEventListener("DOMContentLoaded", async () => { localStorage.removeItem("mock_db_settings"); 
+window.addEventListener("DOMContentLoaded", async () => {
     // Show home view IMMEDIATELY — don't wait for network
     const homeView = document.getElementById("home-view");
     if (homeView) homeView.classList.add("active-view");
@@ -5908,9 +5967,9 @@ function initAuthListener() {
 }
 
 async function fetchUserProfile(email, token) {
-    const { data, error } = await supaClient.from('settings').select('value').eq('key', 'user_' + email).single();
-    if (data && data.value) {
-        try {
+    try {
+        const { data, error } = await supaClient.from('settings').select('value').eq('key', 'user_' + email).maybeSingle();
+        if (data && data.value) {
             const userData = JSON.parse(data.value);
             if (userData.token === token) {
                 const didMigrate = migrateTdsForUser(userData);
@@ -5918,15 +5977,15 @@ async function fetchUserProfile(email, token) {
                 STATE.profile = { digi_silver_balance: userData.digi_silver_balance || 0 };
                 
                 if (didMigrate) {
-                    supaClient.from('settings').update({ value: JSON.stringify(userData) }).eq('key', 'user_' + email).then(({error}) => {
-                        if (error) console.error("Error saving migrated user:", error);
-                    });
+                    supaClient.from('settings').update({ value: JSON.stringify(userData) }).eq('key', 'user_' + email);
                 }
                 
                 updateProfileUI();
                 return;
             }
-        } catch(e) {}
+        }
+    } catch(e) {
+        console.error("fetchUserProfile error:", e);
     }
     // Fallback if mismatched or not found
     handleLogout();
@@ -6280,47 +6339,121 @@ function openUserProfile() {
     }
 }
 
+function openAuthModal(mode = 'login') {
+    isAuthSignupMode = (mode === 'signup');
+    const overlay = document.getElementById('auth-overlay');
+    const modal = document.getElementById('auth-modal');
+    if (overlay) overlay.style.display = 'block';
+    if (modal) modal.style.display = 'block';
+    updateAuthModalView();
+}
+
 function closeAuthModal() {
-    document.getElementById('auth-overlay').style.display = 'none';
-    document.getElementById('auth-modal').style.display = 'none';
+    const overlay = document.getElementById('auth-overlay');
+    const modal = document.getElementById('auth-modal');
+    if (overlay) overlay.style.display = 'none';
+    if (modal) modal.style.display = 'none';
+    const errEl = document.getElementById('auth-error');
+    if (errEl) errEl.style.display = 'none';
+    const succEl = document.getElementById('auth-success');
+    if (succEl) succEl.style.display = 'none';
 }
 
 function toggleAuthMode() {
     isAuthSignupMode = !isAuthSignupMode;
-    document.getElementById('auth-title').textContent = isAuthSignupMode ? 'Sign Up' : 'Login to UVIRA JEWELS';
-    document.getElementById('auth-submit-btn').textContent = isAuthSignupMode ? 'Create Account' : 'Login';
-    document.getElementById('auth-toggle-text').textContent = isAuthSignupMode ? 'Already have an account?' : "Don't have an account?";
-    document.getElementById('auth-toggle-link').textContent = isAuthSignupMode ? 'Login' : 'Sign up';
-    document.getElementById('auth-error').style.display = 'none';
+    updateAuthModalView();
+}
+
+function updateAuthModalView() {
+    const titleEl = document.getElementById('auth-title');
+    const submitBtn = document.getElementById('auth-submit-btn');
+    const toggleText = document.getElementById('auth-toggle-text');
+    const toggleLink = document.getElementById('auth-toggle-link');
+    const nameGroup = document.getElementById('auth-name-group');
+    const confirmGroup = document.getElementById('auth-confirm-group');
     const refGroup = document.getElementById('auth-referral-group');
-    if (refGroup) refGroup.style.display = isAuthSignupMode ? 'block' : 'none';
+    const errEl = document.getElementById('auth-error');
+    const succEl = document.getElementById('auth-success');
+    
+    if (errEl) errEl.style.display = 'none';
+    if (succEl) succEl.style.display = 'none';
+
+    if (isAuthSignupMode) {
+        if (titleEl) titleEl.textContent = 'Create UVIRA Account';
+        if (submitBtn) submitBtn.textContent = 'Create Account';
+        if (toggleText) toggleText.textContent = 'Already have an account?';
+        if (toggleLink) toggleLink.textContent = 'Sign In';
+        if (nameGroup) nameGroup.style.display = 'block';
+        if (confirmGroup) confirmGroup.style.display = 'block';
+        if (refGroup) refGroup.style.display = 'block';
+    } else {
+        if (titleEl) titleEl.textContent = 'Login to UVIRA';
+        if (submitBtn) submitBtn.textContent = 'Sign In';
+        if (toggleText) toggleText.textContent = "Don't have an account?";
+        if (toggleLink) toggleLink.textContent = 'Sign up';
+        if (nameGroup) nameGroup.style.display = 'none';
+        if (confirmGroup) confirmGroup.style.display = 'none';
+        if (refGroup) refGroup.style.display = 'none';
+    }
 }
 
 async function handleAuthSubmit() {
-    const email = document.getElementById('auth-email').value.trim();
-    const password = document.getElementById('auth-password').value;
+    const emailEl = document.getElementById('auth-email');
+    const passEl = document.getElementById('auth-password');
+    const nameEl = document.getElementById('auth-name');
+    const confirmPassEl = document.getElementById('auth-confirm-password');
+    const refInp = document.getElementById('auth-referral-code');
     const errEl = document.getElementById('auth-error');
-    errEl.style.display = 'none';
+    const succEl = document.getElementById('auth-success');
+    const submitBtn = document.getElementById('auth-submit-btn');
 
-    if (!email || !password) {
-        errEl.textContent = "Please enter email and password.";
-        errEl.style.display = 'block';
+    if (errEl) errEl.style.display = 'none';
+    if (succEl) succEl.style.display = 'none';
+
+    const email = emailEl ? emailEl.value.trim().toLowerCase() : "";
+    const password = passEl ? passEl.value : "";
+    const name = nameEl ? nameEl.value.trim() : "";
+    const confirmPass = confirmPassEl ? confirmPassEl.value : "";
+
+    if (!email) {
+        if (errEl) { errEl.textContent = "Please enter your email address."; errEl.style.display = 'block'; }
+        return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        if (errEl) { errEl.textContent = "Please enter a valid email address."; errEl.style.display = 'block'; }
+        return;
+    }
+    if (!password) {
+        if (errEl) { errEl.textContent = "Please enter a password."; errEl.style.display = 'block'; }
+        return;
+    }
+    if (password.length < 4) {
+        if (errEl) { errEl.textContent = "Password must be at least 4 characters."; errEl.style.display = 'block'; }
         return;
     }
 
-    document.getElementById('auth-submit-btn').textContent = "Please wait...";
+    if (isAuthSignupMode) {
+        if (confirmPass && password !== confirmPass) {
+            if (errEl) { errEl.textContent = "Passwords do not match."; errEl.style.display = 'block'; }
+            return;
+        }
+    }
+
+    if (submitBtn) submitBtn.textContent = "Please wait...";
 
     try {
         if (isAuthSignupMode) {
-            const { data: exist } = await supaClient.from('settings').select('key').eq('key', 'user_' + email).single();
-            if (exist) throw new Error("Email already registered. Please login.");
-            
+            const { data: exist } = await supaClient.from('settings').select('value').eq('key', 'user_' + email).maybeSingle();
+            if (exist) {
+                throw new Error("This email is already registered. Please sign in instead.");
+            }
+
             let referredByVal = null;
-            const refInp = document.getElementById('auth-referral-code');
             const refCodeEntered = refInp ? refInp.value.trim().toUpperCase() : "";
             if (refCodeEntered) {
                 const { data: allSettings } = await supaClient.from('settings').select('*').like('key', 'user_%');
-                const users = allSettings ? allSettings.filter(s => s.key.startsWith('user_')).map(s => {
+                const users = allSettings ? allSettings.map(s => {
                     try { return JSON.parse(s.value); } catch(e) { return null; }
                 }).filter(Boolean) : [];
                 
@@ -6333,53 +6466,78 @@ async function handleAuthSubmit() {
                 }
                 referredByVal = refCodeEntered;
             }
-            
-            const token = 'UVR-USER-' + Math.random().toString(36).substr(2, 9);
+
+            const token = 'UVR-USER-' + Date.now().toString(36) + Math.random().toString(36).substr(2, 6);
             const referralCode = 'REF' + Math.random().toString(36).substr(2, 6).toUpperCase();
-            
-            const newUser = { 
-                token, 
-                email, 
-                password, 
-                name: email.split('@')[0], 
+
+            const newUser = {
+                token,
+                email,
+                password,
+                name: name || email.split('@')[0],
                 digi_silver_balance: 0,
                 referral_code: referralCode,
                 referred_by: referredByVal,
-                referral_commissions: []
+                referral_commissions: [],
+                created_at: new Date().toISOString()
             };
-            
+
             await supaClient.from('settings').insert([{ key: 'user_' + email, value: JSON.stringify(newUser) }]);
-            
-            alert(`Signup successful! Your referral code is ${referralCode}. Please login.`);
-            if (refInp) refInp.value = "";
-            toggleAuthMode();
+
+            // Automatically log in the user immediately!
+            localStorage.setItem('mrt_user_token', newUser.token);
+            localStorage.setItem('mrt_user_email', newUser.email);
+            STATE.user = newUser;
+            STATE.profile = { digi_silver_balance: 0 };
+
+            if (succEl) {
+                succEl.textContent = `Welcome ${newUser.name}! Account created successfully.`;
+                succEl.style.display = 'block';
+            }
+
+            setTimeout(() => {
+                closeAuthModal();
+                openUserProfile();
+                updateProfileUI();
+            }, 600);
+
         } else {
             const { data, error } = await supaClient.from('settings').select('value').eq('key', 'user_' + email).single();
-            if (error || !data) throw new Error("Email not registered. Please sign up.");
-            
-            const userRecord = JSON.parse(data.value);
-            if (userRecord.password !== password) throw new Error("Invalid login credentials.");
-            
-            const didMigrate = migrateTdsForUser(userRecord);
-            if (didMigrate) {
-                await supaClient.from('settings').update({ value: JSON.stringify(userRecord) }).eq('key', 'user_' + email);
+            if (error || !data || !data.value) {
+                throw new Error("Email not registered. Please create an account.");
             }
-            
+
+            let userRecord;
+            try {
+                userRecord = JSON.parse(data.value);
+            } catch(e) {
+                throw new Error("Invalid account data.");
+            }
+
+            if (userRecord.password !== password) {
+                throw new Error("Incorrect password. Please try again.");
+            }
+
+            migrateTdsForUser(userRecord);
+
             localStorage.setItem('mrt_user_token', userRecord.token);
             localStorage.setItem('mrt_user_email', userRecord.email);
-            
             STATE.user = userRecord;
             STATE.profile = { digi_silver_balance: userRecord.digi_silver_balance || 0 };
-            
+
             closeAuthModal();
             openUserProfile();
             updateProfileUI();
         }
     } catch (err) {
-        errEl.textContent = err.message || "Authentication failed.";
-        errEl.style.display = 'block';
+        if (errEl) {
+            errEl.textContent = err.message || "Authentication failed.";
+            errEl.style.display = 'block';
+        }
     } finally {
-        document.getElementById('auth-submit-btn').textContent = isAuthSignupMode ? 'Create Account' : 'Login';
+        if (submitBtn) {
+            submitBtn.textContent = isAuthSignupMode ? 'Create Account' : 'Sign In';
+        }
     }
 }
 
