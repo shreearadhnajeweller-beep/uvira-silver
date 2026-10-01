@@ -238,7 +238,7 @@ async function initState() {
     // Products
     if (productsResult.status === 'fulfilled' && !productsResult.value.error) {
         const data = productsResult.value.data || [];
-        STATE.products = data.map(p => normalizeProductData({
+        let fetchedProducts = data.map(p => normalizeProductData({
             id: p.id,
             title: p.title,
             category: p.category,
@@ -253,6 +253,19 @@ async function initState() {
             gender: (p.specs && p.specs.gender) ? p.specs.gender : "both",
             specs: p.specs || {}
         }));
+
+        // Ensure all seed Whoop products are guaranteed present
+        WHOOP_PRODUCTS_SEED.forEach(seedItem => {
+            const idx = fetchedProducts.findIndex(p => p.id === seedItem.id);
+            if (idx === -1) {
+                fetchedProducts.push(normalizeProductData(seedItem));
+            } else {
+                // Ensure specs.images and weight are normalized from seed if needed
+                fetchedProducts[idx] = normalizeProductData(fetchedProducts[idx]);
+            }
+        });
+
+        STATE.products = fetchedProducts;
     } else {
         console.error("Error loading products:", productsResult.reason || productsResult.value?.error);
         STATE.products = WHOOP_PRODUCTS_SEED.map(normalizeProductData);
@@ -711,6 +724,8 @@ function createProductCardHtml(p, idx = 0) {
     const discountPercent = p.originalPrice && p.originalPrice > p.price 
         ? Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100) 
         : 0;
+
+    const secondImg = (p.specs && p.specs.images && p.specs.images.length > 1) ? p.specs.images[1] : p.image;
     
     return `
         <div class="product-card animate-entrance" style="animation-delay: ${idx * 0.05}s;">
@@ -719,7 +734,8 @@ function createProductCardHtml(p, idx = 0) {
                 <svg width="18" height="18" fill="${isWished ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
             </button>
             <div class="product-img-wrap" onclick="viewProductDetail('${p.id}')">
-                <img class="product-img" src="${p.image}" alt="${p.title}" loading="lazy">
+                <img class="product-img primary-img" src="${p.image}" alt="${p.title}" loading="lazy">
+                ${secondImg !== p.image ? `<img class="product-img secondary-img" src="${secondImg}" alt="${p.title} - Wrist View" loading="lazy">` : ''}
             </div>
             <div class="product-info">
 
