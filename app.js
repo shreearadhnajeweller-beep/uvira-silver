@@ -182,7 +182,7 @@ const DEFAULT_PRODUCTS = []; // Now loaded from Supabase
 
 // Global Application State
 const STATE = {
-    products: [],
+    products: WHOOP_PRODUCTS_SEED.map(normalizeProductData),
     cart: [],
     wishlist: [],
     orders: [],
@@ -633,6 +633,8 @@ function renderShopCatalog() {
     const maxPrice = document.getElementById("filter-price-max") ? parseFloat(document.getElementById("filter-price-max").value) : 50000;
     
     const categories = [];
+    const whoopCheck = document.getElementById("filter-type-whoop");
+    if (whoopCheck && whoopCheck.checked) categories.push("whoop", "whoop_accessories");
     const ringsCheck = document.getElementById("filter-type-rings");
     if (ringsCheck && ringsCheck.checked) categories.push("rings");
     const earringsCheck = document.getElementById("filter-type-earrings");
