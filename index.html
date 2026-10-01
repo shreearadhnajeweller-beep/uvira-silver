@@ -106,32 +106,34 @@
     <!-- --- A. HOME VIEW PANEL --- -->
     <div id="home-view" class="app-view active-view">
         
-        <!-- Clean Luxury Hero Banner -->
-        <section class="hero-slider hd-animated-hero">
-            <div class="hero-bg-circle hero-bg-circle-top"></div>
-            <div class="hero-bg-circle hero-bg-circle-bottom"></div>
-            
-            <!-- Hero Content -->
-            <div class="hd-hero-content-wrapper">
-                <span class="hd-hero-badge">BESPOKE 925 STERLING SILVER WHOOP COLLECTION</span>
-                <h1 class="hd-hero-title">EMBODY THE ELEGANCE OF STERLING SILVER</h1>
-                <p class="hd-hero-subtitle">Handcrafted 925 Hallmark Certified Creations &amp; Exclusive Custom Whoop Silver Accessories</p>
+        <!-- Clean Luxury Hero Banner Card with Side Margins -->
+        <section class="container hero-banner-container" style="margin-top: 18px; margin-bottom: 35px;">
+            <div class="hero-slider hd-animated-hero">
+                <div class="hero-bg-circle hero-bg-circle-top"></div>
+                <div class="hero-bg-circle hero-bg-circle-bottom"></div>
                 
-                <div class="hd-hero-actions">
-                    <button class="btn-hd-hero-primary" onclick="navigateTo('shop', 'whoop')">
-                        <span>Explore Whoop Cases</span>
-                        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </button>
-                    <button class="btn-hd-hero-secondary" onclick="navigateTo('shop')">
-                        <span>Shop Entire Collection</span>
-                    </button>
+                <!-- Hero Content -->
+                <div class="hd-hero-content-wrapper">
+                    <span class="hd-hero-badge">BESPOKE 925 STERLING SILVER WHOOP COLLECTION</span>
+                    <h1 class="hd-hero-title">EMBODY THE ELEGANCE OF STERLING SILVER</h1>
+                    <p class="hd-hero-subtitle">Handcrafted 925 Hallmark Certified Creations &amp; Exclusive Custom Whoop Silver Accessories</p>
+                    
+                    <div class="hd-hero-actions">
+                        <button class="btn-hd-hero-primary" onclick="navigateTo('shop', 'whoop')">
+                            <span>Explore Whoop Cases</span>
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </button>
+                        <button class="btn-hd-hero-secondary" onclick="navigateTo('shop')">
+                            <span>Shop Entire Collection</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Admin Overlay Hook if configured -->
-            <div id="hero-banner-overlay" style="display:none;">
-                <h1 id="hero-overlay-title"></h1>
-                <p id="hero-overlay-subtitle"></p>
+                
+                <!-- Admin Overlay Hook if configured -->
+                <div id="hero-banner-overlay" style="display:none;">
+                    <h1 id="hero-overlay-title"></h1>
+                    <p id="hero-overlay-subtitle"></p>
+                </div>
             </div>
         </section>
 
