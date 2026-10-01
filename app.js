@@ -949,12 +949,8 @@ function renderHomeProducts() {
     const bestSellersGrid = document.getElementById("best-sellers-grid");
     if (!bestSellersGrid) return;
     
-    // Sort products by ratings / show top 4
-    const sorted = [...STATE.products]
-        .filter(p => p.id !== "prod-9") // Exclude pure coin from regular lists
-        .sort((a,b) => b.rating - a.rating)
-        .slice(0, 20);
-        
+    // Exactly 8 products on home page as requested, rest viewed via Explore More button
+    const sorted = [...STATE.products].slice(0, 8);
     bestSellersGrid.innerHTML = sorted.map((p, idx) => createProductCardHtml(p, idx)).join("");
 }
 
@@ -1104,39 +1100,40 @@ function renderShopCatalog() {
 function createProductCardHtml(p, idx = 0) {
     const isWished = STATE.wishlist.includes(p.id) ? "wished" : "";
     const badgeHtml = !p.inStock 
-        ? `<div class="product-card-badge" style="background-color:#94A3B8;">OUT OF STOCK</div>` 
-        : (p.price < p.originalPrice ? `<div class="product-card-badge">SALE</div>` : "");
+        ? `<div class="product-card-badge out-of-stock">OUT OF STOCK</div>` 
+        : (p.price < p.originalPrice ? `<div class="product-card-badge">50% OFF</div>` : "");
         
     const discountPercent = p.originalPrice && p.originalPrice > p.price 
         ? Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100) 
         : 0;
 
     const secondImg = (p.specs && p.specs.images && p.specs.images.length > 1) ? p.specs.images[1] : p.image;
+    const weightVal = (p.specs && p.specs.weight) ? p.specs.weight : '20.0g';
     
     return `
-        <div class="product-card animate-entrance" style="animation-delay: ${idx * 0.05}s;">
+        <div class="product-card animate-entrance" style="animation-delay: ${idx * 0.04}s;">
             ${badgeHtml}
             <button class="product-card-wish ${isWished}" onclick="event.stopPropagation(); toggleWishlist('${p.id}');" aria-label="Add to Wishlist">
-                <svg width="18" height="18" fill="${isWished ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                <svg width="16" height="16" fill="${isWished ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
             </button>
             <div class="product-img-wrap" onclick="viewProductDetail('${p.id}')">
                 <img class="product-img primary-img" src="${p.image}" alt="${p.title}" loading="lazy">
                 ${secondImg !== p.image ? `<img class="product-img secondary-img" src="${secondImg}" alt="${p.title} - Wrist View" loading="lazy">` : ''}
             </div>
             <div class="product-info">
-
-                <h3 class="product-title" onclick="viewProductDetail('${p.id}')">${p.title}</h3>
-                <div class="product-metadata-row" style="display: flex; gap: 8px; font-size: 0.75rem; color: var(--color-silver-dark); margin-top: 4px; margin-bottom: 8px; align-items: center; justify-content: center;">
-                    <span style="display: flex; align-items: center; gap: 2px;">⚖️ ${p.specs && p.specs.weight ? p.specs.weight : 'N/A'}</span>
-                    <span>•</span>
-                    <span style="display: flex; align-items: center; gap: 2px;">👥 ${p.gender === 'him' ? 'Men' : (p.gender === 'her' ? 'Women' : (p.gender === 'kids' ? 'Kids' : 'Unisex'))}</span>
+                <div class="product-tags-row">
+                    <span class="prod-tag-pill">925 Silver</span>
+                    <span class="prod-tag-pill">${weightVal}</span>
+                    <span class="prod-tag-pill">Whoop 4.0</span>
                 </div>
+                <h3 class="product-title" onclick="viewProductDetail('${p.id}')" title="${p.title}">${p.title}</h3>
                 <div class="product-price-row">
                     <span class="product-price">₹${p.price.toLocaleString("en-IN")}</span>
                     ${p.originalPrice ? `<span class="product-original-price">₹${p.originalPrice.toLocaleString("en-IN")}</span>` : ""}
                     ${discountPercent > 0 ? `<span class="product-discount">${discountPercent}% OFF</span>` : ""}
                 </div>
-                <button class="product-btn-add" onclick="addToCart('${p.id}')" ${!p.inStock ? 'disabled style="border-color:#94A3B8;color:#94A3B8;"' : ''}>
+                <button class="product-btn-add" onclick="addToCart('${p.id}')" ${!p.inStock ? 'disabled style="background:#E2E8F0;color:#94A3B8;cursor:not-allowed;"' : ''}>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:inline-block; vertical-align:-2px; margin-right:5px;"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
                     ${p.inStock ? 'Add to Cart' : 'Sold Out'}
                 </button>
             </div>
