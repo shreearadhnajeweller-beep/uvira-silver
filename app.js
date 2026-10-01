@@ -1,5 +1,29 @@
 
 
+// Helper to enforce product requirements (20.0g weight, 925 Sterling Silver, inStock true, 2 images)
+function normalizeProductData(p) {
+    if (!p) return p;
+    p.inStock = true;
+    p.in_stock = true;
+    if (!p.specs) p.specs = {};
+    p.specs.weight = "20.0g";
+    p.specs.metal = "Solid 92.5% Sterling Silver";
+    
+    let imgs = [];
+    if (Array.isArray(p.specs.images) && p.specs.images.length > 0) {
+        imgs = [...p.specs.images];
+    } else if (p.image) {
+        imgs = [p.image];
+    }
+    // Guarantee 2 images per product
+    while (imgs.length < 2) {
+        imgs.push(imgs[0] || "assets/whoop1_1.webp");
+    }
+    p.specs.images = imgs;
+    if (!p.image && imgs.length > 0) p.image = imgs[0];
+    return p;
+}
+
 // Whoop Products Seed
 const WHOOP_PRODUCTS_SEED = [{
     "id": "prod-whoop-ferrari",
@@ -15,7 +39,7 @@ const WHOOP_PRODUCTS_SEED = [{
     "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted Ferrari Scuderia crest embedded with brilliant-cut micro pavé crystals and ruby-emerald accent stripes. Compatible with Whoop sensors.",
     "specs": {
         "metal": "Solid 92.5% Sterling Silver",
-        "weight": "28.5g",
+        "weight": "20.0g",
         "finish": "Rhodium Polish with Gem-Set Crest",
         "disable_auto_rate": true,
         "images": [
@@ -37,7 +61,7 @@ const WHOOP_PRODUCTS_SEED = [{
     "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted United Arab Emirates national flag embedded with brilliant-cut red rubies, emeralds, black onyx, and diamond-equivalent crystals. Compatible with Whoop sensors.",
     "specs": {
         "metal": "Solid 92.5% Sterling Silver",
-        "weight": "29.0g",
+        "weight": "20.0g",
         "finish": "Rhodium Polish with UAE Flag Gem Setting",
         "disable_auto_rate": true,
         "images": [
@@ -59,7 +83,7 @@ const WHOOP_PRODUCTS_SEED = [{
     "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted Shopify shopping bag crest embedded with brilliant-cut emerald green micro pavé crystals and diamond-equivalent accent stones. Compatible with Whoop sensors.",
     "specs": {
         "metal": "Solid 92.5% Sterling Silver",
-        "weight": "28.8g",
+        "weight": "20.0g",
         "finish": "Rhodium Polish with Shopify Crest Gem Setting",
         "disable_auto_rate": true,
         "images": [
@@ -214,7 +238,7 @@ async function initState() {
     // Products
     if (productsResult.status === 'fulfilled' && !productsResult.value.error) {
         const data = productsResult.value.data || [];
-        STATE.products = data.map(p => ({
+        STATE.products = data.map(p => normalizeProductData({
             id: p.id,
             title: p.title,
             category: p.category,
@@ -222,60 +246,16 @@ async function initState() {
             originalPrice: p.original_price,
             rating: parseFloat(p.rating),
             reviewsCount: p.reviews_count,
-            plating: p.plating,
-            inStock: p.in_stock,
+            plating: p.plating || "Solid 92.5 Sterling Silver",
+            inStock: true,
             image: p.image,
             description: p.description,
             gender: (p.specs && p.specs.gender) ? p.specs.gender : "both",
-            specs: p.specs
+            specs: p.specs || {}
         }));
     } else {
         console.error("Error loading products:", productsResult.reason || productsResult.value?.error);
-        STATE.products = [{
-    "id": "prod-whoop-ferrari",
-    "title": "Custom Crest Gem-Set Whoop Case Ferrari",
-    "category": "whoop",
-    "price": 12500,
-    "original_price": 25000,
-    "rating": 5,
-    "reviews_count": 18,
-    "plating": "Solid 92.5 Sterling Silver with Gem-Set Ferrari Crest",
-    "in_stock": true,
-    "image": "assets/whoop1_1.webp",
-    "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted Ferrari Scuderia crest embedded with brilliant-cut micro pavé crystals and ruby-emerald accent stripes. Compatible with Whoop sensors.",
-    "specs": {
-        "metal": "Solid 92.5% Sterling Silver",
-        "weight": "28.5g",
-        "finish": "Rhodium Polish with Gem-Set Crest",
-        "disable_auto_rate": true,
-        "images": [
-            "assets/whoop1_1.webp",
-            "assets/whoop1_2.webp"
-        ]
-    }
-}, {
-    "id": "prod-whoop-uae",
-    "title": "Custom Crest Gem-Set Whoop Case UAE FLAG",
-    "category": "whoop",
-    "price": 12500,
-    "original_price": 25000,
-    "rating": 5,
-    "reviews_count": 24,
-    "plating": "Solid 92.5 Sterling Silver with Gem-Set UAE Flag",
-    "in_stock": true,
-    "image": "assets/whoop2_1.webp",
-    "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted United Arab Emirates national flag embedded with brilliant-cut red rubies, emeralds, black onyx, and diamond-equivalent crystals. Compatible with Whoop sensors.",
-    "specs": {
-        "metal": "Solid 92.5% Sterling Silver",
-        "weight": "29.0g",
-        "finish": "Rhodium Polish with UAE Flag Gem Setting",
-        "disable_auto_rate": true,
-        "images": [
-            "assets/whoop2_1.webp",
-            "assets/whoop2_2.webp"
-        ]
-    }
-}];
+        STATE.products = WHOOP_PRODUCTS_SEED.map(normalizeProductData);
     }
 
     // Coupons
