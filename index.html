@@ -91,28 +91,22 @@
             <div class="hd-hero-bg-container">
                 <img class="hd-hero-bg-img" id="banner-home-fallback-desktop" src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=2000&q=90" alt="HD UVIRA Jewels Banner">
                 <div class="hd-hero-overlay-dark"></div>
-                
-                <!-- Floating Animated Sparkles -->
-                <div class="sparkle sparkle-1">✦</div>
-                <div class="sparkle sparkle-2">✨</div>
-                <div class="sparkle sparkle-3">✦</div>
-                <div class="sparkle sparkle-4">✨</div>
             </div>
 
             <!-- HD Hero Content Overlay -->
             <div class="hd-hero-content-wrapper">
                 <div class="hd-hero-card">
-                    <span class="hd-hero-badge">✦ BESPOKE WHOOP & STERLING COLLECTION ✦</span>
+                    <span class="hd-hero-badge">BESPOKE 925 STERLING SILVER WHOOP COLLECTION</span>
                     <h1 class="hd-hero-title">EMBODY THE ELEGANCE OF STERLING SILVER</h1>
-                    <p class="hd-hero-subtitle">Handcrafted 925 Hallmark Certified Creations & Exclusive Custom Whoop Silver Accessories</p>
+                    <p class="hd-hero-subtitle">Handcrafted 925 Hallmark Certified Creations &amp; Exclusive Custom Whoop Silver Accessories</p>
                     
                     <div class="hd-hero-actions">
                         <button class="btn-hd-hero-primary" onclick="navigateTo('shop', 'whoop')">
-                            <span>Explore Whoop Accessories</span>
+                            <span>Explore Whoop Cases</span>
                             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </button>
                         <button class="btn-hd-hero-secondary" onclick="navigateTo('shop')">
-                            <span>Shop Entire Catalog</span>
+                            <span>Shop Entire Collection</span>
                         </button>
                     </div>
                 </div>
@@ -260,41 +254,82 @@
     
     <!-- --- SHOP VIEW (CATALOG) --- -->
     <div id="shop-view" class="app-view container section-padding">
-        <!-- Mobile Filter Bar -->
-        <div class="mobile-filter-bar">
-            <button class="mobile-filter-trigger-btn" onclick="toggleShopFilters()">
-                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
-                <span>Filter Products</span>
-            </button>
+        <!-- Mobile Filter Bar & Quick Chips -->
+        <div class="mobile-filter-bar-wrap">
+            <div class="mobile-filter-bar">
+                <button class="mobile-filter-trigger-btn" onclick="toggleShopFilters()">
+                    <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
+                    <span>Filter &amp; Refine</span>
+                    <span class="filter-count-badge" id="mobile-filter-badge">20</span>
+                </button>
+            </div>
+            <!-- Quick Chips on Mobile -->
+            <div class="mobile-quick-chips">
+                <button class="quick-chip active" id="chip-all" onclick="filterByQuickChip('all')">All Cases (20)</button>
+                <button class="quick-chip" id="chip-instock" onclick="filterByQuickChip('instock')">In Stock</button>
+                <button class="quick-chip" id="chip-crests" onclick="filterByQuickChip('crests')">Bespoke Crests</button>
+            </div>
         </div>
 
-        <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-            <!-- Filters Sidebar -->
-            <div class="shop-sidebar-filters" id="shop-sidebar-filters" style="flex: 1; min-width: 250px; max-width: 300px; background: #fff; padding: 20px; border-radius: var(--border-radius-sm); border: 1px solid var(--color-silver-mid);">
+        <!-- Filter Backdrop for Mobile Bottom Sheet -->
+        <div class="shop-filter-backdrop" id="shop-filter-backdrop" onclick="toggleShopFilters()"></div>
+
+        <div class="shop-catalog-layout">
+            <!-- Filters Sidebar (Desktop) / Bottom Sheet (Mobile) -->
+            <div class="shop-sidebar-filters" id="shop-sidebar-filters">
+                <div class="mobile-filter-drawer-handle"></div>
                 <div class="mobile-filter-header">
-                    <h3 class="mobile-filter-title" style="margin: 0; color: var(--color-primary);">Filters</h3>
-                    <button class="mobile-filter-close-btn" onclick="toggleShopFilters()">&times;</button>
+                    <div>
+                        <h3 class="mobile-filter-title">Filter Products</h3>
+                        <span class="mobile-filter-subtitle">20 Handcrafted Whoop Designs</span>
+                    </div>
+                    <button class="mobile-filter-close-btn" onclick="toggleShopFilters()" aria-label="Close Filters">&times;</button>
                 </div>
                 
-                <div style="margin-bottom: 15px;">
-                    <label style="display: flex; align-items: center; gap: 8px; font-size: 0.9rem;"><input type="checkbox" id="filter-in-stock" onchange="renderShopCatalog()" checked> In Stock Only</label>
+                <div class="filter-section-block">
+                    <label class="filter-toggle-row">
+                        <span class="filter-toggle-label-text">In Stock Only</span>
+                        <input type="checkbox" id="filter-in-stock" class="filter-toggle-input" onchange="renderShopCatalog()" checked>
+                        <span class="filter-switch-slider"></span>
+                    </label>
                 </div>
                 
-                <div style="margin-bottom: 15px;">
-                    <h4 style="margin-bottom: 10px; color: var(--color-primary); font-size: 0.95rem;">Categories</h4>
-                    <label style="display:flex; align-items:center; gap:8px; margin-bottom:5px; font-size:0.9rem"><input type="checkbox" id="filter-type-whoop" onchange="renderShopCatalog()" checked> Whoop Accessories</label>
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <h4 style="margin-bottom: 10px; color: var(--color-primary); font-size: 0.95rem;">Max Price: ₹<span id="filter-price-val">50000</span></h4>
-                    <input type="range" id="filter-price-max" min="0" max="50000" value="50000" style="width:100%" oninput="document.getElementById('filter-price-val').innerText = parseInt(this.value).toLocaleString('en-IN'); renderShopCatalog();" onchange="renderShopCatalog()">
+                <div class="filter-section-block">
+                    <h4 class="filter-block-title">Collection Category</h4>
+                    <label class="filter-checkbox-row">
+                        <input type="checkbox" id="filter-type-whoop" onchange="renderShopCatalog()" checked>
+                        <span>Whoop 4.0 Gem-Set Cases</span>
+                    </label>
                 </div>
 
-                <button class="mobile-filter-apply-btn" onclick="toggleShopFilters()">Apply Filters</button>
+                <div class="filter-section-block">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <h4 class="filter-block-title" style="margin: 0;">Max Price</h4>
+                        <span class="filter-price-indicator">₹<span id="filter-price-val">50,000</span></span>
+                    </div>
+                    <input type="range" id="filter-price-max" min="10000" max="50000" step="1000" value="50000" class="filter-range-control" oninput="document.getElementById('filter-price-val').innerText = parseInt(this.value).toLocaleString('en-IN'); renderShopCatalog();" onchange="renderShopCatalog()">
+                </div>
+
+                <div class="filter-section-block">
+                    <h4 class="filter-block-title">Sort Collection</h4>
+                    <select id="shop-sort" class="filter-select-control" onchange="renderShopCatalog()">
+                        <option value="popularity">Featured &amp; Best Rated</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                    </select>
+                </div>
+
+                <div class="mobile-filter-actions">
+                    <button class="filter-reset-btn" onclick="resetAllFilters()">Reset</button>
+                    <button class="mobile-filter-apply-btn" onclick="toggleShopFilters()">Apply Filters</button>
+                </div>
             </div>
 
             <!-- Products Grid -->
-            <div style="flex: 3;">
-                <p style="margin-bottom: 15px; font-size: 0.9rem; color: var(--color-silver-dark);">Showing <strong id="results-count">0</strong> results</p>
+            <div class="shop-products-main-col">
+                <div class="shop-results-header">
+                    <p class="results-count-text">Showing <strong id="results-count">20</strong> handcrafted pieces</p>
+                </div>
                 <div id="shop-products-grid" class="products-grid">
                     <!-- Products rendered here via JS -->
                 </div>
@@ -1562,17 +1597,15 @@
 
             <!-- Collections Column -->
             <div>
-                <h4 class="footer-col-title">Collections</h4>
+                <h4 class="footer-col-title">Whoop Collection</h4>
                 <ul class="footer-links-list">
-                    <li><a href="javascript:void(0)" onclick="navigateTo('shop','rings')">Rings</a></li>
-                    <li><a href="javascript:void(0)" onclick="navigateTo('shop','earrings')">Earrings</a></li>
-                    <li><a href="javascript:void(0)" onclick="navigateTo('shop','pendants')">Pendants</a></li>
-                    <li><a href="javascript:void(0)" onclick="navigateTo('shop','chains')">Chains</a></li>
-                    <li><a href="javascript:void(0)" onclick="navigateTo('shop','chain_pendant')">Chain with Pendant</a></li>
-                    <li><a href="javascript:void(0)" onclick="navigateTo('shop','anklets')">Anklets</a></li>
-                    <li><a href="javascript:void(0)" onclick="navigateTo('shop','kada')">Kadas</a></li>
-                    <li><a href="javascript:void(0)" onclick="navigateTo('shop','bracelet')">Bracelets</a></li>
-                    <li><a href="javascript:void(0)" onclick="navigateTo('customisation')">Customised</a></li>
+                    <li><a href="javascript:void(0)" onclick="navigateTo('shop','whoop')">All 20 Whoop Cases</a></li>
+                    <li><a href="javascript:void(0)" onclick="navigateTo('shop','whoop')">Bespoke Crest Editions</a></li>
+                    <li><a href="javascript:void(0)" onclick="navigateTo('shop','whoop')">Patek Philippe Edition</a></li>
+                    <li><a href="javascript:void(0)" onclick="navigateTo('shop','whoop')">Ferrari Scuderia Edition</a></li>
+                    <li><a href="javascript:void(0)" onclick="navigateTo('shop','whoop')">Formula 1 Racing Editions</a></li>
+                    <li><a href="javascript:void(0)" onclick="navigateTo('shop','whoop')">Solid 925 Silver Cases</a></li>
+                    <li><a href="javascript:void(0)" onclick="navigateTo('customisation')">Custom Name &amp; Crest</a></li>
                 </ul>
             </div>
 
