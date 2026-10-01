@@ -495,6 +495,9 @@ function seedMockProducts() {
 }
 seedMockProducts();
 
+const SUPABASE_URL = "https://zimapfcyfxiqdnxaaonp.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InppbWFwZmN5ZnhpcWRueGFhb25wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyMTE4NjEsImV4cCI6MjEwNDc4Nzg2MX0.n7UVMBY-5iBiaasKw34TkDdD04JgSTo9r7ombxXqnZk";
+
 const supaClient = (window.supabase && window.supabase.createClient) 
   ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
   : {
@@ -564,6 +567,7 @@ const STATE = {
     user: null,
     profile: null
 };
+window.STATE = STATE;
 
 function safeJSONParse(str, fallback) {
     try {
@@ -3901,6 +3905,8 @@ window.addEventListener("DOMContentLoaded", async () => { localStorage.removeIte
     if (homeView) homeView.classList.add("active-view");
     initTryOnDragAndDrop();
     renderRatesTicker();
+    renderHomeProducts();
+    renderShopCatalog();
 
     // Clear admin authentication state on fresh load / reload to enforce login prompt
     sessionStorage.removeItem("mrt_admin_authenticated");
