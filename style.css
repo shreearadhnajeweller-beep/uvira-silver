@@ -4272,7 +4272,7 @@ html, body {
                 linear-gradient(180deg, rgba(11, 19, 32, 0.3) 0%, rgba(11, 19, 32, 0.7) 100%);
     z-index: 2;
 }
-/* --- CLEAN LUXURY HERO BANNER (NO BACKGROUND IMAGE) --- */
+/* --- CLEAN LUXURY HERO BANNER (MATCHING WHOOP BANNER BACKGROUND) --- */
 .hd-animated-hero {
     min-height: 480px;
     position: relative;
@@ -4280,9 +4280,32 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(ellipse at 50% 30%, #162438 0%, #0B1320 100%) !important;
+    background: linear-gradient(135deg, #1C334E 0%, #254060 50%, #2A486C 100%) !important;
     padding: 70px 24px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Geometric Translucent Circles from banner design */
+.hero-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-bg-circle-top {
+    top: -60px;
+    right: -60px;
+    width: 260px;
+    height: 260px;
+}
+
+.hero-bg-circle-bottom {
+    bottom: -70px;
+    left: -70px;
+    width: 300px;
+    height: 300px;
 }
 
 /* Hero Content Wrapper */
@@ -4301,16 +4324,17 @@ html, body {
 
 .hd-hero-badge {
     display: inline-block;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    color: #F1F5F9;
+    background: #4EA8A1 !important;
+    border: none !important;
+    color: #FFFFFF !important;
     padding: 6px 18px;
     font-size: 0.74rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
     border-radius: 999px;
     margin-bottom: 18px;
+    box-shadow: 0 4px 14px rgba(78, 168, 161, 0.35);
 }
 
 .hd-hero-title {
@@ -4597,7 +4621,21 @@ html, body {
         min-height: 380px !important;
         height: auto !important;
         padding: 42px 16px !important;
-        background: radial-gradient(ellipse at 50% 25%, #172A42 0%, #0B1320 100%) !important;
+        background: linear-gradient(135deg, #1C334E 0%, #254060 50%, #2A486C 100%) !important;
+    }
+
+    .hero-bg-circle-top {
+        top: -40px !important;
+        right: -40px !important;
+        width: 160px !important;
+        height: 160px !important;
+    }
+
+    .hero-bg-circle-bottom {
+        bottom: -40px !important;
+        left: -40px !important;
+        width: 180px !important;
+        height: 180px !important;
     }
 
     .hd-hero-content-wrapper {
