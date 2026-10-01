@@ -332,7 +332,7 @@ async function initState() {
 
     // Admin Password default
     if (!localStorage.getItem("mrt_admin_password")) {
-        localStorage.setItem("mrt_admin_password", "mrt925");
+        localStorage.setItem("mrt_admin_password", "admin@12");
     }
 }
 
@@ -3063,7 +3063,7 @@ async function changeAdminPassword() {
         return;
     }
     
-    const savedPassword = STATE.adminPassword || localStorage.getItem("mrt_admin_password") || "mrt925";
+    const savedPassword = STATE.adminPassword || localStorage.getItem("mrt_admin_password") || "admin@12";
     if (currentVal !== savedPassword) {
         alert("Incorrect current password. Password change denied.");
         return;
@@ -3120,7 +3120,7 @@ function submitAdminAuth() {
     if (!input) return;
     
     const password = input.value;
-    const savedPassword = STATE.adminPassword || localStorage.getItem("mrt_admin_password") || "mrt925";
+    const savedPassword = STATE.adminPassword || localStorage.getItem("mrt_admin_password") || "admin@12";
     
     if (password === savedPassword) {
         sessionStorage.setItem("mrt_admin_authenticated", "true");
