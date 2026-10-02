@@ -4953,3 +4953,141 @@ html, body {
     from { transform: translateY(100%); }
     to { transform: translateY(0); }
 }
+
+/* --- Progressive Web App (PWA) Top Announcement Bar --- */
+.pwa-top-bar {
+    background: linear-gradient(90deg, #1C334E 0%, #2A486C 100%);
+    color: #FFFFFF;
+    border-bottom: 2px solid #D4AF37;
+    padding: 10px 18px;
+    position: relative;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+.pwa-top-bar-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.pwa-top-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pwa-top-bar-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #FFFFFF;
+    padding: 3px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+.pwa-top-bar-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.pwa-top-bar-title {
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 0.5px;
+    color: #FFFFFF;
+    font-family: var(--font-heading);
+}
+
+.pwa-top-bar-subtitle {
+    font-size: 0.74rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.2;
+}
+
+.pwa-top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.btn-pwa-install {
+    background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+    color: #FFFFFF;
+    border: none;
+    padding: 7px 18px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-pwa-install:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.5);
+}
+
+.btn-pwa-close {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    border: none;
+    font-size: 1.35rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: color 0.2s;
+}
+
+.btn-pwa-close:hover {
+    color: #FFFFFF;
+}
+
+@media (max-width: 600px) {
+    .pwa-top-bar {
+        padding: 8px 12px;
+    }
+    .pwa-top-bar-subtitle {
+        display: none;
+    }
+    .pwa-top-bar-title {
+        font-size: 0.82rem;
+    }
+    .btn-pwa-install {
+        padding: 5px 12px;
+        font-size: 0.75rem;
+    }
+}
+
+/* Signature Collection Cards Responsive Styling */
+.signature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.signature-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-heavy);
+}
+@media (max-width: 500px) {
+    .signature-card {
+        padding: 24px 16px !important;
+        gap: 10px !important;
+    }
+    .signature-card-img-wrap {
+        width: 100px !important;
+        height: 100px !important;
+    }
+    .signature-card-img-wrap img {
+        width: 88px !important;
+        height: 88px !important;
+    }
+}
+
