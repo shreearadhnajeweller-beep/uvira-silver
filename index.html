@@ -51,8 +51,9 @@
             </a>
             <!-- Navigation Links -->
             <nav class="nav-menu">
-                
-                <a href="javascript:void(0)" class="nav-link" data-view="shop" onclick="navigateTo('shop')">Collections</a>
+                <a href="javascript:void(0)" class="nav-link" data-view="shop" onclick="navigateTo('shop')">All Collections</a>
+                <a href="javascript:void(0)" class="nav-link" onclick="navigateTo('shop', 'pendants')">Divine Pendants</a>
+                <a href="javascript:void(0)" class="nav-link" onclick="navigateTo('shop', 'whoop')">Whoop Cases</a>
                 <a href="javascript:void(0)" class="nav-link nav-link--customise" data-view="customisation" onclick="navigateTo('customisation')">Customisation ✦</a>
                 <a href="javascript:void(0)" class="nav-link" data-view="track" onclick="navigateTo('track')">Track Order</a>
             </nav>
@@ -168,23 +169,35 @@
             </div>
         </section>
 
-        <!-- 3. Category Quick Circles -->
-        <!-- Single Category: Explore Whoop Accessories -->
+        <!-- 3. Featured Signature Collections -->
         <section class="container" style="margin-bottom: 50px;">
-            <div style="background: linear-gradient(135deg, var(--color-primary) 0%, #2A486C 100%); border-radius: var(--border-radius-md); padding: 50px 30px; text-align: center; color: #FFFFFF; box-shadow: var(--shadow-medium); position: relative; overflow: hidden;">
-                <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: rgba(255,255,255,0.05); border-radius: 50%; pointer-events: none;"></div>
-                <div style="position: absolute; bottom: -50px; left: -50px; width: 200px; height: 200px; background: rgba(255,255,255,0.05); border-radius: 50%; pointer-events: none;"></div>
-                
-                <div style="max-width: 650px; margin: 0 auto; position: relative; z-index: 2;">
-                    <span style="background-color: var(--color-accent-pink); color: #FFFFFF; padding: 6px 16px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; border-radius: 20px; display: inline-block; margin-bottom: 16px;">EXCLUSIVE CATEGORY</span>
-                    <h2 style="font-family: var(--font-heading); font-size: 2.4rem; font-weight: 700; margin-bottom: 14px; letter-spacing: 1px;">Explore Whoop Accessories</h2>
-                    <p style="font-size: 1rem; color: rgba(255,255,255,0.9); margin-bottom: 28px; line-height: 1.6;">Discover our exclusive, handcrafted 925 sterling silver Whoop bands, custom covers, and premium bespoke accessories.</p>
-                    <button class="btn-primary" onclick="navigateTo('shop', 'whoop')" style="background-color: #FFFFFF; color: var(--color-primary); border: none; padding: 14px 36px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">Explore Whoop Accessories</button>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+                <!-- Divine Pendants Banner -->
+                <div style="background: linear-gradient(135deg, #2D1B4E 0%, #1A2849 100%); border-radius: var(--border-radius-md); padding: 40px 28px; text-align: left; color: #FFFFFF; box-shadow: var(--shadow-medium); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div style="position: absolute; top: -30px; right: -30px; width: 140px; height: 140px; background: rgba(255,255,255,0.06); border-radius: 50%; pointer-events: none;"></div>
+                    <div>
+                        <span style="background-color: #D97706; color: #FFFFFF; padding: 5px 14px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; border-radius: 20px; display: inline-block; margin-bottom: 14px;">NEW LAUNCH</span>
+                        <h3 style="font-family: var(--font-heading); font-size: 1.85rem; font-weight: 700; margin-bottom: 10px; letter-spacing: 0.5px; color: #FFFFFF;">Divine Pendants</h3>
+                        <p style="font-size: 0.92rem; color: rgba(255,255,255,0.9); margin-bottom: 22px; line-height: 1.5;">10 sacred devotional masterpieces in solid 92.5 hallmarked sterling silver with 3 bespoke plating options.</p>
+                        <div style="font-size: 1.15rem; font-weight: 800; color: #FCD34D; margin-bottom: 20px;">₹10,000 <span style="font-size: 0.82rem; color: rgba(255,255,255,0.6); text-decoration: line-through; font-weight: 400; margin-left: 6px;">₹20,000</span></div>
+                    </div>
+                    <button class="btn-primary" onclick="navigateTo('shop', 'pendants')" style="background-color: #FFFFFF; color: #2D1B4E; border: none; padding: 12px 28px; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; width: fit-content;">Explore Divine Pendants</button>
+                </div>
+
+                <!-- Whoop 5.0 Cases Banner -->
+                <div style="background: linear-gradient(135deg, var(--color-primary) 0%, #2A486C 100%); border-radius: var(--border-radius-md); padding: 40px 28px; text-align: left; color: #FFFFFF; box-shadow: var(--shadow-medium); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div style="position: absolute; top: -30px; right: -30px; width: 140px; height: 140px; background: rgba(255,255,255,0.06); border-radius: 50%; pointer-events: none;"></div>
+                    <div>
+                        <span style="background-color: var(--color-accent-pink); color: #FFFFFF; padding: 5px 14px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; border-radius: 20px; display: inline-block; margin-bottom: 14px;">WHOOP COLLECTION</span>
+                        <h3 style="font-family: var(--font-heading); font-size: 1.85rem; font-weight: 700; margin-bottom: 10px; letter-spacing: 0.5px; color: #FFFFFF;">Whoop 5.0 Cases</h3>
+                        <p style="font-size: 0.92rem; color: rgba(255,255,255,0.9); margin-bottom: 22px; line-height: 1.5;">35 handcrafted solid 925 sterling silver &amp; jewellery brass bespoke covers designed for Whoop 5.0.</p>
+                        <div style="font-size: 1.15rem; font-weight: 800; color: #67E8F9; margin-bottom: 20px;">₹6,000 – ₹15,000 <span style="font-size: 0.82rem; color: rgba(255,255,255,0.6); text-decoration: line-through; font-weight: 400; margin-left: 6px;">₹30,000</span></div>
+                    </div>
+                    <button class="btn-primary" onclick="navigateTo('shop', 'whoop')" style="background-color: #FFFFFF; color: var(--color-primary); border: none; padding: 12px 28px; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; width: fit-content;">Explore Whoop Cases</button>
                 </div>
             </div>
         </section>
 
-        
         <!-- 4. Featured Collections Slider -->
         <section class="container" style="margin-bottom: 50px;">
             <h2 class="section-title text-center">Our Collections</h2>
@@ -192,8 +205,8 @@
                 <!-- Loaded by app.js renderHomeProducts -->
             </div>
             <div class="explore-more-wrap" style="text-align: center; margin-top: 36px;">
-                <button class="btn-explore-more" onclick="navigateTo('shop', 'whoop')">
-                    <span>Explore More Designs</span>
+                <button class="btn-explore-more" onclick="navigateTo('shop')">
+                    <span>Explore All 45 Pieces</span>
                     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
                 </button>
             </div>
@@ -280,14 +293,15 @@
                 <button class="mobile-filter-trigger-btn" onclick="toggleShopFilters()">
                     <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
                     <span>Filter &amp; Refine</span>
-                    <span class="filter-count-badge" id="mobile-filter-badge">35</span>
+                    <span class="filter-count-badge" id="mobile-filter-badge">45</span>
                 </button>
             </div>
             <!-- Quick Chips on Mobile -->
             <div class="mobile-quick-chips">
-                <button class="quick-chip active" id="chip-all" onclick="filterByQuickChip('all')">All Cases (35)</button>
+                <button class="quick-chip active" id="chip-all" onclick="filterByQuickChip('all')">All Designs (45)</button>
+                <button class="quick-chip" id="chip-pendants" onclick="filterByQuickChip('pendants')">Divine Pendants (10)</button>
+                <button class="quick-chip" id="chip-whoop" onclick="filterByQuickChip('whoop')">Whoop Cases (35)</button>
                 <button class="quick-chip" id="chip-instock" onclick="filterByQuickChip('instock')">In Stock</button>
-                <button class="quick-chip" id="chip-crests" onclick="filterByQuickChip('crests')">Bespoke Crests</button>
             </div>
         </div>
 
@@ -301,7 +315,7 @@
                 <div class="mobile-filter-header">
                     <div>
                         <h3 class="mobile-filter-title">Filter Products</h3>
-                        <span class="mobile-filter-subtitle">35 Handcrafted Whoop 5.0 Designs</span>
+                        <span class="mobile-filter-subtitle">45 Handcrafted Pure Silver Pieces</span>
                     </div>
                     <button class="mobile-filter-close-btn" onclick="toggleShopFilters()" aria-label="Close Filters">&times;</button>
                 </div>
@@ -309,7 +323,7 @@
                 <div class="filter-section-block">
                     <label class="filter-toggle-row">
                         <span class="filter-toggle-label-text">In Stock Only</span>
-                        <input type="checkbox" id="filter-in-stock" class="filter-toggle-input" onchange="renderShopCatalog()" checked>
+                        <input type="checkbox" id="filter-in-stock" class="filter-toggle-input" onchange="renderShopCatalog()">
                         <span class="filter-switch-slider"></span>
                     </label>
                 </div>
@@ -317,8 +331,12 @@
                 <div class="filter-section-block">
                     <h4 class="filter-block-title">Collection Category</h4>
                     <label class="filter-checkbox-row">
+                        <input type="checkbox" id="filter-type-pendants" onchange="renderShopCatalog()" checked>
+                        <span>Divine Pendants (10)</span>
+                    </label>
+                    <label class="filter-checkbox-row" style="margin-top: 8px;">
                         <input type="checkbox" id="filter-type-whoop" onchange="renderShopCatalog()" checked>
-                        <span>Whoop 5.0 Cases</span>
+                        <span>Whoop 5.0 Cases (35)</span>
                     </label>
                 </div>
 
@@ -418,7 +436,7 @@
                                 <span style="font-weight: 700; font-size: 0.88rem; color: var(--color-primary);">925 Sterling Silver</span>
                                 <span style="font-size: 0.7rem; background: var(--color-primary); color: #fff; padding: 2px 6px; border-radius: 4px; font-weight: 700;">Default</span>
                             </div>
-                            <div style="font-size: 0.95rem; color: var(--color-primary); font-weight: 800;">₹15,000</div>
+                            <div id="metal-opt-silver-price" style="font-size: 0.95rem; color: var(--color-primary); font-weight: 800;">₹15,000</div>
                             <div style="font-size: 0.72rem; color: var(--color-silver-dark); margin-top: 2px;">92.5 Hallmark Stamp</div>
                         </div>
                         <div id="metal-opt-brass" class="metal-option-card" onclick="selectDetailMetal('brass')" style="border: 1px solid var(--color-silver-mid); background: #FFFFFF; padding: 12px 14px; border-radius: var(--border-radius-sm); cursor: pointer; transition: all 0.2s ease; position: relative;">
@@ -2382,7 +2400,7 @@ CREATE POLICY "Public Read/Write Orders" ON public.orders FOR ALL USING (true) W
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
     <!-- Main Application Logic -->
-    <script src="app.js?v=47"></script>
+    <script src="app.js?v=48"></script>
 
     <!-- Progressive Web App (PWA) Service Worker & Install Prompt -->
     <script>

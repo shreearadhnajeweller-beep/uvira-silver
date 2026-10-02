@@ -1,16 +1,28 @@
-// Helper to enforce product requirements (20.0g weight, 925 Sterling Silver, ₹15,000, inStock true, 2 images)
+// Helper to enforce product requirements (Whoop ₹15,000, Divine Pendants ₹10,000, 925 Sterling Silver, inStock true)
 function normalizeProductData(p) {
     if (!p) return p;
     p.inStock = true;
     p.in_stock = true;
-    p.price = 15000;
-    p.originalPrice = 30000;
-    p.original_price = 30000;
-    p.category = 'whoop';
-    if (!p.specs) p.specs = {};
-    p.specs.weight = '20.0g';
-    p.specs.metal = 'Solid 92.5% Sterling Silver';
-    p.specs.disable_auto_rate = true;
+    const isPendant = p.category === 'pendants' || (p.id && p.id.includes('pendant'));
+    if (isPendant) {
+        p.price = 10000;
+        p.originalPrice = 20000;
+        p.original_price = 20000;
+        p.category = 'pendants';
+        if (!p.specs) p.specs = {};
+        p.specs.weight = p.specs.weight || '12.5g';
+        p.specs.metal = 'Solid 92.5% Sterling Silver';
+        p.specs.disable_auto_rate = true;
+    } else {
+        p.price = 15000;
+        p.originalPrice = 30000;
+        p.original_price = 30000;
+        p.category = 'whoop';
+        if (!p.specs) p.specs = {};
+        p.specs.weight = '20.0g';
+        p.specs.metal = 'Solid 92.5% Sterling Silver';
+        p.specs.disable_auto_rate = true;
+    }
     
     let imgs = [];
     if (Array.isArray(p.specs.images) && p.specs.images.length > 0) {
@@ -19,12 +31,14 @@ function normalizeProductData(p) {
         imgs = [p.image];
     }
     while (imgs.length < 2) {
-        imgs.push(imgs[0] || 'assets/whoop/whoop_1_1.webp');
+        const fallback = isPendant ? 'assets/divine_pendants/pendant_1_1.webp' : 'assets/whoop/whoop_1_1.webp';
+        imgs.push(imgs[0] || fallback);
     }
     p.specs.images = imgs;
     if (!p.image && imgs.length > 0) p.image = imgs[0];
     return p;
 }
+
 
 const WHOOP_PRODUCTS_SEED = [
     {
@@ -834,9 +848,244 @@ const WHOOP_PRODUCTS_SEED = [
     }
 ];
 
+const DIVINE_PENDANTS_SEED = [
+    {
+        "id": "prod-pendant-1-om-sacred-shield",
+        "title": "Om Sacred Shield Divine Pendant",
+        "category": "pendants",
+        "price": 10000,
+        "original_price": 20000,
+        "rating": 5,
+        "reviews_count": 28,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/divine_pendants/pendant_1_1.webp",
+        "description": "Exquisite handcrafted solid 925 sterling silver Om Sacred Shield divine pendant. Features sacred Vedic Om geometry surrounded by sculpted celestial rays, radiating positive aura and spiritual protection.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "12.5g",
+            "finish": "High Polish Rhodium / 18K Gold / Rose Gold",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/divine_pendants/pendant_1_1.webp",
+                "assets/divine_pendants/pendant_1_2.webp"
+            ]
+        }
+    },
+    {
+        "id": "prod-pendant-2-shri-hanuman-ji-sankat-mochan",
+        "title": "Shri Hanuman Ji Sankat Mochan Divine Pendant",
+        "category": "pendants",
+        "price": 10000,
+        "original_price": 20000,
+        "rating": 5,
+        "reviews_count": 34,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/divine_pendants/pendant_2_1.webp",
+        "description": "Majestic artisan sculpted Lord Hanuman Ji pendant in hallmarked 925 sterling silver. Depicting the eternal devotee embodying courage, boundless devotion, and strength against all obstacles.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "13.2g",
+            "finish": "High Polish Rhodium / 18K Gold / Rose Gold",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/divine_pendants/pendant_2_1.webp",
+                "assets/divine_pendants/pendant_2_2.webp"
+            ]
+        }
+    },
+    {
+        "id": "prod-pendant-3-lord-shiva-trishul-damru",
+        "title": "Lord Shiva Trishul & Damru Divine Pendant",
+        "category": "pendants",
+        "price": 10000,
+        "original_price": 20000,
+        "rating": 5,
+        "reviews_count": 42,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/divine_pendants/pendant_3_1.webp",
+        "description": "Intricately detailed Trishul and Damru pendant sculpted in solid 925 sterling silver. Represents Lord Shiva's divine supreme cosmic authority and eternal rhythm of cosmic creation and destruction.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "11.8g",
+            "finish": "High Polish Rhodium / 18K Gold / Rose Gold",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/divine_pendants/pendant_3_1.webp",
+                "assets/divine_pendants/pendant_3_2.webp"
+            ]
+        }
+    },
+    {
+        "id": "prod-pendant-4-lord-ganesha-vighnaharta",
+        "title": "Lord Ganesha Vighnaharta Divine Pendant",
+        "category": "pendants",
+        "price": 10000,
+        "original_price": 20000,
+        "rating": 5,
+        "reviews_count": 31,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/divine_pendants/pendant_4_1.webp",
+        "description": "Bespoke Lord Ganesha blessing pendant handcrafted in 925 sterling silver. Symbol of auspicious beginnings, supreme wisdom, and divine remover of all hurdles on your life path.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "12.0g",
+            "finish": "High Polish Rhodium / 18K Gold / Rose Gold",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/divine_pendants/pendant_4_1.webp",
+                "assets/divine_pendants/pendant_4_2.webp"
+            ]
+        }
+    },
+    {
+        "id": "prod-pendant-5-om-floral-mandala-aura",
+        "title": "Om Floral Mandala Aura Divine Pendant",
+        "category": "pendants",
+        "price": 10000,
+        "original_price": 20000,
+        "rating": 5,
+        "reviews_count": 26,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/divine_pendants/pendant_5_1.webp",
+        "description": "Sacred Om centered within an ornate blooming lotus mandala medallion. Hand-finished in solid 925 hallmarked sterling silver, radiating peace, purity, and universal consciousness.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "12.4g",
+            "finish": "High Polish Rhodium / 18K Gold / Rose Gold",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/divine_pendants/pendant_5_1.webp",
+                "assets/divine_pendants/pendant_5_2.webp"
+            ]
+        }
+    },
+    {
+        "id": "prod-pendant-6-lord-shiva-meditating-mahadev",
+        "title": "Lord Shiva Meditating Mahadev Divine Pendant",
+        "category": "pendants",
+        "price": 10000,
+        "original_price": 20000,
+        "rating": 5,
+        "reviews_count": 39,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/divine_pendants/pendant_6_1.webp",
+        "description": "Transcendent portrait of Adi Yogi Lord Shiva in deep dhyana meditation, sculpted with master precision in pure 925 sterling silver. Epitome of calm inner peace and limitless spiritual energy.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "13.5g",
+            "finish": "High Polish Rhodium / 18K Gold / Rose Gold",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/divine_pendants/pendant_6_1.webp",
+                "assets/divine_pendants/pendant_6_2.webp"
+            ]
+        }
+    },
+    {
+        "id": "prod-pendant-7-sacred-shankh-conch-blessings",
+        "title": "Sacred Shankh Conch Divine Pendant",
+        "category": "pendants",
+        "price": 10000,
+        "original_price": 20000,
+        "rating": 5,
+        "reviews_count": 22,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/divine_pendants/pendant_7_1.webp",
+        "description": "Auspicious Shankh (sacred conch) crafted in 925 sterling silver with intricate devotional engravings. Symbol of divine sound of creation, spiritual awakening, and prosperity.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "11.5g",
+            "finish": "High Polish Rhodium / 18K Gold / Rose Gold",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/divine_pendants/pendant_7_1.webp",
+                "assets/divine_pendants/pendant_7_2.webp"
+            ]
+        }
+    },
+    {
+        "id": "prod-pendant-8-om-radiant-prana",
+        "title": "Om Radiant Prana Sun Divine Pendant",
+        "category": "pendants",
+        "price": 10000,
+        "original_price": 20000,
+        "rating": 5,
+        "reviews_count": 27,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/divine_pendants/pendant_8_1.webp",
+        "description": "Brilliant Surya solar mandala framing the eternal Om syllable in solid 925 sterling silver. Channeling vital Prana energy, supreme radiance, and boundless optimism.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "12.8g",
+            "finish": "High Polish Rhodium / 18K Gold / Rose Gold",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/divine_pendants/pendant_8_1.webp",
+                "assets/divine_pendants/pendant_8_2.webp"
+            ]
+        }
+    },
+    {
+        "id": "prod-pendant-9-om-trimurti-chandra",
+        "title": "Om Trimurti Chandra Divine Pendant",
+        "category": "pendants",
+        "price": 10000,
+        "original_price": 20000,
+        "rating": 5,
+        "reviews_count": 30,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/divine_pendants/pendant_9_1.webp",
+        "description": "Elegantly sculpted sacred Om featuring the crescent moon and bindu in solid 925 sterling silver. Represents eternal equilibrium, divine grace, and spiritual serenity.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "11.2g",
+            "finish": "High Polish Rhodium / 18K Gold / Rose Gold",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/divine_pendants/pendant_9_1.webp",
+                "assets/divine_pendants/pendant_9_2.webp"
+            ]
+        }
+    },
+    {
+        "id": "prod-pendant-10-mahadev-trishul-mahakaal",
+        "title": "Mahadev Trishul Mahakaal Divine Pendant",
+        "category": "pendants",
+        "price": 10000,
+        "original_price": 20000,
+        "rating": 5,
+        "reviews_count": 45,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/divine_pendants/pendant_10_1.webp",
+        "description": "Bold and fearless Mahakaal Trishul pendant crowned with celestial sacred third eye and damru accents. Hand-crafted in 925 sterling silver for protection and inner spiritual power.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "13.0g",
+            "finish": "High Polish Rhodium / 18K Gold / Rose Gold",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/divine_pendants/pendant_10_1.webp",
+                "assets/divine_pendants/pendant_10_2.webp"
+            ]
+        }
+    }
+];
+
+const ALL_PRODUCTS_SEED = [...WHOOP_PRODUCTS_SEED, ...DIVINE_PENDANTS_SEED];
+
 function seedMockProducts() {
-    localStorage.setItem("mock_db_products", JSON.stringify(WHOOP_PRODUCTS_SEED));
-    console.log("Seeded 35 Whoop Case products to local database.");
+    localStorage.setItem("mock_db_products", JSON.stringify(ALL_PRODUCTS_SEED));
+    console.log("Seeded 45 catalog products (35 Whoop + 10 Divine Pendants) to local database.");
 }
 seedMockProducts();
 
@@ -1017,7 +1266,7 @@ const DEFAULT_PRODUCTS = []; // Now loaded from Supabase
 
 // Global Application State
 const STATE = {
-    products: WHOOP_PRODUCTS_SEED.map(normalizeProductData),
+    products: ALL_PRODUCTS_SEED.map(normalizeProductData),
     cart: [],
     wishlist: [],
     orders: [],
@@ -1074,8 +1323,8 @@ async function initState() {
         supaClient.from('settings').select('value').eq('key', 'metal_rates').maybeSingle()
     ]);
 
-    // Products - Strictly 35 Whoop Case products as requested
-    STATE.products = WHOOP_PRODUCTS_SEED.map(normalizeProductData);
+    // Products - 45 designs: 35 Whoop Cases + 10 Divine Pendants
+    STATE.products = ALL_PRODUCTS_SEED.map(normalizeProductData);
 
     // Coupons
     if (couponsResult.status === 'fulfilled' && !couponsResult.value.error) {
@@ -1519,26 +1768,36 @@ function renderHomeProducts() {
 
 function filterByQuickChip(type) {
     const chipAll = document.getElementById('chip-all');
+    const chipPendants = document.getElementById('chip-pendants');
+    const chipWhoop = document.getElementById('chip-whoop');
     const chipInstock = document.getElementById('chip-instock');
-    const chipCrests = document.getElementById('chip-crests');
     const filterInStock = document.getElementById('filter-in-stock');
+    const filterWhoop = document.getElementById('filter-type-whoop');
+    const filterPendants = document.getElementById('filter-type-pendants');
     
     if (chipAll) chipAll.classList.remove('active');
+    if (chipPendants) chipPendants.classList.remove('active');
+    if (chipWhoop) chipWhoop.classList.remove('active');
     if (chipInstock) chipInstock.classList.remove('active');
-    if (chipCrests) chipCrests.classList.remove('active');
     
     if (type === 'all') {
         if (chipAll) chipAll.classList.add('active');
         if (filterInStock) filterInStock.checked = false;
+        if (filterWhoop) filterWhoop.checked = true;
+        if (filterPendants) filterPendants.checked = true;
         const searchInput = document.getElementById('search-main');
         if (searchInput) searchInput.value = '';
+    } else if (type === 'pendants') {
+        if (chipPendants) chipPendants.classList.add('active');
+        if (filterWhoop) filterWhoop.checked = false;
+        if (filterPendants) filterPendants.checked = true;
+    } else if (type === 'whoop') {
+        if (chipWhoop) chipWhoop.classList.add('active');
+        if (filterWhoop) filterWhoop.checked = true;
+        if (filterPendants) filterPendants.checked = false;
     } else if (type === 'instock') {
         if (chipInstock) chipInstock.classList.add('active');
         if (filterInStock) filterInStock.checked = true;
-    } else if (type === 'crests') {
-        if (chipCrests) chipCrests.classList.add('active');
-        const searchInput = document.getElementById('search-main');
-        if (searchInput) searchInput.value = 'crest';
     }
     renderShopCatalog();
 }
@@ -1546,6 +1805,10 @@ function filterByQuickChip(type) {
 function resetAllFilters() {
     const filterInStock = document.getElementById('filter-in-stock');
     if (filterInStock) filterInStock.checked = false;
+    const filterWhoop = document.getElementById('filter-type-whoop');
+    if (filterWhoop) filterWhoop.checked = true;
+    const filterPendants = document.getElementById('filter-type-pendants');
+    if (filterPendants) filterPendants.checked = true;
     const filterPriceMax = document.getElementById('filter-price-max');
     if (filterPriceMax) {
         filterPriceMax.value = 50000;
@@ -1571,26 +1834,15 @@ function renderShopCatalog() {
     
     const categories = [];
     const whoopCheck = document.getElementById("filter-type-whoop");
-    if (whoopCheck && whoopCheck.checked) categories.push("whoop", "whoop_accessories");
-    const ringsCheck = document.getElementById("filter-type-rings");
-    if (ringsCheck && ringsCheck.checked) categories.push("rings");
-    const earringsCheck = document.getElementById("filter-type-earrings");
-    if (earringsCheck && earringsCheck.checked) categories.push("earrings");
     const pendantsCheck = document.getElementById("filter-type-pendants");
-    if (pendantsCheck && pendantsCheck.checked) categories.push("pendants");
-    const ankletsCheck = document.getElementById("filter-type-anklets");
-    if (ankletsCheck && ankletsCheck.checked) categories.push("anklets");
-    const chainsCheck = document.getElementById("filter-type-chains");
-    if (chainsCheck && chainsCheck.checked) categories.push("chains");
-    const chainPendantCheck = document.getElementById("filter-type-chain_pendant");
-    if (chainPendantCheck && chainPendantCheck.checked) categories.push("chain_pendant");
+    const whoopChecked = whoopCheck ? whoopCheck.checked : false;
+    const pendantsChecked = pendantsCheck ? pendantsCheck.checked : false;
 
-    const customisedCheck = document.getElementById("filter-type-customised");
-    if (customisedCheck && customisedCheck.checked) categories.push("customised");
-    const kadaCheck = document.getElementById("filter-type-kada");
-    if (kadaCheck && kadaCheck.checked) categories.push("kada");
-    const braceletCheck = document.getElementById("filter-type-bracelet");
-    if (braceletCheck && braceletCheck.checked) categories.push("bracelet");
+    if (whoopChecked && !pendantsChecked) {
+        categories.push("whoop", "whoop_accessories");
+    } else if (!whoopChecked && pendantsChecked) {
+        categories.push("pendants");
+    }
     
     const searchQuery = document.getElementById("search-main") ? document.getElementById("search-main").value.toLowerCase().trim() : "";
     const sortBy = document.getElementById("shop-sort") ? document.getElementById("shop-sort").value : "popularity";
@@ -1643,7 +1895,7 @@ function renderShopCatalog() {
     const mobileBadge = document.getElementById("mobile-filter-badge");
     if (mobileBadge) mobileBadge.textContent = filtered.length;
     const chipAll = document.getElementById("chip-all");
-    if (chipAll) chipAll.textContent = `All Cases (${STATE.products.length})`;
+    if (chipAll) chipAll.textContent = `All Designs (${STATE.products.length})`;
     const filterApplyCount = document.getElementById("filter-apply-count");
     if (filterApplyCount) filterApplyCount.textContent = ` (${filtered.length})`;
     if (filtered.length === 0) {
@@ -1671,7 +1923,8 @@ function createProductCardHtml(p, idx = 0) {
         : 0;
 
     const secondImg = (p.specs && p.specs.images && p.specs.images.length > 1) ? p.specs.images[1] : p.image;
-    const weightVal = (p.specs && p.specs.weight) ? p.specs.weight : '20.0g';
+    const weightVal = (p.specs && p.specs.weight) ? p.specs.weight : (p.category === 'pendants' ? '12.5g' : '20.0g');
+    const categoryTag = (p.category === 'pendants' || (p.id && p.id.includes('pendant'))) ? 'Divine Pendant' : 'Whoop 5.0 Case';
     
     return `
         <div class="product-card animate-entrance" style="animation-delay: ${idx * 0.04}s;">
@@ -1681,13 +1934,13 @@ function createProductCardHtml(p, idx = 0) {
             </button>
             <div class="product-img-wrap" onclick="viewProductDetail('${p.id}')">
                 <img class="product-img primary-img" src="${p.image}" alt="${p.title}" loading="lazy">
-                ${secondImg !== p.image ? `<img class="product-img secondary-img" src="${secondImg}" alt="${p.title} - Wrist View" loading="lazy">` : ''}
+                ${secondImg !== p.image ? `<img class="product-img secondary-img" src="${secondImg}" alt="${p.title} - View" loading="lazy">` : ''}
             </div>
             <div class="product-info">
                 <div class="product-tags-row">
                     <span class="prod-tag-pill">925 Silver</span>
                     <span class="prod-tag-pill">${weightVal}</span>
-                    <span class="prod-tag-pill">Whoop 5.0 Case</span>
+                    <span class="prod-tag-pill">${categoryTag}</span>
                 </div>
                 <h3 class="product-title" onclick="viewProductDetail('${p.id}')" title="${p.title}">${p.title}</h3>
                 <div class="product-price-row">
@@ -1772,13 +2025,14 @@ function addToCart(prodId, count = 1) {
     }
     
     const isDetailView = STATE.selectedProduct && STATE.selectedProduct.id === prod.id;
-    const isBrass = isDetailView && (STATE.selectedMetal === 'brass');
+    const isPendant = prod.category === 'pendants' || (prod.id && prod.id.includes('pendant'));
+    const isBrass = isDetailView && (STATE.selectedMetal === 'brass') && !isPendant;
     const basePrice = isBrass ? 6000 : prod.price;
     const metalSuffix = isBrass ? " (Brass)" : "";
 
     const finishLabel = isDetailView && STATE.selectedFinish ? (STATE.selectedFinish === 'golden' ? 'Golden' : (STATE.selectedFinish === 'rosegold' ? 'Rosegold' : 'Silver')) : 'Silver';
     const isWhoop = prod.category === 'whoop' || (prod.id && prod.id.includes('whoop'));
-    const finishSuffix = (isDetailView && isWhoop) ? ` [${finishLabel}]` : "";
+    const finishSuffix = (isDetailView && (isWhoop || isPendant)) ? ` [${finishLabel}]` : "";
     
     const sizeSuffix = size ? ` (Size: ${size})` : "";
     const cartTitle = `${prod.title}${metalSuffix}${finishSuffix}${sizeSuffix}${wrapSuffix}`;
@@ -1824,7 +2078,8 @@ function formatCategoryName(cat) {
     if (lower === "chain_pendant") return "Chain with Pendant";
     if (lower === "rings") return "Rings";
     if (lower === "earrings") return "Earrings";
-    if (lower === "pendants") return "Pendants";
+    if (lower === "pendants") return "Divine Pendants";
+    if (lower === "whoop") return "Whoop 5.0 Cases";
     if (lower === "anklets") return "Anklets & Toe Rings";
     if (lower === "customised") return "Customised";
     if (lower === "kada") return "Kadas";
@@ -1873,10 +2128,32 @@ function viewProductDetail(prodId, isPopstate = false) {
     
     // Metal Selection Handling (Solid 92.5 Sterling Silver vs Jewellery Brass)
     STATE.selectedMetal = 'silver';
+    const isPendant = prod.category === 'pendants' || (prod.id && prod.id.includes('pendant'));
+    const isWhoop = prod.category === 'whoop' || (prod.id && prod.id.includes('whoop'));
+    
     const metalSection = document.getElementById("detail-metal-section");
+    const optBrass = document.getElementById("metal-opt-brass");
+    const optSilver = document.getElementById("metal-opt-silver");
+    const silverPriceEl = document.getElementById("metal-opt-silver-price");
+    
     if (metalSection) {
-        const isWhoop = prod.category === 'whoop' || (prod.id && prod.id.includes('whoop'));
-        metalSection.style.display = isWhoop ? "block" : "none";
+        if (isPendant) {
+            metalSection.style.display = "block";
+            if (optBrass) optBrass.style.display = "none";
+            if (optSilver && optSilver.parentElement) {
+                optSilver.parentElement.style.gridTemplateColumns = "1fr";
+            }
+            if (silverPriceEl) silverPriceEl.textContent = "₹10,000";
+        } else if (isWhoop) {
+            metalSection.style.display = "block";
+            if (optBrass) optBrass.style.display = "block";
+            if (optSilver && optSilver.parentElement) {
+                optSilver.parentElement.style.gridTemplateColumns = "1fr 1fr";
+            }
+            if (silverPriceEl) silverPriceEl.textContent = "₹15,000";
+        } else {
+            metalSection.style.display = "none";
+        }
     }
     if (typeof selectDetailMetal === 'function') {
         selectDetailMetal('silver');
@@ -1886,8 +2163,7 @@ function viewProductDetail(prodId, isPopstate = false) {
     STATE.selectedFinish = 'silver';
     const finishSection = document.getElementById("detail-finish-section");
     if (finishSection) {
-        const isWhoop = prod.category === 'whoop' || (prod.id && prod.id.includes('whoop'));
-        finishSection.style.display = isWhoop ? "block" : "none";
+        finishSection.style.display = (isWhoop || isPendant) ? "block" : "none";
     }
     if (typeof selectDetailFinish === 'function') {
         selectDetailFinish('silver');
@@ -2041,7 +2317,8 @@ function viewProductDetail(prodId, isPopstate = false) {
     if (whatsappBtn) {
         whatsappBtn.onclick = () => {
             const qty = parseInt(document.getElementById("qty-val").textContent);
-            const isBrass = (STATE.selectedMetal === 'brass');
+            const isPendant = prod.category === 'pendants' || (prod.id && prod.id.includes('pendant'));
+            const isBrass = (STATE.selectedMetal === 'brass') && !isPendant;
             const currentPrice = isBrass ? 6000 : prod.price;
             const metalName = isBrass ? 'Jewellery Brass' : (prod.specs && prod.specs.metal ? prod.specs.metal : 'Solid 92.5% Sterling Silver');
             const finishName = STATE.selectedFinish ? (STATE.selectedFinish === 'golden' ? 'Golden' : (STATE.selectedFinish === 'rosegold' ? 'Rosegold' : 'Silver')) : 'Silver';
@@ -2108,6 +2385,11 @@ function selectProductSize(size, element) {
 }
 
 function selectDetailMetal(metal) {
+    const prod = STATE.selectedProduct;
+    const isPendant = prod && (prod.category === 'pendants' || (prod.id && prod.id.includes('pendant')));
+    if (isPendant) {
+        metal = 'silver';
+    }
     STATE.selectedMetal = metal;
     const optSilver = document.getElementById('metal-opt-silver');
     const optBrass = document.getElementById('metal-opt-brass');
@@ -2117,7 +2399,7 @@ function selectDetailMetal(metal) {
     const specMetal = document.getElementById('spec-metal');
     const specAuth = document.getElementById('spec-auth');
 
-    if (metal === 'brass') {
+    if (metal === 'brass' && !isPendant) {
         if (optBrass) {
             optBrass.style.border = '2px solid var(--color-primary)';
             optBrass.style.background = '#F8FAFC';
@@ -2148,8 +2430,10 @@ function selectDetailMetal(metal) {
             const title = optBrass.querySelector('span');
             if (title) title.style.color = '#334155';
         }
-        if (priceEl) priceEl.textContent = '₹15,000';
-        if (origPriceEl) origPriceEl.textContent = '₹30,000';
+        const unitPrice = (prod && prod.price) ? prod.price : (isPendant ? 10000 : 15000);
+        const origPrice = (prod && prod.original_price) ? prod.original_price : (isPendant ? 20000 : 30000);
+        if (priceEl) priceEl.textContent = `₹${unitPrice.toLocaleString('en-IN')}`;
+        if (origPriceEl) origPriceEl.textContent = `₹${origPrice.toLocaleString('en-IN')}`;
         if (discEl) discEl.textContent = '50% OFF';
         if (specMetal) specMetal.textContent = 'Solid 92.5% Sterling Silver';
         if (specAuth) specAuth.textContent = '92.5 Hallmark Certificate Included';
@@ -2233,13 +2517,14 @@ function triggerBuyNow() {
             }
         }
         
-        const isBrass = (STATE.selectedMetal === 'brass');
+        const isPendant = prod.category === 'pendants' || (prod.id && prod.id.includes('pendant'));
+        const isBrass = (STATE.selectedMetal === 'brass') && !isPendant;
         const basePrice = isBrass ? 6000 : prod.price;
         const metalSuffix = isBrass ? " (Brass)" : "";
 
         const finishLabel = STATE.selectedFinish ? (STATE.selectedFinish === 'golden' ? 'Golden' : (STATE.selectedFinish === 'rosegold' ? 'Rosegold' : 'Silver')) : 'Silver';
         const isWhoop = prod.category === 'whoop' || (prod.id && prod.id.includes('whoop'));
-        const finishSuffix = isWhoop ? ` [${finishLabel}]` : "";
+        const finishSuffix = (isWhoop || isPendant) ? ` [${finishLabel}]` : "";
         
         const sizeSuffix = size ? ` (Size: ${size})` : "";
         const cartTitle = `${prod.title}${metalSuffix}${finishSuffix}${sizeSuffix}${wrapSuffix}`;
@@ -4357,7 +4642,7 @@ async function syncProductsToCloudDb() {
     }
 
     try {
-        const payload = WHOOP_PRODUCTS_SEED.map(p => ({
+        const payload = ALL_PRODUCTS_SEED.map(p => ({
             id: p.id,
             title: p.title,
             category: p.category,
@@ -4375,7 +4660,7 @@ async function syncProductsToCloudDb() {
         const { error } = await rawSupaClient.from('products').upsert(payload, { onConflict: 'id' });
         if (error) throw error;
 
-        alert(`Success! All ${payload.length} Whoop Case designs pushed and synced to Supabase Cloud 'products' table.`);
+        alert(`Success! All ${payload.length} designs (Whoop Cases & Divine Pendants) pushed and synced to Supabase Cloud 'products' table.`);
     } catch(err) {
         console.error("Products sync error:", err);
         alert("Error syncing products to Supabase: " + err.message);
