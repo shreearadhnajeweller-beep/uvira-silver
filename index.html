@@ -278,12 +278,12 @@
                 <button class="mobile-filter-trigger-btn" onclick="toggleShopFilters()">
                     <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
                     <span>Filter &amp; Refine</span>
-                    <span class="filter-count-badge" id="mobile-filter-badge">20</span>
+                    <span class="filter-count-badge" id="mobile-filter-badge">35</span>
                 </button>
             </div>
             <!-- Quick Chips on Mobile -->
             <div class="mobile-quick-chips">
-                <button class="quick-chip active" id="chip-all" onclick="filterByQuickChip('all')">All Cases (20)</button>
+                <button class="quick-chip active" id="chip-all" onclick="filterByQuickChip('all')">All Cases (35)</button>
                 <button class="quick-chip" id="chip-instock" onclick="filterByQuickChip('instock')">In Stock</button>
                 <button class="quick-chip" id="chip-crests" onclick="filterByQuickChip('crests')">Bespoke Crests</button>
             </div>
@@ -346,7 +346,7 @@
             <!-- Products Grid -->
             <div class="shop-products-main-col">
                 <div class="shop-results-header">
-                    <p class="results-count-text">Showing <strong id="results-count">20</strong> handcrafted pieces</p>
+                    <p class="results-count-text">Showing <strong id="results-count">35</strong> handcrafted pieces</p>
                 </div>
                 <div id="shop-products-grid" class="products-grid">
                     <!-- Products rendered here via JS -->
@@ -2380,7 +2380,7 @@ CREATE POLICY "Public Read/Write Orders" ON public.orders FOR ALL USING (true) W
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
     <!-- Main Application Logic -->
-    <script src="app.js?v=43"></script>
+    <script src="app.js?v=44"></script>
 
     <!-- Progressive Web App (PWA) Service Worker & Install Prompt -->
     <script>

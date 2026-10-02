@@ -1598,9 +1598,11 @@ function renderShopCatalog() {
     }
     
     // Render
-    resultsCount.textContent = `Showing ${filtered.length} products`;
+    if (resultsCount) resultsCount.textContent = filtered.length;
     const mobileBadge = document.getElementById("mobile-filter-badge");
     if (mobileBadge) mobileBadge.textContent = filtered.length;
+    const chipAll = document.getElementById("chip-all");
+    if (chipAll) chipAll.textContent = `All Cases (${STATE.products.length})`;
     const filterApplyCount = document.getElementById("filter-apply-count");
     if (filterApplyCount) filterApplyCount.textContent = ` (${filtered.length})`;
     if (filtered.length === 0) {
