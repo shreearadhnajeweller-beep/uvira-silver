@@ -1468,10 +1468,15 @@ function addToCart(prodId, count = 1) {
         if (msg) wrapSuffix += ` [Msg: ${msg}]`;
     }
     
-    const sizeSuffix = size ? ` (Size: ${size})` : "";
-    const cartTitle = `${prod.title}${sizeSuffix}${wrapSuffix}`;
+    const isDetailView = STATE.selectedProduct && STATE.selectedProduct.id === prod.id;
+    const isBrass = isDetailView && (STATE.selectedMetal === 'brass');
+    const basePrice = isBrass ? 4000 : prod.price;
+    const metalSuffix = isBrass ? " (Brass)" : "";
     
-    const unitPrice = prod.price + (hasGiftWrap ? 100 : 0);
+    const sizeSuffix = size ? ` (Size: ${size})` : "";
+    const cartTitle = `${prod.title}${metalSuffix}${sizeSuffix}${wrapSuffix}`;
+    
+    const unitPrice = basePrice + (hasGiftWrap ? 1000 : 0);
     
     const existing = STATE.cart.find(item => item.title === cartTitle);
     if (existing) {
@@ -1554,6 +1559,19 @@ function viewProductDetail(prodId, isPopstate = false) {
     // Reset gift wrap selection
     const giftWrapCheck = document.getElementById("detail-gift-wrap");
     if (giftWrapCheck) giftWrapCheck.checked = false;
+    const giftMsgContainer = document.getElementById("gift-message-container");
+    if (giftMsgContainer) giftMsgContainer.style.display = "none";
+    
+    // Metal Selection Handling (Solid 92.5 Sterling Silver vs Jewellery Brass)
+    STATE.selectedMetal = 'silver';
+    const metalSection = document.getElementById("detail-metal-section");
+    if (metalSection) {
+        const isWhoop = prod.category === 'whoop' || (prod.id && prod.id.includes('whoop'));
+        metalSection.style.display = isWhoop ? "block" : "none";
+    }
+    if (typeof selectDetailMetal === 'function') {
+        selectDetailMetal('silver');
+    }
     
     // Ring, Toe Ring, and Chain Size rendering
     const isToeRing = prod.title.toLowerCase().includes("toe");
@@ -1703,11 +1721,18 @@ function viewProductDetail(prodId, isPopstate = false) {
     if (whatsappBtn) {
         whatsappBtn.onclick = () => {
             const qty = parseInt(document.getElementById("qty-val").textContent);
+            const isBrass = (STATE.selectedMetal === 'brass');
+            const currentPrice = isBrass ? 4000 : prod.price;
+            const metalName = isBrass ? 'Jewellery Brass' : (prod.specs && prod.specs.metal ? prod.specs.metal : 'Solid 92.5% Sterling Silver');
+            const giftBoxCheck = document.getElementById("detail-gift-wrap");
+            const hasGift = giftBoxCheck && giftBoxCheck.checked;
+            const finalP = currentPrice + (hasGift ? 1000 : 0);
+            const giftBoxText = hasGift ? ' (Includes Premium Gift Box: +₹1,000)' : '';
             
             const isBase64 = prod.image && prod.image.startsWith("data:");
             const photoUrl = isBase64 ? "[Custom Design Uploaded]" : prod.image;
             
-            const text = encodeURIComponent(`Hello UVIRA JEWELS! I am interested in purchasing the following item:\n\n*Product:* ${prod.title}\n*Price:* ₹${prod.price}\n*Quantity:* ${qty}\n*Metal specs:* ${prod.specs.metal}.\n*Product Photo:* ${photoUrl}\n\nPlease let me know availability and billing details!`);
+            const text = encodeURIComponent(`Hello UVIRA JEWELS! I am interested in purchasing the following item:\n\n*Product:* ${prod.title}\n*Selected Metal:* ${metalName}\n*Price:* ₹${finalP.toLocaleString("en-IN")}${giftBoxText}\n*Quantity:* ${qty}\n*Product Photo:* ${photoUrl}\n\nPlease let me know availability and billing details!`);
             window.open(`https://api.whatsapp.com/send?phone=919825098250&text=${text}`, "_blank");
         };
     }
@@ -1761,6 +1786,55 @@ function selectProductSize(size, element) {
     }
 }
 
+function selectDetailMetal(metal) {
+    STATE.selectedMetal = metal;
+    const optSilver = document.getElementById('metal-opt-silver');
+    const optBrass = document.getElementById('metal-opt-brass');
+    const priceEl = document.getElementById('detail-price');
+    const origPriceEl = document.getElementById('detail-orig-price');
+    const discEl = document.getElementById('detail-discount-percent');
+    const specMetal = document.getElementById('spec-metal');
+    const specAuth = document.getElementById('spec-auth');
+
+    if (metal === 'brass') {
+        if (optBrass) {
+            optBrass.style.border = '2px solid var(--color-primary)';
+            optBrass.style.background = '#F8FAFC';
+            const title = optBrass.querySelector('span');
+            if (title) title.style.color = 'var(--color-primary)';
+        }
+        if (optSilver) {
+            optSilver.style.border = '1px solid var(--color-silver-mid)';
+            optSilver.style.background = '#FFFFFF';
+            const title = optSilver.querySelector('span');
+            if (title) title.style.color = '#334155';
+        }
+        if (priceEl) priceEl.textContent = '₹4,000';
+        if (origPriceEl) origPriceEl.textContent = '₹8,000';
+        if (discEl) discEl.textContent = '50% OFF';
+        if (specMetal) specMetal.textContent = 'Jewellery Grade Brass (High Polish)';
+        if (specAuth) specAuth.textContent = 'Premium Brass Construction';
+    } else {
+        if (optSilver) {
+            optSilver.style.border = '2px solid var(--color-primary)';
+            optSilver.style.background = '#F8FAFC';
+            const title = optSilver.querySelector('span');
+            if (title) title.style.color = 'var(--color-primary)';
+        }
+        if (optBrass) {
+            optBrass.style.border = '1px solid var(--color-silver-mid)';
+            optBrass.style.background = '#FFFFFF';
+            const title = optBrass.querySelector('span');
+            if (title) title.style.color = '#334155';
+        }
+        if (priceEl) priceEl.textContent = '₹15,000';
+        if (origPriceEl) origPriceEl.textContent = '₹30,000';
+        if (discEl) discEl.textContent = '50% OFF';
+        if (specMetal) specMetal.textContent = 'Solid 92.5% Sterling Silver';
+        if (specAuth) specAuth.textContent = '92.5 Hallmark Certificate Included';
+    }
+}
+
 function triggerBuyNow() {
     if (STATE.selectedProduct) {
         const qtyVal = document.getElementById("qty-val");
@@ -1804,10 +1878,14 @@ function triggerBuyNow() {
             }
         }
         
-        const sizeSuffix = size ? ` (Size: ${size})` : "";
-        const cartTitle = `${prod.title}${sizeSuffix}${wrapSuffix}`;
+        const isBrass = (STATE.selectedMetal === 'brass');
+        const basePrice = isBrass ? 4000 : prod.price;
+        const metalSuffix = isBrass ? " (Brass)" : "";
         
-        const unitPrice = prod.price + (hasGiftWrap ? 100 : 0);
+        const sizeSuffix = size ? ` (Size: ${size})` : "";
+        const cartTitle = `${prod.title}${metalSuffix}${sizeSuffix}${wrapSuffix}`;
+        
+        const unitPrice = basePrice + (hasGiftWrap ? 1000 : 0);
         
         const existing = STATE.cart.find(item => item.title === cartTitle);
         if (existing) {
@@ -4528,7 +4606,9 @@ function recalculateAllProductPrices() {
             const prod = STATE.products.find(p => p.id === item.id);
             if (prod) {
                 const hasGiftWrap = item.title.includes("+ Gift Box");
-                const newUnitPrice = prod.price + (hasGiftWrap ? 100 : 0);
+                const isBrass = item.title.includes("(Brass)");
+                const baseP = isBrass ? 4000 : prod.price;
+                const newUnitPrice = baseP + (hasGiftWrap ? 1000 : 0);
                 if (item.price !== newUnitPrice) {
                     item.price = newUnitPrice;
                     cartUpdated = true;
