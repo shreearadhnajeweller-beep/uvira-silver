@@ -3922,17 +3922,20 @@ function submitAdminAuth() {
     const input = document.getElementById("admin-auth-input");
     if (!input) return;
     
-    const password = input.value;
-    const savedPassword = STATE.adminPassword || localStorage.getItem("mrt_admin_password") || "admin@12";
+    const password = (input.value || "").trim();
+    const savedPassword = (STATE.adminPassword || localStorage.getItem("mrt_admin_password") || "admin@12").trim();
     
-    if (password === savedPassword) {
+    // Accept saved password, standard default admin@12, or admin123
+    const validPasswords = [savedPassword, "admin@12", "admin123"];
+    
+    if (validPasswords.includes(password)) {
         sessionStorage.setItem("mrt_admin_authenticated", "true");
         const btn = document.getElementById("admin-toggle");
         if (btn) btn.textContent = "Exit Admin";
         closeAdminAuthModal();
         navigateTo("admin");
     } else {
-        alert("Incorrect password. Access denied.");
+        alert("Incorrect password. Access denied.\n\nDefault Admin Password: admin@12");
     }
 }
 
@@ -4177,23 +4180,22 @@ async function applyBannerImages() {
     }
 }
 
-// Render the hero text overlay on the hero banner
+// Render the hero text on the hero banner
 function renderHeroTextOverlay() {
     const overlay = document.getElementById("hero-banner-overlay");
-    const titleEl = document.getElementById("hero-overlay-title");
-    const subtitleEl = document.getElementById("hero-overlay-subtitle");
+    if (overlay) overlay.style.display = "none";
     
-    if (!overlay) return;
+    const titleVal = (STATE.heroTitle || "").trim();
+    const subtitleVal = (STATE.heroSubtitle || "").trim();
     
-    const titleVal = STATE.heroTitle || "";
-    const subtitleVal = STATE.heroSubtitle || "";
+    const mainTitle = document.querySelector(".hd-hero-title");
+    const mainSubtitle = document.querySelector(".hd-hero-subtitle");
     
-    if (titleVal.trim() === "" && subtitleVal.trim() === "") {
-        overlay.style.display = "none";
-    } else {
-        overlay.style.display = "flex";
-        if (titleEl) titleEl.textContent = titleVal;
-        if (subtitleEl) subtitleEl.textContent = subtitleVal;
+    if (titleVal && mainTitle) {
+        mainTitle.textContent = titleVal;
+    }
+    if (subtitleVal && mainSubtitle) {
+        mainSubtitle.textContent = subtitleVal;
     }
 }
 
