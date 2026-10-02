@@ -486,12 +486,150 @@ const WHOOP_PRODUCTS_SEED = [
                 "assets/whoop/whoop_20_2.webp"
             ]
         }
+    },
+    {
+        "id": "prod-whoop-21-custom-crest-gem-set-whoop-case-bull",
+        "title": "Custom Crest Gem-Set Whoop Case Bull",
+        "category": "whoop",
+        "price": 15000,
+        "original_price": 30000,
+        "rating": 5,
+        "reviews_count": 28,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/whoop/whoop_21_1.jpeg",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted ferocious Bull emblem embedded with brilliant-cut micro pavé crystals. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "20.0g",
+            "finish": "Rhodium Polish with Gem-Set Crest",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/whoop/whoop_21_1.jpeg",
+                "assets/whoop/whoop_21_2.jpeg"
+            ]
+        }
+    },
+    {
+        "id": "prod-whoop-22-custom-crest-gem-set-whoop-case-dc",
+        "title": "Custom Crest Gem-Set Whoop Case DC",
+        "category": "whoop",
+        "price": 15000,
+        "original_price": 30000,
+        "rating": 5,
+        "reviews_count": 22,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/whoop/whoop_22_1.jpeg",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted DC interlocking monogram crest embedded with brilliant-cut micro pavé crystals. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "20.0g",
+            "finish": "Rhodium Polish with Gem-Set Crest",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/whoop/whoop_22_1.jpeg",
+                "assets/whoop/whoop_22_2.jpeg"
+            ]
+        }
+    },
+    {
+        "id": "prod-whoop-23-custom-crest-gem-set-whoop-case-seven-horses",
+        "title": "Custom Crest Gem-Set Whoop Case Seven Horses",
+        "category": "whoop",
+        "price": 15000,
+        "original_price": 30000,
+        "rating": 5,
+        "reviews_count": 34,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/whoop/whoop_23_1.jpeg",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an auspicious Seven Horses dynamic motion crest embedded with brilliant-cut micro pavé crystals. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "20.0g",
+            "finish": "Rhodium Polish with Gem-Set Crest",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/whoop/whoop_23_1.jpeg",
+                "assets/whoop/whoop_23_2.jpeg"
+            ]
+        }
+    },
+    {
+        "id": "prod-whoop-24-custom-crest-gem-set-whoop-case-om",
+        "title": "Custom Crest Gem-Set Whoop Case Om",
+        "category": "whoop",
+        "price": 15000,
+        "original_price": 30000,
+        "rating": 5,
+        "reviews_count": 41,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/whoop/whoop_24_1.jpeg",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a sacred Om spiritual symbol embedded with handset brilliant micro pavé crystals. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "20.0g",
+            "finish": "Rhodium Polish with Gem-Set Crest",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/whoop/whoop_24_1.jpeg",
+                "assets/whoop/whoop_24_2.jpeg"
+            ]
+        }
+    },
+    {
+        "id": "prod-whoop-25-custom-crest-gem-set-whoop-case-panda",
+        "title": "Custom Crest Gem-Set Whoop Case Panda",
+        "category": "whoop",
+        "price": 15000,
+        "original_price": 30000,
+        "rating": 5,
+        "reviews_count": 19,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/whoop/whoop_25_1.jpeg",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a playful luxury Panda motif embedded with contrasting micro pavé crystals. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "20.0g",
+            "finish": "Rhodium Polish with Gem-Set Crest",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/whoop/whoop_25_1.jpeg",
+                "assets/whoop/whoop_25_2.jpeg"
+            ]
+        }
+    },
+    {
+        "id": "prod-whoop-26-custom-crest-gem-set-whoop-case-lv",
+        "title": "Custom Crest Gem-Set Whoop Case LV",
+        "category": "whoop",
+        "price": 15000,
+        "original_price": 30000,
+        "rating": 5,
+        "reviews_count": 31,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/whoop/whoop_26_1.jpeg",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a luxury LV monogram emblem embedded with brilliant-cut micro pavé crystals. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "20.0g",
+            "finish": "Rhodium Polish with Gem-Set Crest",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/whoop/whoop_26_1.jpeg",
+                "assets/whoop/whoop_26_2.jpeg"
+            ]
+        }
     }
 ];
 
 function seedMockProducts() {
     localStorage.setItem("mock_db_products", JSON.stringify(WHOOP_PRODUCTS_SEED));
-    console.log("Seeded 20 Whoop Case products to local database.");
+    console.log("Seeded 26 Whoop Case products to local database.");
 }
 seedMockProducts();
 
