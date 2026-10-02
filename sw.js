@@ -1,4 +1,4 @@
-const CACHE_NAME = 'uvira-jewels-v1';
+const CACHE_NAME = 'uvira-jewels-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -6,7 +6,10 @@ const ASSETS_TO_CACHE = [
   './app.js',
   './manifest.json',
   './logo.png',
-  './logo_footer.png'
+  './logo_footer.png',
+  './icon-192.png',
+  './icon-512.png',
+  './apple-touch-icon.png'
 ];
 
 // Install Event

@@ -1732,7 +1732,7 @@ function addToCart(prodId, count = 1) {
     
     const isDetailView = STATE.selectedProduct && STATE.selectedProduct.id === prod.id;
     const isBrass = isDetailView && (STATE.selectedMetal === 'brass');
-    const basePrice = isBrass ? 5000 : prod.price;
+    const basePrice = isBrass ? 6000 : prod.price;
     const metalSuffix = isBrass ? " (Brass)" : "";
 
     const finishLabel = isDetailView && STATE.selectedFinish ? (STATE.selectedFinish === 'golden' ? 'Golden' : (STATE.selectedFinish === 'rosegold' ? 'Rosegold' : 'Silver')) : 'Silver';
@@ -2001,7 +2001,7 @@ function viewProductDetail(prodId, isPopstate = false) {
         whatsappBtn.onclick = () => {
             const qty = parseInt(document.getElementById("qty-val").textContent);
             const isBrass = (STATE.selectedMetal === 'brass');
-            const currentPrice = isBrass ? 5000 : prod.price;
+            const currentPrice = isBrass ? 6000 : prod.price;
             const metalName = isBrass ? 'Jewellery Brass' : (prod.specs && prod.specs.metal ? prod.specs.metal : 'Solid 92.5% Sterling Silver');
             const finishName = STATE.selectedFinish ? (STATE.selectedFinish === 'golden' ? 'Golden' : (STATE.selectedFinish === 'rosegold' ? 'Rosegold' : 'Silver')) : 'Silver';
             const giftBoxCheck = document.getElementById("detail-gift-wrap");
@@ -2089,8 +2089,8 @@ function selectDetailMetal(metal) {
             const title = optSilver.querySelector('span');
             if (title) title.style.color = '#334155';
         }
-        if (priceEl) priceEl.textContent = '₹5,000';
-        if (origPriceEl) origPriceEl.textContent = '₹10,000';
+        if (priceEl) priceEl.textContent = '₹6,000';
+        if (origPriceEl) origPriceEl.textContent = '₹12,000';
         if (discEl) discEl.textContent = '50% OFF';
         if (specMetal) specMetal.textContent = 'Jewellery Grade Brass (High Polish)';
         if (specAuth) specAuth.textContent = 'Premium Brass Construction';
@@ -2193,7 +2193,7 @@ function triggerBuyNow() {
         }
         
         const isBrass = (STATE.selectedMetal === 'brass');
-        const basePrice = isBrass ? 5000 : prod.price;
+        const basePrice = isBrass ? 6000 : prod.price;
         const metalSuffix = isBrass ? " (Brass)" : "";
 
         const finishLabel = STATE.selectedFinish ? (STATE.selectedFinish === 'golden' ? 'Golden' : (STATE.selectedFinish === 'rosegold' ? 'Rosegold' : 'Silver')) : 'Silver';
@@ -4983,7 +4983,7 @@ function recalculateAllProductPrices() {
             if (prod) {
                 const hasGiftWrap = item.title.includes("+ Gift Box");
                 const isBrass = item.title.includes("(Brass)");
-                const baseP = isBrass ? 5000 : prod.price;
+                const baseP = isBrass ? 6000 : prod.price;
                 const newUnitPrice = baseP + (hasGiftWrap ? 1000 : 0);
                 if (item.price !== newUnitPrice) {
                     item.price = newUnitPrice;
