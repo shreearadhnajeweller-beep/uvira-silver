@@ -1031,6 +1031,8 @@ const STATE = {
     activeAdminTab: "dashboard",
     editingProductId: null,
     selectedSize: null,
+    selectedMetal: "silver",
+    selectedFinish: "silver",
     user: null,
     profile: null
 };
@@ -1730,9 +1732,13 @@ function addToCart(prodId, count = 1) {
     const isBrass = isDetailView && (STATE.selectedMetal === 'brass');
     const basePrice = isBrass ? 5000 : prod.price;
     const metalSuffix = isBrass ? " (Brass)" : "";
+
+    const finishLabel = isDetailView && STATE.selectedFinish ? (STATE.selectedFinish === 'golden' ? 'Golden' : (STATE.selectedFinish === 'rosegold' ? 'Rosegold' : 'Silver')) : 'Silver';
+    const isWhoop = prod.category === 'whoop' || (prod.id && prod.id.includes('whoop'));
+    const finishSuffix = (isDetailView && isWhoop) ? ` [${finishLabel}]` : "";
     
     const sizeSuffix = size ? ` (Size: ${size})` : "";
-    const cartTitle = `${prod.title}${metalSuffix}${sizeSuffix}${wrapSuffix}`;
+    const cartTitle = `${prod.title}${metalSuffix}${finishSuffix}${sizeSuffix}${wrapSuffix}`;
     
     const unitPrice = basePrice + (hasGiftWrap ? 1000 : 0);
     
@@ -1745,7 +1751,9 @@ function addToCart(prodId, count = 1) {
             title: cartTitle,
             price: unitPrice,
             image: prod.image,
-            qty: count
+            qty: count,
+            metal: isBrass ? 'Jewellery Brass' : 'Solid 92.5% Sterling Silver',
+            finish: finishLabel
         });
     }
     saveCart();
@@ -1829,6 +1837,17 @@ function viewProductDetail(prodId, isPopstate = false) {
     }
     if (typeof selectDetailMetal === 'function') {
         selectDetailMetal('silver');
+    }
+
+    // Finish Colour Handling (Golden / Silver / Rosegold)
+    STATE.selectedFinish = 'silver';
+    const finishSection = document.getElementById("detail-finish-section");
+    if (finishSection) {
+        const isWhoop = prod.category === 'whoop' || (prod.id && prod.id.includes('whoop'));
+        finishSection.style.display = isWhoop ? "block" : "none";
+    }
+    if (typeof selectDetailFinish === 'function') {
+        selectDetailFinish('silver');
     }
     
     // Ring, Toe Ring, and Chain Size rendering
@@ -1982,6 +2001,7 @@ function viewProductDetail(prodId, isPopstate = false) {
             const isBrass = (STATE.selectedMetal === 'brass');
             const currentPrice = isBrass ? 5000 : prod.price;
             const metalName = isBrass ? 'Jewellery Brass' : (prod.specs && prod.specs.metal ? prod.specs.metal : 'Solid 92.5% Sterling Silver');
+            const finishName = STATE.selectedFinish ? (STATE.selectedFinish === 'golden' ? 'Golden' : (STATE.selectedFinish === 'rosegold' ? 'Rosegold' : 'Silver')) : 'Silver';
             const giftBoxCheck = document.getElementById("detail-gift-wrap");
             const hasGift = giftBoxCheck && giftBoxCheck.checked;
             const finalP = currentPrice + (hasGift ? 1000 : 0);
@@ -1990,7 +2010,7 @@ function viewProductDetail(prodId, isPopstate = false) {
             const isBase64 = prod.image && prod.image.startsWith("data:");
             const photoUrl = isBase64 ? "[Custom Design Uploaded]" : prod.image;
             
-            const text = encodeURIComponent(`Hello UVIRA JEWELS! I am interested in purchasing the following item:\n\n*Product:* ${prod.title}\n*Selected Metal:* ${metalName}\n*Price:* ₹${finalP.toLocaleString("en-IN")}${giftBoxText}\n*Quantity:* ${qty}\n*Product Photo:* ${photoUrl}\n\nPlease let me know availability and billing details!`);
+            const text = encodeURIComponent(`Hello UVIRA JEWELS! I am interested in purchasing the following item:\n\n*Product:* ${prod.title}\n*Selected Metal:* ${metalName}\n*Finish Colour:* ${finishName}\n*Price:* ₹${finalP.toLocaleString("en-IN")}${giftBoxText}\n*Quantity:* ${qty}\n*Product Photo:* ${photoUrl}\n\nPlease let me know availability and billing details!`);
             window.open(`https://api.whatsapp.com/send?phone=919825098250&text=${text}`, "_blank");
         };
     }
@@ -2093,6 +2113,40 @@ function selectDetailMetal(metal) {
     }
 }
 
+function selectDetailFinish(finish) {
+    STATE.selectedFinish = finish; // 'silver' | 'golden' | 'rosegold'
+    const optSilver = document.getElementById('finish-opt-silver');
+    const optGolden = document.getElementById('finish-opt-golden');
+    const optRosegold = document.getElementById('finish-opt-rosegold');
+    const badge = document.getElementById('selected-finish-badge');
+
+    const options = [
+        { id: 'silver', el: optSilver, name: 'SILVER' },
+        { id: 'golden', el: optGolden, name: 'GOLDEN' },
+        { id: 'rosegold', el: optRosegold, name: 'ROSEGOLD' }
+    ];
+
+    options.forEach(opt => {
+        if (!opt.el) return;
+        const title = opt.el.querySelector('.finish-title');
+        if (opt.id === finish) {
+            opt.el.style.border = '2px solid var(--color-primary)';
+            opt.el.style.background = '#F8FAFC';
+            opt.el.classList.add('active-finish');
+            if (title) title.style.color = 'var(--color-primary)';
+        } else {
+            opt.el.style.border = '1px solid var(--color-silver-mid)';
+            opt.el.style.background = '#FFFFFF';
+            opt.el.classList.remove('active-finish');
+            if (title) title.style.color = '#334155';
+        }
+    });
+
+    if (badge) {
+        badge.textContent = finish.toUpperCase();
+    }
+}
+
 function triggerBuyNow() {
     if (STATE.selectedProduct) {
         const qtyVal = document.getElementById("qty-val");
@@ -2139,9 +2193,13 @@ function triggerBuyNow() {
         const isBrass = (STATE.selectedMetal === 'brass');
         const basePrice = isBrass ? 5000 : prod.price;
         const metalSuffix = isBrass ? " (Brass)" : "";
+
+        const finishLabel = STATE.selectedFinish ? (STATE.selectedFinish === 'golden' ? 'Golden' : (STATE.selectedFinish === 'rosegold' ? 'Rosegold' : 'Silver')) : 'Silver';
+        const isWhoop = prod.category === 'whoop' || (prod.id && prod.id.includes('whoop'));
+        const finishSuffix = isWhoop ? ` [${finishLabel}]` : "";
         
         const sizeSuffix = size ? ` (Size: ${size})` : "";
-        const cartTitle = `${prod.title}${metalSuffix}${sizeSuffix}${wrapSuffix}`;
+        const cartTitle = `${prod.title}${metalSuffix}${finishSuffix}${sizeSuffix}${wrapSuffix}`;
         
         const unitPrice = basePrice + (hasGiftWrap ? 1000 : 0);
         
@@ -2154,7 +2212,9 @@ function triggerBuyNow() {
                 title: cartTitle,
                 price: unitPrice,
                 image: prod.image,
-                qty: count
+                qty: count,
+                metal: isBrass ? 'Jewellery Brass' : 'Solid 92.5% Sterling Silver',
+                finish: finishLabel
             });
         }
         saveCart();

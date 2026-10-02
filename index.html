@@ -430,6 +430,36 @@
                     </div>
                 </div>
 
+                <!-- Finish Colour Selection Option (Silver / Golden / Rosegold) -->
+                <div id="detail-finish-section" style="margin-top: 15px; margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <label class="custom-form-label" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0; color: #1f2937; display: block;">Finish Colour</label>
+                        <span id="selected-finish-badge" style="font-size: 0.75rem; font-weight: 700; color: var(--color-primary); background: #EEF2F6; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.5px;">SILVER</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+                        <!-- Silver Option -->
+                        <div id="finish-opt-silver" class="finish-option-card active-finish" onclick="selectDetailFinish('silver')" style="border: 2px solid var(--color-primary); background: #F8FAFC; padding: 12px 8px; border-radius: var(--border-radius-sm); cursor: pointer; transition: all 0.2s ease; text-align: center; position: relative;">
+                            <div style="width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #F1F5F9 0%, #CBD5E1 50%, #94A3B8 100%); margin: 0 auto 6px auto; border: 1.5px solid #94A3B8; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"></div>
+                            <div class="finish-title" style="font-weight: 700; font-size: 0.85rem; color: var(--color-primary);">Silver</div>
+                            <div style="font-size: 0.7rem; color: var(--color-silver-dark); margin-top: 2px;">White Rhodium</div>
+                        </div>
+
+                        <!-- Golden Option -->
+                        <div id="finish-opt-golden" class="finish-option-card" onclick="selectDetailFinish('golden')" style="border: 1px solid var(--color-silver-mid); background: #FFFFFF; padding: 12px 8px; border-radius: var(--border-radius-sm); cursor: pointer; transition: all 0.2s ease; text-align: center; position: relative;">
+                            <div style="width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #FEF08A 0%, #EAB308 50%, #CA8A04 100%); margin: 0 auto 6px auto; border: 1.5px solid #CA8A04; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"></div>
+                            <div class="finish-title" style="font-weight: 700; font-size: 0.85rem; color: #334155;">Golden</div>
+                            <div style="font-size: 0.7rem; color: var(--color-silver-dark); margin-top: 2px;">18K Gold Polish</div>
+                        </div>
+
+                        <!-- Rosegold Option -->
+                        <div id="finish-opt-rosegold" class="finish-option-card" onclick="selectDetailFinish('rosegold')" style="border: 1px solid var(--color-silver-mid); background: #FFFFFF; padding: 12px 8px; border-radius: var(--border-radius-sm); cursor: pointer; transition: all 0.2s ease; text-align: center; position: relative;">
+                            <div style="width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #FECDD3 0%, #FB7185 50%, #E11D48 100%); margin: 0 auto 6px auto; border: 1.5px solid #E11D48; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"></div>
+                            <div class="finish-title" style="font-weight: 700; font-size: 0.85rem; color: #334155;">Rosegold</div>
+                            <div style="font-size: 0.7rem; color: var(--color-silver-dark); margin-top: 2px;">Rose Gold Polish</div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Dynamic Size Selector (Visible for Rings/Toe Rings only) -->
                 <div id="detail-size-section" style="margin-top: 15px; margin-bottom: 20px; display: none;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; margin-top: 24px;">
