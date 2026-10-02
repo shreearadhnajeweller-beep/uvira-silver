@@ -624,12 +624,219 @@ const WHOOP_PRODUCTS_SEED = [
                 "assets/whoop/whoop_26_2.jpeg"
             ]
         }
+    },
+    {
+        "id": "prod-whoop-27-custom-crest-gem-set-whoop-case-eagle-2",
+        "title": "Custom Crest Gem-Set Whoop Case Eagle II",
+        "category": "whoop",
+        "price": 15000,
+        "original_price": 30000,
+        "rating": 5,
+        "reviews_count": 28,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/whoop/whoop_27_1.webp",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an intricately sculpted Eagle II emblem accented with brilliant-cut micro pavé crystals. Designed exclusively for Whoop 5.0 band and sensors.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "20.0g",
+            "finish": "Rhodium Polish with Gem-Set Crest",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/whoop/whoop_27_1.webp",
+                "assets/whoop/whoop_27_2.webp"
+            ]
+        }
+    },
+    {
+        "id": "prod-whoop-28-custom-crest-gem-set-whoop-case-panther",
+        "title": "Custom Crest Gem-Set Whoop Case Panther",
+        "category": "whoop",
+        "price": 15000,
+        "original_price": 30000,
+        "rating": 5,
+        "reviews_count": 34,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/whoop/whoop_28_1.webp",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a fierce panther head crest with micro pavé gemstones. Designed exclusively for Whoop 5.0 band and sensors.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "20.0g",
+            "finish": "Rhodium Polish with Gem-Set Crest",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/whoop/whoop_28_1.webp",
+                "assets/whoop/whoop_28_2.webp"
+            ]
+        }
+    },
+    {
+        "id": "prod-whoop-29-custom-crest-gem-set-whoop-case-animal",
+        "title": "Custom Crest Gem-Set Whoop Case Animal Kingdom",
+        "category": "whoop",
+        "price": 15000,
+        "original_price": 30000,
+        "rating": 5,
+        "reviews_count": 22,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/whoop/whoop_29_1.webp",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case showcasing a dramatic animal crest studded with hand-set pavé crystals. Designed exclusively for Whoop 5.0 band and sensors.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "20.0g",
+            "finish": "Rhodium Polish with Gem-Set Crest",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/whoop/whoop_29_1.webp",
+                "assets/whoop/whoop_29_2.webp"
+            ]
+        }
+    },
+    {
+        "id": "prod-whoop-30-custom-crest-gem-set-whoop-case-eternity",
+        "title": "Custom Crest Gem-Set Whoop Case Eternity",
+        "category": "whoop",
+        "price": 15000,
+        "original_price": 30000,
+        "rating": 5,
+        "reviews_count": 39,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/whoop/whoop_30_1.webp",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an eternal interlocking motif encrusted with sparkling micro pavé crystals. Designed exclusively for Whoop 5.0 band and sensors.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "20.0g",
+            "finish": "Rhodium Polish with Gem-Set Crest",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/whoop/whoop_30_1.webp",
+                "assets/whoop/whoop_30_2.webp"
+            ]
+        }
+    },
+    {
+        "id": "prod-whoop-31-custom-crest-gem-set-whoop-case-rose",
+        "title": "Custom Crest Gem-Set Whoop Case Rose",
+        "category": "whoop",
+        "price": 15000,
+        "original_price": 30000,
+        "rating": 5,
+        "reviews_count": 29,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/whoop/whoop_31_1.webp",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case adorned with a detailed blooming rose emblem highlighted by shimmering pavé gemstones. Designed exclusively for Whoop 5.0 band and sensors.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "20.0g",
+            "finish": "Rhodium Polish with Gem-Set Crest",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/whoop/whoop_31_1.webp",
+                "assets/whoop/whoop_31_2.webp"
+            ]
+        }
+    },
+    {
+        "id": "prod-whoop-32-custom-crest-gem-set-whoop-case-gucci",
+        "title": "Custom Crest Gem-Set Whoop Case Gucci Edition",
+        "category": "whoop",
+        "price": 15000,
+        "original_price": 30000,
+        "rating": 5,
+        "reviews_count": 45,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/whoop/whoop_32_1.webp",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case celebrating iconic interlocking designer geometry surrounded by precision-cut crystals. Designed exclusively for Whoop 5.0 band and sensors.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "20.0g",
+            "finish": "Rhodium Polish with Gem-Set Crest",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/whoop/whoop_32_1.webp",
+                "assets/whoop/whoop_32_2.webp"
+            ]
+        }
+    },
+    {
+        "id": "prod-whoop-33-custom-crest-gem-set-whoop-case-snake",
+        "title": "Custom Crest Gem-Set Whoop Case Snake",
+        "category": "whoop",
+        "price": 15000,
+        "original_price": 30000,
+        "rating": 5,
+        "reviews_count": 36,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/whoop/whoop_33_1.webp",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a serpentine silhouette encrusted with micro pavé crystals. Designed exclusively for Whoop 5.0 band and sensors.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "20.0g",
+            "finish": "Rhodium Polish with Gem-Set Crest",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/whoop/whoop_33_1.webp",
+                "assets/whoop/whoop_33_2.webp"
+            ]
+        }
+    },
+    {
+        "id": "prod-whoop-34-custom-crest-gem-set-whoop-case-veda",
+        "title": "Custom Crest Gem-Set Whoop Case Veda Edition",
+        "category": "whoop",
+        "price": 15000,
+        "original_price": 30000,
+        "rating": 5,
+        "reviews_count": 27,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/whoop/whoop_34_1.webp",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case bearing the signature Veda emblem crafted with artisanal precision and micro pavé accents. Designed exclusively for Whoop 5.0 band and sensors.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "20.0g",
+            "finish": "Rhodium Polish with Gem-Set Crest",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/whoop/whoop_34_1.webp",
+                "assets/whoop/whoop_34_2.webp"
+            ]
+        }
+    },
+    {
+        "id": "prod-whoop-35-custom-crest-gem-set-whoop-case-nicole-patek",
+        "title": "Custom Crest Gem-Set Whoop Case Nicole Edition (Patek)",
+        "category": "whoop",
+        "price": 15000,
+        "original_price": 30000,
+        "rating": 5,
+        "reviews_count": 52,
+        "plating": "Solid 92.5 Sterling Silver",
+        "in_stock": true,
+        "image": "assets/whoop/whoop_35_1.webp",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case inspired by haute horlogerie Calatrava cross heraldry encrusted with flawless micro pavé crystals. Designed exclusively for Whoop 5.0 band and sensors.",
+        "specs": {
+            "metal": "Solid 92.5% Sterling Silver",
+            "weight": "20.0g",
+            "finish": "Rhodium Polish with Gem-Set Crest",
+            "disable_auto_rate": true,
+            "images": [
+                "assets/whoop/whoop_35_1.webp",
+                "assets/whoop/whoop_35_2.webp"
+            ]
+        }
     }
 ];
 
 function seedMockProducts() {
     localStorage.setItem("mock_db_products", JSON.stringify(WHOOP_PRODUCTS_SEED));
-    console.log("Seeded 26 Whoop Case products to local database.");
+    console.log("Seeded 35 Whoop Case products to local database.");
 }
 seedMockProducts();
 
