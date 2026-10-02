@@ -1067,13 +1067,14 @@ async function initState() {
     initAuthListener();
 
     // Run all essential fetches in parallel for maximum speed
-    const [productsResult, couponsResult, ratesResult] = await Promise.allSettled([
+    const [productsResult, couponsResult, ratesResult, settingsRatesResult] = await Promise.allSettled([
         supaClient.from('products').select('id,title,category,price,original_price,rating,reviews_count,plating,in_stock,image,description,specs'),
         supaClient.from('coupons').select('*'),
-        supaClient.from('rates').select('*').limit(1)
+        supaClient.from('rates').select('*').order('updated_at', { ascending: false }).limit(1),
+        supaClient.from('settings').select('value').eq('key', 'metal_rates').maybeSingle()
     ]);
 
-    // Products - Strictly 20 Whoop Case products as requested
+    // Products - Strictly 35 Whoop Case products as requested
     STATE.products = WHOOP_PRODUCTS_SEED.map(normalizeProductData);
 
     // Coupons
@@ -1093,7 +1094,8 @@ async function initState() {
         console.error("Error loading coupons:", couponsResult.reason);
     }
 
-    // Rates
+    // Rates - Enhanced Multi-source Loading (rates table -> settings table -> localStorage -> defaults)
+    let loadedRates = false;
     if (ratesResult.status === 'fulfilled' && !ratesResult.value.error) {
         const data = ratesResult.value.data || [];
         if (data.length > 0) {
@@ -1101,17 +1103,56 @@ async function initState() {
             const rawFine = data[0].fine_price_per_gram !== undefined ? data[0].fine_price_per_gram : data[0].fine;
             const rawGold = data[0].gold_price_per_gram !== undefined ? data[0].gold_price_per_gram : data[0].gold;
             
-            STATE.rates.sterling = !isNaN(parseFloat(rawSterling)) ? parseFloat(rawSterling) : 98.00;
-            STATE.rates.fine = !isNaN(parseFloat(rawFine)) ? parseFloat(rawFine) : 105.00;
-            STATE.rates.gold = !isNaN(parseFloat(rawGold)) ? parseFloat(rawGold) : 7500.00;
-            STATE.rates.trend = data[0].trend || 'up';
+            const sterling = parseFloat(rawSterling);
+            const fine = parseFloat(rawFine);
+            const gold = parseFloat(rawGold);
+
+            if (!isNaN(sterling) && sterling > 0) {
+                STATE.rates.sterling = sterling;
+                STATE.rates.fine = !isNaN(fine) && fine > 0 ? fine : (sterling * 1.07);
+                STATE.rates.gold = !isNaN(gold) && gold > 0 ? gold : 7500.00;
+                STATE.rates.trend = data[0].trend || 'up';
+                loadedRates = true;
+            }
         }
-    } else {
-        console.error("Error loading rates from Supabase:", ratesResult.reason);
-        if (isNaN(STATE.rates.sterling)) STATE.rates.sterling = 98.00;
-        if (isNaN(STATE.rates.fine)) STATE.rates.fine = 105.00;
-        if (isNaN(STATE.rates.gold)) STATE.rates.gold = 7500.00;
     }
+
+    // Fallback to settings metal_rates backup if rates table was empty or not updated
+    if (!loadedRates && settingsRatesResult.status === 'fulfilled' && !settingsRatesResult.value.error && settingsRatesResult.value.data) {
+        try {
+            const parsed = JSON.parse(settingsRatesResult.value.data.value);
+            if (parsed && parsed.sterling) {
+                STATE.rates.sterling = parseFloat(parsed.sterling) || 98.00;
+                STATE.rates.fine = parseFloat(parsed.fine) || 105.00;
+                STATE.rates.gold = parseFloat(parsed.gold) || 7500.00;
+                STATE.rates.trend = parsed.trend || 'up';
+                loadedRates = true;
+            }
+        } catch(e) {}
+    }
+
+    // Fallback to localStorage cache
+    if (!loadedRates) {
+        const localRates = localStorage.getItem("mrt_rates");
+        if (localRates) {
+            try {
+                const parsed = JSON.parse(localRates);
+                if (parsed && parsed.sterling) {
+                    STATE.rates.sterling = parseFloat(parsed.sterling) || 98.00;
+                    STATE.rates.fine = parseFloat(parsed.fine) || 105.00;
+                    STATE.rates.gold = parseFloat(parsed.gold) || 7500.00;
+                    STATE.rates.trend = parsed.trend || 'up';
+                    loadedRates = true;
+                }
+            } catch(e) {}
+        }
+    }
+
+    // Ensure valid rates numbers
+    if (isNaN(STATE.rates.sterling) || STATE.rates.sterling <= 0) STATE.rates.sterling = 98.00;
+    if (isNaN(STATE.rates.fine) || STATE.rates.fine <= 0) STATE.rates.fine = 105.00;
+    if (isNaN(STATE.rates.gold) || STATE.rates.gold <= 0) STATE.rates.gold = 7500.00;
+    localStorage.setItem("mrt_rates", JSON.stringify(STATE.rates));
 
     recalculateAllProductPrices();
 
@@ -2999,27 +3040,16 @@ async function loadAdminUsers() {
     if (searchInp) searchInp.value = "";
     
     try {
-        const { data, error } = await supaClient.from('settings').select('*').like('key', 'user_%');
-        if (error) throw error;
-        
-        if (!data || data.length === 0) {
+        const rawUsers = await dbGetAllUsers();
+        if (!rawUsers || rawUsers.length === 0) {
             tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 20px;">No registered users found</td></tr>';
             return;
         }
         
-        const users = data.map(row => {
-            let record = {};
-            try {
-                record = JSON.parse(row.value);
-                if (!record || typeof record !== 'object') {
-                    record = {};
-                }
-            } catch (e) {
-                record = {};
-            }
+        const users = rawUsers.map(record => {
             const commissions = Array.isArray(record.referral_commissions) ? record.referral_commissions : [];
             return {
-                email: record.email || row.key.replace('user_', ''),
+                email: record.email || 'N/A',
                 name: record.name || 'N/A',
                 balance: parseFloat(record.digi_silver_balance) || 0,
                 referral_code: record.referral_code || 'N/A',
@@ -3422,7 +3452,11 @@ async function updateAdminRates() {
     STATE.rates.gold = goldVal;
     STATE.rates.trend = "up";
     
+    // Save locally immediately
+    localStorage.setItem("mrt_rates", JSON.stringify(STATE.rates));
+    
     renderRatesTicker();
+    renderAdminRates();
     recalculateAllProductPrices();
     
     // Rerender active views to show recalculated prices instantly
@@ -3433,26 +3467,34 @@ async function updateAdminRates() {
     }
     
     try {
-        const ratePayload = {
-            sterling_price_per_gram: sterlingVal,
-            fine_price_per_gram: fineVal,
-            gold_price_per_gram: goldVal,
-            updated_at: new Date().toISOString()
-        };
-        const { error } = await supaClient.from('rates').upsert([ratePayload]);
-        // Also save to settings table as guaranteed backup
+        // 1. Guaranteed Supabase cloud persistence via settings table (RLS open)
         await supaClient.from('settings').upsert([{
             key: 'metal_rates',
             value: JSON.stringify({
                 sterling: sterlingVal,
                 fine: fineVal,
                 gold: goldVal,
+                trend: 'up',
                 updated_at: new Date().toISOString()
             })
-        }]);
-        if (error) {
-            console.warn("Notice updating rates table:", error.message);
+        }], { onConflict: 'key' });
+
+        // 2. Update rates table - query existing row to preserve primary key / id
+        const ratePayload = {
+            sterling_price_per_gram: sterlingVal,
+            fine_price_per_gram: fineVal,
+            gold_price_per_gram: goldVal,
+            trend: 'up',
+            updated_at: new Date().toISOString()
+        };
+        const { data: existingRates } = await supaClient.from('rates').select('id').limit(1);
+        if (existingRates && existingRates.length > 0 && existingRates[0].id) {
+            ratePayload.id = existingRates[0].id;
+            await supaClient.from('rates').upsert([ratePayload]);
+        } else {
+            await supaClient.from('rates').insert([ratePayload]);
         }
+
         alert("Live Metal Rates updated on scrolling ticker and saved to Supabase successfully!");
     } catch (err) {
         console.error("Supabase rates update error:", err);
@@ -3688,12 +3730,11 @@ async function creditDigiSilverForOrder(order) {
         // Update the order in Supabase
         await supaClient.from('orders').update({ customer: JSON.stringify(cust) }).eq('id', order.id);
         
-        const { data: userData } = await supaClient.from('settings').select('value').eq('key', 'user_' + cust.email).single();
-        if (userData && userData.value) {
-            const uRec = JSON.parse(userData.value);
+        const uRec = await dbGetUserByEmail(cust.email);
+        if (uRec) {
             if (!cust.token || uRec.token === cust.token) {
                 uRec.digi_silver_balance = (uRec.digi_silver_balance || 0) + digiGrams;
-                await supaClient.from('settings').update({ value: JSON.stringify(uRec) }).eq('key', 'user_' + cust.email);
+                await dbSaveUser(uRec);
                 console.log(`Credited ${digiGrams}g Digi Silver to ${cust.email}`);
                 
                 // Also update local STATE if this is the current user
@@ -3716,17 +3757,12 @@ async function creditReferralCommissionForOrder(order) {
         if (!cust.email) return;
         if (cust.referral_credited) return;
         
-        const { data: userData } = await supaClient.from('settings').select('value').eq('key', 'user_' + cust.email).single();
-        if (!userData || !userData.value) return;
-        const buyerRec = JSON.parse(userData.value);
+        const buyerRec = await dbGetUserByEmail(cust.email);
+        if (!buyerRec) return;
         const referrerCode = buyerRec.referred_by;
         if (!referrerCode) return;
         
-        const { data: allSettings } = await supaClient.from('settings').select('*').like('key', 'user_%');
-        const users = allSettings ? allSettings.filter(s => s.key.startsWith('user_')).map(s => {
-            try { return JSON.parse(s.value); } catch(e) { return null; }
-        }).filter(Boolean) : [];
-        
+        const users = await dbGetAllUsers();
         const referrer = users.find(u => u.referral_code === referrerCode);
         if (!referrer) return;
         
@@ -3784,7 +3820,7 @@ async function creditReferralCommissionForOrder(order) {
             is_redeemed: false
         });
         
-        await supaClient.from('settings').update({ value: JSON.stringify(referrer) }).eq('key', 'user_' + referrer.email);
+        await dbSaveUser(referrer);
         
         cust.referral_credited = true;
         order.customer = cust;
@@ -6776,6 +6812,129 @@ function migrateTdsForUser(user) {
     return false;
 }
 
+// --- NORMAL DATABASE AUTH & USER REPOSITORY HELPERS ---
+async function dbGetUserByEmail(email) {
+    if (!email) return null;
+    const cleanEmail = email.trim().toLowerCase();
+    
+    // 1. Primary: query normal 'users' table
+    try {
+        const { data, error } = await supaClient
+            .from('users')
+            .select('*')
+            .eq('email', cleanEmail)
+            .maybeSingle();
+        if (data && !error) {
+            return {
+                ...data,
+                ...(data.metadata || {})
+            };
+        }
+    } catch (e) {
+        console.warn('Normal users table query notice:', e);
+    }
+
+    // 2. Secondary fallback: settings table (user_<email>)
+    try {
+        const { data: sData } = await supaClient
+            .from('settings')
+            .select('value')
+            .eq('key', 'user_' + cleanEmail)
+            .maybeSingle();
+        if (sData && sData.value) {
+            const parsed = JSON.parse(sData.value);
+            // Auto-migrate to normal users table in background
+            dbSaveUser(parsed).catch(() => {});
+            return parsed;
+        }
+    } catch (e) {}
+
+    // 3. LocalStorage fallback
+    const localUser = localStorage.getItem('mrt_user_profile_' + cleanEmail);
+    if (localUser) {
+        try { return JSON.parse(localUser); } catch(e) {}
+    }
+    return null;
+}
+
+async function dbSaveUser(userData) {
+    if (!userData || !userData.email) return;
+    const cleanEmail = userData.email.trim().toLowerCase();
+    userData.email = cleanEmail;
+
+    // Cache locally immediately
+    localStorage.setItem('mrt_user_profile_' + cleanEmail, JSON.stringify(userData));
+
+    // 1. Primary: Upsert into normal 'users' table
+    const dbRecord = {
+        id: userData.id || ('usr_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 6)),
+        email: cleanEmail,
+        name: userData.name || cleanEmail.split('@')[0],
+        password: userData.password || '',
+        phone: userData.phone || '',
+        token: userData.token || '',
+        digi_silver_balance: parseFloat(userData.digi_silver_balance) || 0,
+        referral_code: userData.referral_code || null,
+        referred_by: userData.referred_by || null,
+        metadata: userData,
+        created_at: userData.created_at || new Date().toISOString()
+    };
+
+    try {
+        const { error } = await supaClient
+            .from('users')
+            .upsert([dbRecord], { onConflict: 'email' });
+        if (error) {
+            console.warn("Notice saving to users table:", error.message);
+        }
+    } catch (e) {
+        console.warn("Exception saving to users table:", e);
+    }
+
+    // 2. Guaranteed fallback persistence via settings table
+    try {
+        await supaClient.from('settings').upsert([{
+            key: 'user_' + cleanEmail,
+            value: JSON.stringify(userData)
+        }], { onConflict: 'key' });
+    } catch (e) {
+        console.warn("Could not save user to settings backup:", e);
+    }
+}
+
+async function dbGetAllUsers() {
+    let usersList = [];
+    // 1. Fetch from normal 'users' table
+    try {
+        const { data, error } = await supaClient.from('users').select('*');
+        if (data && !error && data.length > 0) {
+            usersList = data.map(u => ({
+                ...u,
+                ...(u.metadata || {})
+            }));
+        }
+    } catch(e) {}
+
+    // 2. Merge from settings backup
+    try {
+        const { data: sData } = await supaClient.from('settings').select('*').like('key', 'user_%');
+        if (sData && sData.length > 0) {
+            sData.forEach(s => {
+                try {
+                    const parsed = JSON.parse(s.value);
+                    if (parsed && parsed.email && !usersList.some(x => x.email.toLowerCase() === parsed.email.toLowerCase())) {
+                        usersList.push(parsed);
+                        // Auto-migrate to normal database
+                        dbSaveUser(parsed).catch(() => {});
+                    }
+                } catch(e) {}
+            });
+        }
+    } catch(e) {}
+
+    return usersList;
+}
+
 function initAuthListener() {
     const savedToken = localStorage.getItem('mrt_user_token');
     const savedEmail = localStorage.getItem('mrt_user_email');
@@ -6789,16 +6948,15 @@ function initAuthListener() {
 
 async function fetchUserProfile(email, token) {
     try {
-        const { data, error } = await supaClient.from('settings').select('value').eq('key', 'user_' + email).maybeSingle();
-        if (data && data.value) {
-            const userData = JSON.parse(data.value);
+        const userData = await dbGetUserByEmail(email);
+        if (userData) {
             if (userData.token === token) {
                 const didMigrate = migrateTdsForUser(userData);
                 STATE.user = userData;
                 STATE.profile = { digi_silver_balance: userData.digi_silver_balance || 0 };
                 
                 if (didMigrate) {
-                    supaClient.from('settings').update({ value: JSON.stringify(userData) }).eq('key', 'user_' + email);
+                    await dbSaveUser(userData);
                 }
                 
                 updateProfileUI();
@@ -6932,11 +7090,7 @@ function updateProfileUI() {
         
         // Fetch referred friends list and count
         if (STATE.user.referral_code) {
-            supaClient.from('settings').select('*').like('key', 'user_%').then(({ data }) => {
-                const users = data ? data.filter(s => s.key.startsWith('user_')).map(s => {
-                    try { return JSON.parse(s.value); } catch(e) { return null; }
-                }).filter(Boolean) : [];
-                
+            dbGetAllUsers().then((users) => {
                 const referredFriends = users.filter(u => u.referred_by === STATE.user.referral_code);
                 
                 const refCountEl = document.getElementById('referral-stat-count');
@@ -7265,7 +7419,7 @@ async function handleAuthSubmit() {
 
     try {
         if (isAuthSignupMode) {
-            const { data: exist } = await supaClient.from('settings').select('value').eq('key', 'user_' + email).maybeSingle();
+            const exist = await dbGetUserByEmail(email);
             if (exist) {
                 throw new Error("This email is already registered. Please sign in instead.");
             }
@@ -7273,11 +7427,7 @@ async function handleAuthSubmit() {
             let referredByVal = null;
             const refCodeEntered = refInp ? refInp.value.trim().toUpperCase() : "";
             if (refCodeEntered) {
-                const { data: allSettings } = await supaClient.from('settings').select('*').like('key', 'user_%');
-                const users = allSettings ? allSettings.map(s => {
-                    try { return JSON.parse(s.value); } catch(e) { return null; }
-                }).filter(Boolean) : [];
-                
+                const users = await dbGetAllUsers();
                 const referrer = users.find(u => u.referral_code === refCodeEntered);
                 if (!referrer) {
                     throw new Error("Invalid Referral Code! Please check or leave empty.");
@@ -7292,6 +7442,7 @@ async function handleAuthSubmit() {
             const referralCode = 'REF' + Math.random().toString(36).substr(2, 6).toUpperCase();
 
             const newUser = {
+                id: 'usr_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 6),
                 token,
                 email,
                 password,
@@ -7303,7 +7454,7 @@ async function handleAuthSubmit() {
                 created_at: new Date().toISOString()
             };
 
-            await supaClient.from('settings').insert([{ key: 'user_' + email, value: JSON.stringify(newUser) }]);
+            await dbSaveUser(newUser);
 
             // Automatically log in the user immediately!
             localStorage.setItem('mrt_user_token', newUser.token);
@@ -7323,16 +7474,9 @@ async function handleAuthSubmit() {
             }, 600);
 
         } else {
-            const { data, error } = await supaClient.from('settings').select('value').eq('key', 'user_' + email).single();
-            if (error || !data || !data.value) {
+            const userRecord = await dbGetUserByEmail(email);
+            if (!userRecord) {
                 throw new Error("Email not registered. Please create an account.");
-            }
-
-            let userRecord;
-            try {
-                userRecord = JSON.parse(data.value);
-            } catch(e) {
-                throw new Error("Invalid account data.");
             }
 
             if (userRecord.password !== password) {
@@ -7340,6 +7484,7 @@ async function handleAuthSubmit() {
             }
 
             migrateTdsForUser(userRecord);
+            await dbSaveUser(userRecord);
 
             localStorage.setItem('mrt_user_token', userRecord.token);
             localStorage.setItem('mrt_user_email', userRecord.email);
@@ -7623,15 +7768,11 @@ async function submitCashOutRequest() {
     
     alert(`Success! You have requested to cash out ₹${amount} (${grams}g). The funds will be transferred to your registered ${method} account in 1-2 working days.`);
     
-    // Save deduction to Supabase Profile (settings)
+    // Save deduction to Supabase Profile (Normal Database)
     if (STATE.user && STATE.user.email) {
         try {
-            const { data } = await supaClient.from('settings').select('value').eq('key', 'user_' + STATE.user.email).single();
-            if (data && data.value) {
-                const ud = JSON.parse(data.value);
-                ud.digi_silver_balance = STATE.profile.digi_silver_balance;
-                await supaClient.from('settings').update({ value: JSON.stringify(ud) }).eq('key', 'user_' + STATE.user.email);
-            }
+            STATE.user.digi_silver_balance = STATE.profile.digi_silver_balance;
+            await dbSaveUser(STATE.user);
         } catch(e) {
             console.error("Error saving profile balance:", e);
         }
@@ -7807,8 +7948,8 @@ async function verifyAadharKYC() {
                     STATE.user.aadhar_back_data = backDataUrl;
                     STATE.user.aadhar_status = 'pending_approval';
                     
-                    // Save to Supabase
-                    await supaClient.from('settings').update({ value: JSON.stringify(STATE.user) }).eq('key', 'user_' + STATE.user.email);
+                    // Save to normal database
+                    await dbSaveUser(STATE.user);
                     
                     alert("Aadhar submitted successfully! It is now pending admin approval.");
                     closeAadharModal();
@@ -7866,8 +8007,8 @@ async function verifyPanKYC() {
         STATE.user.pan = panInput;
         STATE.user.pan_status = 'pending_approval';
         
-        // Save to Supabase
-        await supaClient.from('settings').update({ value: JSON.stringify(STATE.user) }).eq('key', 'user_' + STATE.user.email);
+        // Save to normal database
+        await dbSaveUser(STATE.user);
         
         alert("PAN card submitted successfully! It is now pending admin approval.");
         closePanModal();
@@ -7889,12 +8030,11 @@ async function verifyPanKYC() {
 async function approveAadhar(email) {
     if (!confirm(`Are you sure you want to approve Aadhar for ${email}?`)) return;
     try {
-        const { data } = await supaClient.from('settings').select('value').eq('key', 'user_' + email).single();
-        if (!data || !data.value) return alert("User not found.");
-        const userRec = JSON.parse(data.value);
+        const userRec = await dbGetUserByEmail(email);
+        if (!userRec) return alert("User not found.");
         userRec.aadhar_status = 'approved';
         
-        await supaClient.from('settings').update({ value: JSON.stringify(userRec) }).eq('key', 'user_' + email);
+        await dbSaveUser(userRec);
         alert(`Aadhar approved for ${email}`);
         
         if (STATE.user && STATE.user.email === email) {
@@ -7911,12 +8051,11 @@ async function approveAadhar(email) {
 async function approvePan(email) {
     if (!confirm(`Are you sure you want to approve PAN for ${email}?`)) return;
     try {
-        const { data } = await supaClient.from('settings').select('value').eq('key', 'user_' + email).single();
-        if (!data || !data.value) return alert("User not found.");
-        const userRec = JSON.parse(data.value);
+        const userRec = await dbGetUserByEmail(email);
+        if (!userRec) return alert("User not found.");
         userRec.pan_status = 'approved';
         
-        await supaClient.from('settings').update({ value: JSON.stringify(userRec) }).eq('key', 'user_' + email);
+        await dbSaveUser(userRec);
         alert(`PAN approved for ${email}`);
         
         if (STATE.user && STATE.user.email === email) {
@@ -7961,19 +8100,11 @@ async function renderAdminTdsReport() {
     tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 20px;">Loading TDS records...</td></tr>';
     
     try {
-        const { data, error } = await supaClient.from('settings').select('*').like('key', 'user_%');
-        if (error) throw error;
-        
+        const allUsers = await dbGetAllUsers();
         const tdsRecords = [];
         
-        if (data) {
-            data.forEach(row => {
-                let record = {};
-                try {
-                    record = JSON.parse(row.value);
-                } catch(e) {
-                    record = {};
-                }
+        if (allUsers && allUsers.length > 0) {
+            allUsers.forEach(record => {
                 
                 if (record && typeof record === 'object') {
                     const commissions = Array.isArray(record.referral_commissions) ? record.referral_commissions : [];

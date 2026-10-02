@@ -81,6 +81,21 @@ INSERT INTO public.settings (key, value) VALUES
 ('hero_subtitle', 'Handcrafted 925 Hallmark Certified Creations')
 ON CONFLICT (key) DO NOTHING;
 
+-- 6. USERS TABLE (Customer Authentication & Normal Database Storage)
+CREATE TABLE IF NOT EXISTS public.users (
+    id TEXT PRIMARY KEY,
+    email TEXT UNIQUE NOT NULL,
+    name TEXT NOT NULL,
+    password TEXT NOT NULL,
+    phone TEXT,
+    token TEXT,
+    digi_silver_balance NUMERIC DEFAULT 0,
+    referral_code TEXT UNIQUE,
+    referred_by TEXT,
+    metadata JSONB DEFAULT '{}'::jsonb,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
 -- ========================================================
 -- ENABLE ROW LEVEL SECURITY (RLS) & ACCESS POLICIES
 -- ========================================================
@@ -90,6 +105,7 @@ ALTER TABLE public.coupons ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.rates ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.orders ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.settings ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.users ENABLE ROW LEVEL SECURITY;
 
 -- Allow full public read/write access for website operations
 DROP POLICY IF EXISTS "Public Read/Write Products" ON public.products;
@@ -106,6 +122,9 @@ CREATE POLICY "Public Read/Write Orders" ON public.orders FOR ALL USING (true) W
 
 DROP POLICY IF EXISTS "Public Read/Write Settings" ON public.settings;
 CREATE POLICY "Public Read/Write Settings" ON public.settings FOR ALL USING (true) WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Public Read/Write Users" ON public.users;
+CREATE POLICY "Public Read/Write Users" ON public.users FOR ALL USING (true) WITH CHECK (true);
 
 -- ========================================================
 -- STORAGE BUCKETS (Product Images & Banners)
