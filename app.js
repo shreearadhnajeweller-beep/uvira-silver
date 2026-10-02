@@ -38,7 +38,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_1_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted Batman dark knight crest embedded with brilliant-cut micro pavé crystals. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted Batman dark knight crest embedded with brilliant-cut micro pavé crystals. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -61,7 +61,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_2_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted Ferrari Scuderia crest embedded with brilliant-cut micro pavé crystals and ruby-emerald accent stripes. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted Ferrari Scuderia crest embedded with brilliant-cut micro pavé crystals and ruby-emerald accent stripes. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -84,7 +84,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_3_1.webp",
-        "description": "Bespoke 925 Sterling Silver Whoop band case in a sleek, minimalist high-polish finish with brilliant-cut crystal border accents. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver Whoop band case in a sleek, minimalist high-polish finish with brilliant-cut crystal border accents. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -107,7 +107,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_4_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case Nicole Edition featuring intricate artisan crest work and pavé-set stones. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case Nicole Edition featuring intricate artisan crest work and pavé-set stones. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -130,7 +130,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_5_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an avant-garde geometric uneven-cut crystal pattern in solid 925 sterling silver. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an avant-garde geometric uneven-cut crystal pattern in solid 925 sterling silver. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -153,7 +153,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_6_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted Shopify crest embedded with vivid emerald-green micro pavé crystals. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted Shopify crest embedded with vivid emerald-green micro pavé crystals. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -176,7 +176,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_7_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an iconic Calatrava Cross Patek Philippe style crest embedded with immaculate micro pavé diamond-equivalent stones. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an iconic Calatrava Cross Patek Philippe style crest embedded with immaculate micro pavé diamond-equivalent stones. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -199,7 +199,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_8_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an equestrian stallion crest handset with brilliant-cut stones. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an equestrian stallion crest handset with brilliant-cut stones. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -222,7 +222,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_9_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring baguette and emerald-cut rectangular stones with high-precision pavé setting. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring baguette and emerald-cut rectangular stones with high-precision pavé setting. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -245,7 +245,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_10_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring clean architectural lines and pure sterling silver rhodium polish. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring clean architectural lines and pure sterling silver rhodium polish. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -268,7 +268,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_11_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case inspired by Formula 1 motorsport racing with precision-set stones. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case inspired by Formula 1 motorsport racing with precision-set stones. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -291,7 +291,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_12_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case Coach Edition featuring signature monogram styling and micro pavé accents. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case Coach Edition featuring signature monogram styling and micro pavé accents. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -314,7 +314,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_13_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case F1 Silver edition in solid 92.5% sterling silver with racing emblem detailing. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case F1 Silver edition in solid 92.5% sterling silver with racing emblem detailing. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -337,7 +337,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_14_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case Dior Edition featuring haute couture inspired crestwork with sparkling pavé crystals. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case Dior Edition featuring haute couture inspired crestwork with sparkling pavé crystals. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -360,7 +360,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_15_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted United Arab Emirates national flag embedded with ruby, emerald, and diamond-equivalent stones. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted United Arab Emirates national flag embedded with ruby, emerald, and diamond-equivalent stones. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -383,7 +383,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_16_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case Monaco Edition featuring the regal principality crest in micro pavé setting. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case Monaco Edition featuring the regal principality crest in micro pavé setting. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -406,7 +406,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_17_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an architectural silhouette of Burj Khalifa rendered in radiant gem stones. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an architectural silhouette of Burj Khalifa rendered in radiant gem stones. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -429,7 +429,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_18_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a majestic royal lion crest embedded with brilliant-cut micro pavé jewels. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a majestic royal lion crest embedded with brilliant-cut micro pavé jewels. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -452,7 +452,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_19_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a soaring imperial eagle crest with intricate plumage gem setting. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a soaring imperial eagle crest with intricate plumage gem setting. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -475,7 +475,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_20_1.webp",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case LK monogram crest featuring master artisan hand-setting in solid 925 sterling silver. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case LK monogram crest featuring master artisan hand-setting in solid 925 sterling silver. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -498,7 +498,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_21_1.jpeg",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted ferocious Bull emblem embedded with brilliant-cut micro pavé crystals. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted ferocious Bull emblem embedded with brilliant-cut micro pavé crystals. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -521,7 +521,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_22_1.jpeg",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted DC interlocking monogram crest embedded with brilliant-cut micro pavé crystals. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted DC interlocking monogram crest embedded with brilliant-cut micro pavé crystals. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -544,7 +544,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_23_1.jpeg",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an auspicious Seven Horses dynamic motion crest embedded with brilliant-cut micro pavé crystals. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring an auspicious Seven Horses dynamic motion crest embedded with brilliant-cut micro pavé crystals. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -567,7 +567,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_24_1.jpeg",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a sacred Om spiritual symbol embedded with handset brilliant micro pavé crystals. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a sacred Om spiritual symbol embedded with handset brilliant micro pavé crystals. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -590,7 +590,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_25_1.jpeg",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a playful luxury Panda motif embedded with contrasting micro pavé crystals. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a playful luxury Panda motif embedded with contrasting micro pavé crystals. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -613,7 +613,7 @@ const WHOOP_PRODUCTS_SEED = [
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
         "image": "assets/whoop/whoop_26_1.jpeg",
-        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a luxury LV monogram emblem embedded with brilliant-cut micro pavé crystals. Compatible with Whoop 4.0 & 5.0 and standard Whoop band sensors.",
+        "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a luxury LV monogram emblem embedded with brilliant-cut micro pavé crystals. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
             "weight": "20.0g",
@@ -1384,7 +1384,7 @@ function createProductCardHtml(p, idx = 0) {
                 <div class="product-tags-row">
                     <span class="prod-tag-pill">925 Silver</span>
                     <span class="prod-tag-pill">${weightVal}</span>
-                    <span class="prod-tag-pill">Whoop 4.0 / 5.0</span>
+                    <span class="prod-tag-pill">Whoop 5.0 Case</span>
                 </div>
                 <h3 class="product-title" onclick="viewProductDetail('${p.id}')" title="${p.title}">${p.title}</h3>
                 <div class="product-price-row">
