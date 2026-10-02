@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS public.settings (
 -- Seed default settings if empty
 INSERT INTO public.settings (key, value) VALUES
 ('admin_password', 'admin123'),
-('admin_upi_id', '9825098250@upi'),
+('admin_upi_id', '6289974877@upi'),
 ('hero_title', 'EMBODY THE ELEGANCE OF STERLING SILVER'),
 ('hero_subtitle', 'Handcrafted 925 Hallmark Certified Creations')
 ON CONFLICT (key) DO NOTHING;

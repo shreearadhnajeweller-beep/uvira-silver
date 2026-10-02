@@ -2013,7 +2013,7 @@ function viewProductDetail(prodId, isPopstate = false) {
             const photoUrl = isBase64 ? "[Custom Design Uploaded]" : prod.image;
             
             const text = encodeURIComponent(`Hello UVIRA JEWELS! I am interested in purchasing the following item:\n\n*Product:* ${prod.title}\n*Selected Metal:* ${metalName}\n*Finish Colour:* ${finishName}\n*Price:* ₹${finalP.toLocaleString("en-IN")}${giftBoxText}\n*Quantity:* ${qty}\n*Product Photo:* ${photoUrl}\n\nPlease let me know availability and billing details!`);
-            window.open(`https://api.whatsapp.com/send?phone=919825098250&text=${text}`, "_blank");
+            window.open(`https://api.whatsapp.com/send?phone=916289974877&text=${text}`, "_blank");
         };
     }
 }
@@ -2868,7 +2868,7 @@ function finalizeOrderPlacement(newOrder, orderId) {
         
         const text = encodeURIComponent(`Hello UVIRA JEWELS! I have placed an order and uploaded my payment screenshot:\n\n*Order ID:* ${orderId}\n*Customer Name:* ${newOrder.customer}\n*Phone:* ${newOrder.phone}\n*Shipping Address:* ${newOrder.address}\n\n*Order Items:*\n${itemsText}*Shipping Fee:* ₹150\n*Grand Total:* ₹${newOrder.total.toLocaleString("en-IN")}\n\nPlease verify my payment screenshot and confirm my order!`);
         
-        window.open(`https://api.whatsapp.com/send?phone=919825098250&text=${text}`, "_blank");
+        window.open(`https://api.whatsapp.com/send?phone=916289974877&text=${text}`, "_blank");
     }
 }
 
@@ -6206,7 +6206,7 @@ function shareTryOnWhatsapp() {
     const prod = STATE.selectedProduct;
     if (!prod) return;
     const message = `Hello UVIRA JEWELS, I just tried on the *${prod.title}* virtually using your AI Try-On tool! I would love to consult with you about purchasing this piece. (Product ID: ${prod.id})`;
-    const url = `https://api.whatsapp.com/send?phone=919825098250&text=${encodeURIComponent(message)}`;
+    const url = `https://api.whatsapp.com/send?phone=916289974877&text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
 }
 
@@ -6429,7 +6429,7 @@ function downloadOrderInvoicePdf(orderId) {
                             <strong>Trade Name:</strong> M. R. THANGA MAALIGAI<br>
                             <strong>GSTIN:</strong> 33AAKPS5130M1ZG<br>
                             12, Amin Marg, Rajkot - 360001<br>
-                            Phone: +91 98250 98250
+                            Phone: +91 62899 74877
                         </div>
                     </div>
                     <div class="invoice-details">
