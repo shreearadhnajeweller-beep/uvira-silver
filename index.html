@@ -190,40 +190,6 @@
             </div>
         </section>
 
-        <!-- 3. Featured Signature Collections -->
-        <section class="container" style="margin-bottom: 50px;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
-                <!-- Divine Pendants Banner -->
-                <div class="signature-card divine-card" style="background: linear-gradient(135deg, #2D1B4E 0%, #1A2849 100%); border-radius: var(--border-radius-md); padding: 32px 24px; color: #FFFFFF; box-shadow: var(--shadow-medium); position: relative; overflow: hidden; display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 16px;">
-                    <div style="flex: 1; z-index: 2;">
-                        <span style="background-color: #D97706; color: #FFFFFF; padding: 5px 14px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; border-radius: 20px; display: inline-block; margin-bottom: 12px;">NEW LAUNCH</span>
-                        <h3 style="font-family: var(--font-heading); font-size: 1.7rem; font-weight: 700; margin-bottom: 10px; letter-spacing: 0.5px; color: #FFFFFF;">Divine Pendants</h3>
-                        <p style="font-size: 0.88rem; color: rgba(255,255,255,0.9); margin-bottom: 16px; line-height: 1.5;">10 sacred devotional masterpieces in solid 92.5 hallmarked sterling silver with 3 bespoke plating options.</p>
-                        <div style="font-size: 1.15rem; font-weight: 800; color: #FCD34D; margin-bottom: 20px;">₹10,000 <span style="font-size: 0.82rem; color: rgba(255,255,255,0.6); text-decoration: line-through; font-weight: 400; margin-left: 6px;">₹20,000</span></div>
-                        <button class="btn-primary" onclick="navigateTo('shop', 'pendants')" style="background-color: #FFFFFF; color: #2D1B4E; border: none; padding: 12px 24px; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; width: fit-content;">Explore Divine Pendants</button>
-                    </div>
-                    <div class="signature-card-img-wrap" style="width: 130px; height: 130px; flex-shrink: 0; position: relative; z-index: 1; display: flex; align-items: center; justify-content: center;">
-                        <div style="position: absolute; width: 120px; height: 120px; background: radial-gradient(circle, rgba(252, 211, 77, 0.25) 0%, rgba(255,255,255,0) 70%); border-radius: 50%;"></div>
-                        <img src="assets/divine_pendants/pendant_1_1.webp" alt="Divine Pendant" style="width: 115px; height: 115px; object-fit: contain; border-radius: 12px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); transform: rotate(-4deg); transition: transform 0.3s ease;">
-                    </div>
-                </div>
-
-                <!-- Whoop 5.0 Cases Banner -->
-                <div class="signature-card whoop-card" style="background: linear-gradient(135deg, var(--color-primary) 0%, #2A486C 100%); border-radius: var(--border-radius-md); padding: 32px 24px; color: #FFFFFF; box-shadow: var(--shadow-medium); position: relative; overflow: hidden; display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 16px;">
-                    <div style="flex: 1; z-index: 2;">
-                        <span style="background-color: var(--color-accent-pink); color: #FFFFFF; padding: 5px 14px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; border-radius: 20px; display: inline-block; margin-bottom: 12px;">WHOOP COLLECTION</span>
-                        <h3 style="font-family: var(--font-heading); font-size: 1.7rem; font-weight: 700; margin-bottom: 10px; letter-spacing: 0.5px; color: #FFFFFF;">Whoop 5.0 Cases</h3>
-                        <p style="font-size: 0.88rem; color: rgba(255,255,255,0.9); margin-bottom: 16px; line-height: 1.5;">35 handcrafted solid 925 sterling silver &amp; jewellery brass bespoke covers designed for Whoop 5.0.</p>
-                        <div style="font-size: 1.15rem; font-weight: 800; color: #67E8F9; margin-bottom: 20px;">₹6,000 – ₹15,000 <span style="font-size: 0.82rem; color: rgba(255,255,255,0.6); text-decoration: line-through; font-weight: 400; margin-left: 6px;">₹30,000</span></div>
-                        <button class="btn-primary" onclick="navigateTo('shop', 'whoop')" style="background-color: #FFFFFF; color: var(--color-primary); border: none; padding: 12px 24px; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; width: fit-content;">Explore Whoop Cases</button>
-                    </div>
-                    <div class="signature-card-img-wrap" style="width: 130px; height: 130px; flex-shrink: 0; position: relative; z-index: 1; display: flex; align-items: center; justify-content: center;">
-                        <div style="position: absolute; width: 120px; height: 120px; background: radial-gradient(circle, rgba(103, 232, 249, 0.25) 0%, rgba(255,255,255,0) 70%); border-radius: 50%;"></div>
-                        <img src="assets/whoop1_1.webp" alt="Whoop 5.0 Case" style="width: 115px; height: 115px; object-fit: contain; border-radius: 12px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); transform: rotate(4deg); transition: transform 0.3s ease;">
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- 4. Featured Collections Slider -->
         <section class="container" style="margin-bottom: 50px;">
@@ -2428,7 +2394,7 @@ CREATE POLICY "Public Read/Write Orders" ON public.orders FOR ALL USING (true) W
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
     <!-- Main Application Logic -->
-    <script src="app.js?v=50"></script>
+    <script src="app.js?v=51"></script>
 
     <!-- Progressive Web App (PWA) Service Worker & Install Prompt -->
     <script>
