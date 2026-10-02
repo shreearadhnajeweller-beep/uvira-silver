@@ -1470,7 +1470,7 @@ function addToCart(prodId, count = 1) {
     
     const isDetailView = STATE.selectedProduct && STATE.selectedProduct.id === prod.id;
     const isBrass = isDetailView && (STATE.selectedMetal === 'brass');
-    const basePrice = isBrass ? 4000 : prod.price;
+    const basePrice = isBrass ? 5000 : prod.price;
     const metalSuffix = isBrass ? " (Brass)" : "";
     
     const sizeSuffix = size ? ` (Size: ${size})` : "";
@@ -1722,7 +1722,7 @@ function viewProductDetail(prodId, isPopstate = false) {
         whatsappBtn.onclick = () => {
             const qty = parseInt(document.getElementById("qty-val").textContent);
             const isBrass = (STATE.selectedMetal === 'brass');
-            const currentPrice = isBrass ? 4000 : prod.price;
+            const currentPrice = isBrass ? 5000 : prod.price;
             const metalName = isBrass ? 'Jewellery Brass' : (prod.specs && prod.specs.metal ? prod.specs.metal : 'Solid 92.5% Sterling Silver');
             const giftBoxCheck = document.getElementById("detail-gift-wrap");
             const hasGift = giftBoxCheck && giftBoxCheck.checked;
@@ -1809,8 +1809,8 @@ function selectDetailMetal(metal) {
             const title = optSilver.querySelector('span');
             if (title) title.style.color = '#334155';
         }
-        if (priceEl) priceEl.textContent = '₹4,000';
-        if (origPriceEl) origPriceEl.textContent = '₹8,000';
+        if (priceEl) priceEl.textContent = '₹5,000';
+        if (origPriceEl) origPriceEl.textContent = '₹10,000';
         if (discEl) discEl.textContent = '50% OFF';
         if (specMetal) specMetal.textContent = 'Jewellery Grade Brass (High Polish)';
         if (specAuth) specAuth.textContent = 'Premium Brass Construction';
@@ -1879,7 +1879,7 @@ function triggerBuyNow() {
         }
         
         const isBrass = (STATE.selectedMetal === 'brass');
-        const basePrice = isBrass ? 4000 : prod.price;
+        const basePrice = isBrass ? 5000 : prod.price;
         const metalSuffix = isBrass ? " (Brass)" : "";
         
         const sizeSuffix = size ? ` (Size: ${size})` : "";
@@ -4607,7 +4607,7 @@ function recalculateAllProductPrices() {
             if (prod) {
                 const hasGiftWrap = item.title.includes("+ Gift Box");
                 const isBrass = item.title.includes("(Brass)");
-                const baseP = isBrass ? 4000 : prod.price;
+                const baseP = isBrass ? 5000 : prod.price;
                 const newUnitPrice = baseP + (hasGiftWrap ? 1000 : 0);
                 if (item.price !== newUnitPrice) {
                     item.price = newUnitPrice;
