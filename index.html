@@ -1172,10 +1172,18 @@
                             <input type="text" id="admin-supabase-key" class="custom-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
                         </div>
                     </div>
-                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px;">
                         <button class="admin-btn-submit" onclick="saveCloudDbConfig()" style="background: var(--color-primary); color: #fff; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">Save &amp; Connect Cloud</button>
                         <button onclick="testCloudDbConnection(true)" style="background: transparent; border: 1px solid var(--color-silver-mid); padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: 600; color: var(--color-primary);">Test Connection</button>
-                        <button onclick="syncLocalToCloudDb()" style="background: #059669; color: #fff; padding: 10px 18px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">Sync Local Data to Cloud</button>
+                        <button onclick="syncProductsToCloudDb()" style="background: #2563EB; color: #fff; padding: 10px 18px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">Push 35 Products to Cloud</button>
+                        <button onclick="syncLocalToCloudDb()" style="background: #059669; color: #fff; padding: 10px 18px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">Sync Orders &amp; Users</button>
+                    </div>
+
+                    <div style="background: #F1F5F9; border-left: 4px solid #2563EB; padding: 14px 18px; border-radius: 6px; margin-top: 20px; font-size: 0.82rem; color: #334155;">
+                        <strong style="color: #0F172A; font-size: 0.88rem; display: block; margin-bottom: 4px;">⚡ Supabase SQL Setup (Orders &amp; Full Public Access)</strong>
+                        <span>If you encounter Row-Level Security on Supabase, open your <strong>Supabase Dashboard &gt; SQL Editor</strong> and run:</span>
+                        <pre style="background: #0F172A; color: #38BDF8; padding: 10px 12px; border-radius: 6px; margin-top: 8px; overflow-x: auto; font-family: monospace; font-size: 0.8rem;">ALTER TABLE public.orders DISABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public Read/Write Orders" ON public.orders FOR ALL USING (true) WITH CHECK (true);</pre>
                     </div>
                 </div>
 
@@ -2342,7 +2350,52 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
     <!-- Main Application Logic -->
-    <script src="app.js?v=42"></script>
+    <script src="app.js?v=43"></script>
+
+    <!-- Progressive Web App (PWA) Service Worker & Install Prompt -->
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./sw.js')
+                .then(reg => console.log('UVIRA PWA Service Worker registered:', reg.scope))
+                .catch(err => console.warn('PWA Service Worker registration failed:', err));
+        });
+    }
+
+    let deferredInstallPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredInstallPrompt = e;
+        const installBanner = document.getElementById('pwa-install-banner');
+        if (installBanner) installBanner.style.display = 'flex';
+    });
+
+    function triggerPwaInstall() {
+        if (deferredInstallPrompt) {
+            deferredInstallPrompt.prompt();
+            deferredInstallPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted UVIRA PWA install');
+                }
+                deferredInstallPrompt = null;
+                const installBanner = document.getElementById('pwa-install-banner');
+                if (installBanner) installBanner.style.display = 'none';
+            });
+        }
+    }
+
+    function dismissPwaInstall() {
+        const installBanner = document.getElementById('pwa-install-banner');
+        if (installBanner) installBanner.style.display = 'none';
+    }
+    </script>
+
+    <!-- Floating PWA Install Bar -->
+    <div id="pwa-install-banner" style="display: none; position: fixed; bottom: 70px; left: 50%; transform: translateX(-50%); z-index: 999; background: #0F172A; color: #FFFFFF; padding: 10px 18px; border-radius: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); align-items: center; gap: 12px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.15);">
+        <span>📱 Install UVIRA Store App</span>
+        <button onclick="triggerPwaInstall()" style="background: #10B981; color: #FFFFFF; border: none; padding: 6px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; cursor: pointer;">Install</button>
+        <button onclick="dismissPwaInstall()" style="background: transparent; color: #94A3B8; border: none; cursor: pointer; font-size: 1rem; line-height: 1;" aria-label="Dismiss">&times;</button>
+    </div>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {

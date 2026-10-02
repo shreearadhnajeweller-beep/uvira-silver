@@ -92,9 +92,19 @@ ALTER TABLE public.orders ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.settings ENABLE ROW LEVEL SECURITY;
 
 -- Allow full public read/write access for website operations
+DROP POLICY IF EXISTS "Public Read/Write Products" ON public.products;
 CREATE POLICY "Public Read/Write Products" ON public.products FOR ALL USING (true) WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Public Read/Write Coupons" ON public.coupons;
 CREATE POLICY "Public Read/Write Coupons" ON public.coupons FOR ALL USING (true) WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Public Read/Write Rates" ON public.rates;
 CREATE POLICY "Public Read/Write Rates" ON public.rates FOR ALL USING (true) WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Public Read/Write Orders" ON public.orders;
+CREATE POLICY "Public Read/Write Orders" ON public.orders FOR ALL USING (true) WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Public Read/Write Settings" ON public.settings;
 CREATE POLICY "Public Read/Write Settings" ON public.settings FOR ALL USING (true) WITH CHECK (true);
 
 -- ========================================================

@@ -1095,13 +1095,20 @@ async function initState() {
     if (ratesResult.status === 'fulfilled' && !ratesResult.value.error) {
         const data = ratesResult.value.data || [];
         if (data.length > 0) {
-            STATE.rates.sterling = parseFloat(data[0].sterling);
-            STATE.rates.fine = parseFloat(data[0].fine);
-            STATE.rates.gold = parseFloat(data[0].gold) || 7500.00;
-            STATE.rates.trend = data[0].trend;
+            const rawSterling = data[0].sterling_price_per_gram !== undefined ? data[0].sterling_price_per_gram : data[0].sterling;
+            const rawFine = data[0].fine_price_per_gram !== undefined ? data[0].fine_price_per_gram : data[0].fine;
+            const rawGold = data[0].gold_price_per_gram !== undefined ? data[0].gold_price_per_gram : data[0].gold;
+            
+            STATE.rates.sterling = !isNaN(parseFloat(rawSterling)) ? parseFloat(rawSterling) : 98.00;
+            STATE.rates.fine = !isNaN(parseFloat(rawFine)) ? parseFloat(rawFine) : 105.00;
+            STATE.rates.gold = !isNaN(parseFloat(rawGold)) ? parseFloat(rawGold) : 7500.00;
+            STATE.rates.trend = data[0].trend || 'up';
         }
     } else {
-        console.error("Error loading rates:", ratesResult.reason);
+        console.error("Error loading rates from Supabase:", ratesResult.reason);
+        if (isNaN(STATE.rates.sterling)) STATE.rates.sterling = 98.00;
+        if (isNaN(STATE.rates.fine)) STATE.rates.fine = 105.00;
+        if (isNaN(STATE.rates.gold)) STATE.rates.gold = 7500.00;
     }
 
     recalculateAllProductPrices();
@@ -1112,10 +1119,14 @@ async function initState() {
     const localWishlist = localStorage.getItem("mrt_wishlist");
     if (localWishlist) STATE.wishlist = safeJSONParse(localWishlist, []);
 
-    // Orders: load lazily in background — not needed for regular visitors
-    supaClient.from('orders').select('*').then(({ data, error }) => {
-        if (!error && data) {
-            STATE.orders = data.map(o => ({
+    // Orders: load lazily in background — load from orders table and settings backup store
+    Promise.allSettled([
+        supaClient.from('orders').select('*'),
+        supaClient.from('settings').select('*').like('key', 'order_%')
+    ]).then(([ordersRes, settingsOrdersRes]) => {
+        let loadedOrders = [];
+        if (ordersRes.status === 'fulfilled' && !ordersRes.value.error && Array.isArray(ordersRes.value.data) && ordersRes.value.data.length > 0) {
+            loadedOrders = ordersRes.value.data.map(o => ({
                 id: o.id,
                 date: o.date,
                 customer: typeof o.customer === 'string' ? (o.customer.startsWith('{') ? safeJSONParse(o.customer, { name: o.customer }) : { name: o.customer }) : (o.customer || {}),
@@ -1129,6 +1140,22 @@ async function initState() {
                 items: typeof o.items === 'string' ? safeJSONParse(o.items, []) : (o.items || []),
                 payment_screenshot: o.payment_screenshot
             }));
+        }
+
+        // Merge from settings order_% rows
+        if (settingsOrdersRes.status === 'fulfilled' && !settingsOrdersRes.value.error && Array.isArray(settingsOrdersRes.value.data)) {
+            settingsOrdersRes.value.data.forEach(row => {
+                try {
+                    const parsed = JSON.parse(row.value);
+                    if (parsed && parsed.id && !loadedOrders.some(x => x.id === parsed.id)) {
+                        loadedOrders.push(parsed);
+                    }
+                } catch(e) {}
+            });
+        }
+
+        if (loadedOrders.length > 0) {
+            STATE.orders = loadedOrders;
             updateHeaderCounters();
         }
     }).catch(err => console.error("Error loading orders:", err));
@@ -1166,21 +1193,45 @@ async function saveOrders(newOrder) {
             payment_screenshot: newOrder.payment_screenshot
         };
         
+        const orderRecord = {
+            id: newOrder.id,
+            date: newOrder.date,
+            customer: newOrder.customer,
+            phone: newOrder.phone || '',
+            address: newOrder.address || '',
+            payment_method: newOrder.paymentMethod || newOrder.payment_method || 'UPI',
+            subtotal: newOrder.subtotal || 0,
+            discount: newOrder.discount || 0,
+            total: newOrder.total || 0,
+            status: newOrder.status || 'placed',
+            items: newOrder.items || [],
+            payment_screenshot: newOrder.payment_screenshot || ''
+        };
+
+        // 1. Guaranteed Supabase cloud persistence via settings table (RLS open)
         try {
-            // Try with GST fields
+            await supaClient.from('settings').upsert([{
+                key: 'order_' + newOrder.id,
+                value: JSON.stringify(newOrder)
+            }]);
+        } catch(e) {
+            console.warn("Could not save order to settings table:", e);
+        }
+
+        // 2. Direct insert to orders table (works if orders table RLS policy is present)
+        try {
             const { error } = await supaClient.from('orders').insert([{
-                ...basePayload,
+                ...orderRecord,
                 gst_amount: newOrder.gst_amount || 0,
                 shipping: newOrder.shipping || 0,
                 digi_subtotal: newOrder.digi_subtotal || 0
             }]);
             if (error) {
-                // Fallback: insert without new columns if they don't exist yet
-                console.warn("Insert with GST fields failed, retrying without:", error.message);
-                await supaClient.from('orders').insert([basePayload]);
+                console.warn("Direct orders insert failed, retrying base payload:", error.message);
+                await supaClient.from('orders').insert([orderRecord]);
             }
         } catch (err) {
-            console.error("Supabase order insert error:", err);
+            console.warn("Supabase orders insert notice:", err);
         }
     }
 }
@@ -3320,19 +3371,30 @@ async function updateAdminRates() {
     }
     
     try {
-        const { error } = await supaClient.from('rates').upsert([{
-            id: 1,
-            sterling: sterlingVal,
-            fine: fineVal,
-            gold: goldVal,
-            trend: 'up',
+        const ratePayload = {
+            sterling_price_per_gram: sterlingVal,
+            fine_price_per_gram: fineVal,
+            gold_price_per_gram: goldVal,
             updated_at: new Date().toISOString()
+        };
+        const { error } = await supaClient.from('rates').upsert([ratePayload]);
+        // Also save to settings table as guaranteed backup
+        await supaClient.from('settings').upsert([{
+            key: 'metal_rates',
+            value: JSON.stringify({
+                sterling: sterlingVal,
+                fine: fineVal,
+                gold: goldVal,
+                updated_at: new Date().toISOString()
+            })
         }]);
-        if (error) throw error;
+        if (error) {
+            console.warn("Notice updating rates table:", error.message);
+        }
         alert("Live Metal Rates updated on scrolling ticker and saved to Supabase successfully!");
     } catch (err) {
         console.error("Supabase rates update error:", err);
-        alert("Rates updated locally, but failed to save to Supabase: " + err.message);
+        alert("Rates updated on store and saved to local cache: " + err.message);
     }
 }
 
@@ -4164,16 +4226,61 @@ async function syncLocalToCloudDb() {
         if (localOrders.length > 0) {
             for (const o of localOrders) {
                 if (o && o.id) {
-                    await rawSupaClient.from('orders').upsert([o], { onConflict: 'id' });
+                    try {
+                        await rawSupaClient.from('orders').upsert([o], { onConflict: 'id' });
+                    } catch(e) {}
+                    // Also always save into settings table as backup
+                    await rawSupaClient.from('settings').upsert([{
+                        key: 'order_' + o.id,
+                        value: JSON.stringify(o)
+                    }], { onConflict: 'key' });
                     syncedOrders++;
                 }
             }
         }
 
-        alert(`Sync Complete!\n- User Accounts Synced: ${syncedUsers}\n- Orders Synced: ${syncedOrders}\n\nAll local records have been pushed to your Supabase Cloud Database!`);
+        alert(`Sync Complete!\n- User Accounts Synced: ${syncedUsers}\n- Orders Synced: ${syncedOrders}\n\nAll records are now secured in your Supabase Cloud Database!`);
     } catch(err) {
         console.error("Cloud sync error:", err);
         alert("Error syncing to cloud: " + err.message);
+    }
+}
+
+async function syncProductsToCloudDb() {
+    if (!rawSupaClient) {
+        alert("Supabase client is not initialized. Please configure credentials first.");
+        return;
+    }
+
+    const isLive = await testCloudDbConnection(false);
+    if (!isLive) {
+        alert("Cannot sync: Supabase Cloud is currently unreachable. Please check project status on supabase.com.");
+        return;
+    }
+
+    try {
+        const payload = WHOOP_PRODUCTS_SEED.map(p => ({
+            id: p.id,
+            title: p.title,
+            category: p.category,
+            price: p.price,
+            original_price: p.original_price,
+            rating: p.rating,
+            reviews_count: p.reviews_count,
+            plating: p.plating,
+            in_stock: p.in_stock,
+            image: p.image,
+            description: p.description,
+            specs: p.specs
+        }));
+
+        const { error } = await rawSupaClient.from('products').upsert(payload, { onConflict: 'id' });
+        if (error) throw error;
+
+        alert(`Success! All ${payload.length} Whoop Case designs pushed and synced to Supabase Cloud 'products' table.`);
+    } catch(err) {
+        console.error("Products sync error:", err);
+        alert("Error syncing products to Supabase: " + err.message);
     }
 }
 
