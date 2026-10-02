@@ -1,13 +1,13 @@
-// Helper to enforce product requirements (Whoop ₹15,000, Divine Pendants ₹10,000, 925 Sterling Silver, inStock true)
+// Helper to enforce product requirements (Whoop ₹15,000, Divine Pendants ₹15,000, 925 Sterling Silver, inStock true)
 function normalizeProductData(p) {
     if (!p) return p;
     p.inStock = true;
     p.in_stock = true;
     const isPendant = p.category === 'pendants' || (p.id && p.id.includes('pendant'));
     if (isPendant) {
-        p.price = 10000;
-        p.originalPrice = 20000;
-        p.original_price = 20000;
+        p.price = 15000;
+        p.originalPrice = 15000;
+        p.original_price = 15000;
         p.category = 'pendants';
         if (!p.specs) p.specs = {};
         p.specs.weight = p.specs.weight || '12.5g';
@@ -15,8 +15,8 @@ function normalizeProductData(p) {
         p.specs.disable_auto_rate = true;
     } else {
         p.price = 15000;
-        p.originalPrice = 30000;
-        p.original_price = 30000;
+        p.originalPrice = 15000;
+        p.original_price = 15000;
         p.category = 'whoop';
         if (!p.specs) p.specs = {};
         p.specs.weight = '20.0g';
@@ -46,7 +46,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Batman",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 17,
         "plating": "Solid 92.5 Sterling Silver",
@@ -69,7 +69,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Ferrari",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 19,
         "plating": "Solid 92.5 Sterling Silver",
@@ -92,7 +92,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Plain Classic",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 21,
         "plating": "Solid 92.5 Sterling Silver",
@@ -115,7 +115,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Nicole Edition",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 23,
         "plating": "Solid 92.5 Sterling Silver",
@@ -138,7 +138,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Uneven Cut",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 25,
         "plating": "Solid 92.5 Sterling Silver",
@@ -161,7 +161,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Shopify",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 27,
         "plating": "Solid 92.5 Sterling Silver",
@@ -184,7 +184,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Patek Philippe",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 29,
         "plating": "Solid 92.5 Sterling Silver",
@@ -207,7 +207,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Horse Crest",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 31,
         "plating": "Solid 92.5 Sterling Silver",
@@ -230,7 +230,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Rectangular Diamonds",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 33,
         "plating": "Solid 92.5 Sterling Silver",
@@ -253,7 +253,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Plain Minimalist",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 35,
         "plating": "Solid 92.5 Sterling Silver",
@@ -276,7 +276,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case F1 Racing",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 37,
         "plating": "Solid 92.5 Sterling Silver",
@@ -299,7 +299,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Coach Edition",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 39,
         "plating": "Solid 92.5 Sterling Silver",
@@ -322,7 +322,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case F1 Silver Edition",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 41,
         "plating": "Solid 92.5 Sterling Silver",
@@ -345,7 +345,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Dior Edition",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 43,
         "plating": "Solid 92.5 Sterling Silver",
@@ -368,7 +368,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case UAE Flag",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 45,
         "plating": "Solid 92.5 Sterling Silver",
@@ -391,7 +391,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Monaco Edition",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 47,
         "plating": "Solid 92.5 Sterling Silver",
@@ -414,7 +414,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Burj Khalifa",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 49,
         "plating": "Solid 92.5 Sterling Silver",
@@ -437,7 +437,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Lion Crest",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 51,
         "plating": "Solid 92.5 Sterling Silver",
@@ -460,7 +460,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Eagle Crest",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 53,
         "plating": "Solid 92.5 Sterling Silver",
@@ -483,7 +483,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case LK Crest",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 55,
         "plating": "Solid 92.5 Sterling Silver",
@@ -506,7 +506,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Bull",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 28,
         "plating": "Solid 92.5 Sterling Silver",
@@ -529,7 +529,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case DC",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 22,
         "plating": "Solid 92.5 Sterling Silver",
@@ -552,7 +552,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Seven Horses",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 34,
         "plating": "Solid 92.5 Sterling Silver",
@@ -575,7 +575,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Om",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 41,
         "plating": "Solid 92.5 Sterling Silver",
@@ -598,7 +598,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Panda",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 19,
         "plating": "Solid 92.5 Sterling Silver",
@@ -621,7 +621,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case LV",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 31,
         "plating": "Solid 92.5 Sterling Silver",
@@ -644,7 +644,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Eagle II",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 28,
         "plating": "Solid 92.5 Sterling Silver",
@@ -667,7 +667,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Panther",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 34,
         "plating": "Solid 92.5 Sterling Silver",
@@ -690,7 +690,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Animal Kingdom",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 22,
         "plating": "Solid 92.5 Sterling Silver",
@@ -713,7 +713,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Eternity",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 39,
         "plating": "Solid 92.5 Sterling Silver",
@@ -736,7 +736,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Rose",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 29,
         "plating": "Solid 92.5 Sterling Silver",
@@ -759,7 +759,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Gucci Edition",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 45,
         "plating": "Solid 92.5 Sterling Silver",
@@ -782,7 +782,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Snake",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 36,
         "plating": "Solid 92.5 Sterling Silver",
@@ -805,7 +805,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Veda Edition",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 27,
         "plating": "Solid 92.5 Sterling Silver",
@@ -828,7 +828,7 @@ const WHOOP_PRODUCTS_SEED = [
         "title": "Custom Crest Gem-Set Whoop Case Nicole Edition (Patek)",
         "category": "whoop",
         "price": 15000,
-        "original_price": 30000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 52,
         "plating": "Solid 92.5 Sterling Silver",
@@ -853,8 +853,8 @@ const DIVINE_PENDANTS_SEED = [
         "id": "prod-pendant-1-om-sacred-shield",
         "title": "Om Sacred Shield Divine Pendant",
         "category": "pendants",
-        "price": 10000,
-        "original_price": 20000,
+        "price": 15000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 28,
         "plating": "Solid 92.5 Sterling Silver",
@@ -876,8 +876,8 @@ const DIVINE_PENDANTS_SEED = [
         "id": "prod-pendant-2-shri-hanuman-ji-sankat-mochan",
         "title": "Shri Hanuman Ji Sankat Mochan Divine Pendant",
         "category": "pendants",
-        "price": 10000,
-        "original_price": 20000,
+        "price": 15000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 34,
         "plating": "Solid 92.5 Sterling Silver",
@@ -899,8 +899,8 @@ const DIVINE_PENDANTS_SEED = [
         "id": "prod-pendant-3-lord-shiva-trishul-damru",
         "title": "Lord Shiva Trishul & Damru Divine Pendant",
         "category": "pendants",
-        "price": 10000,
-        "original_price": 20000,
+        "price": 15000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 42,
         "plating": "Solid 92.5 Sterling Silver",
@@ -922,8 +922,8 @@ const DIVINE_PENDANTS_SEED = [
         "id": "prod-pendant-4-lord-ganesha-vighnaharta",
         "title": "Lord Ganesha Vighnaharta Divine Pendant",
         "category": "pendants",
-        "price": 10000,
-        "original_price": 20000,
+        "price": 15000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 31,
         "plating": "Solid 92.5 Sterling Silver",
@@ -945,8 +945,8 @@ const DIVINE_PENDANTS_SEED = [
         "id": "prod-pendant-5-om-floral-mandala-aura",
         "title": "Om Floral Mandala Aura Divine Pendant",
         "category": "pendants",
-        "price": 10000,
-        "original_price": 20000,
+        "price": 15000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 26,
         "plating": "Solid 92.5 Sterling Silver",
@@ -968,8 +968,8 @@ const DIVINE_PENDANTS_SEED = [
         "id": "prod-pendant-6-lord-shiva-meditating-mahadev",
         "title": "Lord Shiva Meditating Mahadev Divine Pendant",
         "category": "pendants",
-        "price": 10000,
-        "original_price": 20000,
+        "price": 15000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 39,
         "plating": "Solid 92.5 Sterling Silver",
@@ -991,8 +991,8 @@ const DIVINE_PENDANTS_SEED = [
         "id": "prod-pendant-7-sacred-shankh-conch-blessings",
         "title": "Sacred Shankh Conch Divine Pendant",
         "category": "pendants",
-        "price": 10000,
-        "original_price": 20000,
+        "price": 15000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 22,
         "plating": "Solid 92.5 Sterling Silver",
@@ -1014,8 +1014,8 @@ const DIVINE_PENDANTS_SEED = [
         "id": "prod-pendant-8-om-radiant-prana",
         "title": "Om Radiant Prana Sun Divine Pendant",
         "category": "pendants",
-        "price": 10000,
-        "original_price": 20000,
+        "price": 15000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 27,
         "plating": "Solid 92.5 Sterling Silver",
@@ -1037,8 +1037,8 @@ const DIVINE_PENDANTS_SEED = [
         "id": "prod-pendant-9-om-trimurti-chandra",
         "title": "Om Trimurti Chandra Divine Pendant",
         "category": "pendants",
-        "price": 10000,
-        "original_price": 20000,
+        "price": 15000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 30,
         "plating": "Solid 92.5 Sterling Silver",
@@ -1060,8 +1060,8 @@ const DIVINE_PENDANTS_SEED = [
         "id": "prod-pendant-10-mahadev-trishul-mahakaal",
         "title": "Mahadev Trishul Mahakaal Divine Pendant",
         "category": "pendants",
-        "price": 10000,
-        "original_price": 20000,
+        "price": 15000,
+        "original_price": 15000,
         "rating": 5,
         "reviews_count": 45,
         "plating": "Solid 92.5 Sterling Silver",
@@ -1916,7 +1916,7 @@ function createProductCardHtml(p, idx = 0) {
     const isWished = STATE.wishlist.includes(p.id) ? "wished" : "";
     const badgeHtml = !p.inStock 
         ? `<div class="product-card-badge out-of-stock">OUT OF STOCK</div>` 
-        : (p.price < p.originalPrice ? `<div class="product-card-badge">50% OFF</div>` : "");
+        : "";
         
     const discountPercent = p.originalPrice && p.originalPrice > p.price 
         ? Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100) 
@@ -1943,7 +1943,7 @@ function createProductCardHtml(p, idx = 0) {
                 <h3 class="product-title" onclick="viewProductDetail('${p.id}')" title="${p.title}">${p.title}</h3>
                 <div class="product-price-row">
                     <span class="product-price">₹${p.price.toLocaleString("en-IN")}</span>
-                    ${p.originalPrice ? `<span class="product-original-price">₹${p.originalPrice.toLocaleString("en-IN")}</span>` : ""}
+                    ${(p.originalPrice && p.originalPrice > p.price) ? `<span class="product-original-price">₹${p.originalPrice.toLocaleString("en-IN")}</span>` : ""}
                     ${discountPercent > 0 ? `<span class="product-discount">${discountPercent}% OFF</span>` : ""}
                 </div>
                 <button class="product-btn-add" onclick="addToCart('${p.id}')" ${!p.inStock ? 'disabled style="background:#E2E8F0;color:#94A3B8;cursor:not-allowed;"' : ''}>
@@ -2141,7 +2141,7 @@ function viewProductDetail(prodId, isPopstate = false) {
             if (optSilver && optSilver.parentElement) {
                 optSilver.parentElement.style.gridTemplateColumns = "1fr";
             }
-            if (silverPriceEl) silverPriceEl.textContent = "₹10,000";
+            if (silverPriceEl) silverPriceEl.textContent = "₹15,000";
         } else if (isWhoop) {
             metalSection.style.display = "block";
             if (optBrass) optBrass.style.display = "block";
@@ -2248,7 +2248,7 @@ function viewProductDetail(prodId, isPopstate = false) {
     if (price) price.textContent = `₹${prod.price.toLocaleString("en-IN")}`;
     
     if (originalPrice) {
-        if (prod.originalPrice) {
+        if (prod.originalPrice && prod.originalPrice > prod.price) {
             originalPrice.style.display = "inline";
             originalPrice.textContent = `₹${prod.originalPrice.toLocaleString("en-IN")}`;
         } else {
@@ -2257,7 +2257,7 @@ function viewProductDetail(prodId, isPopstate = false) {
     }
     
     if (discount) {
-        if (prod.originalPrice) {
+        if (prod.originalPrice && prod.originalPrice > prod.price) {
             const percent = Math.round(((prod.originalPrice - prod.price) / prod.originalPrice) * 100);
             discount.style.display = "inline";
             discount.textContent = `${percent}% OFF`;
@@ -2411,8 +2411,8 @@ function selectDetailMetal(metal) {
             if (title) title.style.color = '#334155';
         }
         if (priceEl) priceEl.textContent = '₹6,000';
-        if (origPriceEl) origPriceEl.textContent = '₹12,000';
-        if (discEl) discEl.textContent = '50% OFF';
+        if (origPriceEl) origPriceEl.style.display = 'none';
+        if (discEl) discEl.style.display = 'none';
         if (specMetal) specMetal.textContent = 'Jewellery Grade Brass (High Polish)';
         if (specAuth) specAuth.textContent = 'Premium Brass Construction';
     } else {
@@ -2428,11 +2428,11 @@ function selectDetailMetal(metal) {
             const title = optBrass.querySelector('span');
             if (title) title.style.color = '#334155';
         }
-        const unitPrice = (prod && prod.price) ? prod.price : (isPendant ? 10000 : 15000);
-        const origPrice = (prod && prod.original_price) ? prod.original_price : (isPendant ? 20000 : 30000);
+        const unitPrice = (prod && prod.price) ? prod.price : 15000;
+        const origPrice = (prod && prod.original_price) ? prod.original_price : 15000;
         if (priceEl) priceEl.textContent = `₹${unitPrice.toLocaleString('en-IN')}`;
-        if (origPriceEl) origPriceEl.textContent = `₹${origPrice.toLocaleString('en-IN')}`;
-        if (discEl) discEl.textContent = '50% OFF';
+        if (origPriceEl) origPriceEl.style.display = 'none';
+        if (discEl) discEl.style.display = 'none';
         if (specMetal) specMetal.textContent = 'Solid 92.5% Sterling Silver';
         if (specAuth) specAuth.textContent = '92.5 Hallmark Certificate Included';
     }
@@ -5292,7 +5292,7 @@ function recalculateAllProductPrices() {
         const finalPrice = Math.round(subtotal + gstCost);
 
         p.price = finalPrice;
-        p.originalPrice = finalPrice * 2;
+        p.originalPrice = finalPrice;
     });
 
     if (STATE.cart && STATE.cart.length > 0) {
@@ -5392,7 +5392,7 @@ function autoCalculateJewelRate() {
     const totalCost = Math.round(subtotal + gstCost);
     
     if (priceInput) priceInput.value = totalCost;
-    if (origPriceInput) origPriceInput.value = totalCost * 2;
+    if (origPriceInput) origPriceInput.value = totalCost;
     if (weightSpecInput) weightSpecInput.value = `${weightVal} grams`;
     
     if (breakdownDiv) {
@@ -5403,7 +5403,7 @@ function autoCalculateJewelRate() {
             • ${makingText}<br>
             • Subtotal: ₹${subtotal.toFixed(2)}<br>
             • GST (${gstVal}%): ₹${gstCost.toFixed(2)}<br>
-            • <strong>Final Calculated Price: ₹${totalCost}</strong> (Original Price set to ₹${totalCost * 2})
+            • <strong>Final Calculated Price: ₹${totalCost}</strong> (Original Price set to ₹${totalCost})
         `;
     }
 }
@@ -5497,7 +5497,7 @@ function runManualGstCalculation() {
     
     // Auto update the original price preview to finalPrice * 2
     const origPriceInput = document.getElementById("new-prod-orig");
-    if (origPriceInput) origPriceInput.value = finalPrice * 2;
+    if (origPriceInput) origPriceInput.value = finalPrice;
     
     if (breakdownDiv) {
         breakdownDiv.style.display = "block";
@@ -5509,7 +5509,7 @@ function runManualGstCalculation() {
             • <strong>Final Stored Price (GST Inclusive): ₹${finalPrice.toLocaleString("en-IN")}</strong><br>
             • Taxable Base Price (Before GST): ₹${Math.round(baseBeforeGst).toLocaleString("en-IN")}<br>
             • GST (${gstVal}%): ₹${gstCost.toFixed(2)}<br>
-            • Original Price (Crossed Price): ₹${(finalPrice * 2).toLocaleString("en-IN")}
+            • Original Price: ₹${finalPrice.toLocaleString("en-IN")}
         `;
     }
 }
