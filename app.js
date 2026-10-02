@@ -1923,7 +1923,6 @@ function createProductCardHtml(p, idx = 0) {
         : 0;
 
     const secondImg = (p.specs && p.specs.images && p.specs.images.length > 1) ? p.specs.images[1] : p.image;
-    const weightVal = (p.specs && p.specs.weight) ? p.specs.weight : (p.category === 'pendants' ? '12.5g' : '20.0g');
     const categoryTag = (p.category === 'pendants' || (p.id && p.id.includes('pendant'))) ? 'Divine Pendant' : 'Whoop 5.0 Case';
     
     return `
@@ -1939,7 +1938,6 @@ function createProductCardHtml(p, idx = 0) {
             <div class="product-info">
                 <div class="product-tags-row">
                     <span class="prod-tag-pill">925 Silver</span>
-                    <span class="prod-tag-pill">${weightVal}</span>
                     <span class="prod-tag-pill">${categoryTag}</span>
                 </div>
                 <h3 class="product-title" onclick="viewProductDetail('${p.id}')" title="${p.title}">${p.title}</h3>
@@ -2107,7 +2105,7 @@ function viewProductDetail(prodId, isPopstate = false) {
     const thumbs = document.getElementById("detail-thumbs");
     
     const specMetal = document.getElementById("spec-metal");
-    const specWeight = document.getElementById("spec-weight");
+    const specCraft = document.getElementById("spec-craft");
     const specPlating = document.getElementById("spec-plating");
     const specAuth = document.getElementById("spec-auth");
     const specGender = document.getElementById("spec-gender");
@@ -2272,7 +2270,7 @@ function viewProductDetail(prodId, isPopstate = false) {
     
     // Bind Specs
     if (specMetal) specMetal.textContent = prod.specs.metal || "925 Sterling Silver";
-    if (specWeight) specWeight.textContent = prod.specs.weight || "N/A";
+    if (specCraft) specCraft.textContent = "Artisan Handcrafted";
     if (specAuth) specAuth.textContent = prod.specs.authenticity || "92.5 Hallmark Certificate Included";
     if (specGender) specGender.textContent = prod.gender === "him" ? "Men" : (prod.gender === "her" ? "Women" : (prod.gender === "kids" ? "Kids" : "Unisex"));
     
