@@ -497,7 +497,7 @@ const WHOOP_PRODUCTS_SEED = [
         "reviews_count": 28,
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
-        "image": "assets/whoop/whoop_21_1.jpeg",
+        "image": "assets/whoop/whoop_21_2.jpeg",
         "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted ferocious Bull emblem embedded with brilliant-cut micro pavé crystals. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
@@ -505,8 +505,8 @@ const WHOOP_PRODUCTS_SEED = [
             "finish": "Rhodium Polish with Gem-Set Crest",
             "disable_auto_rate": true,
             "images": [
-                "assets/whoop/whoop_21_1.jpeg",
-                "assets/whoop/whoop_21_2.jpeg"
+                "assets/whoop/whoop_21_2.jpeg",
+                "assets/whoop/whoop_21_1.jpeg"
             ]
         }
     },
@@ -520,7 +520,7 @@ const WHOOP_PRODUCTS_SEED = [
         "reviews_count": 22,
         "plating": "Solid 92.5 Sterling Silver",
         "in_stock": true,
-        "image": "assets/whoop/whoop_22_1.jpeg",
+        "image": "assets/whoop/whoop_22_2.jpeg",
         "description": "Bespoke 925 Sterling Silver gem-set Whoop band case featuring a handcrafted DC interlocking monogram crest embedded with brilliant-cut micro pavé crystals. Designed exclusively for Whoop 5.0 band and sensors.",
         "specs": {
             "metal": "Solid 92.5% Sterling Silver",
@@ -528,8 +528,8 @@ const WHOOP_PRODUCTS_SEED = [
             "finish": "Rhodium Polish with Gem-Set Crest",
             "disable_auto_rate": true,
             "images": [
-                "assets/whoop/whoop_22_1.jpeg",
-                "assets/whoop/whoop_22_2.jpeg"
+                "assets/whoop/whoop_22_2.jpeg",
+                "assets/whoop/whoop_22_1.jpeg"
             ]
         }
     },
