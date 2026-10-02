@@ -495,61 +495,96 @@ function seedMockProducts() {
 }
 seedMockProducts();
 
-const SUPABASE_URL = "https://zimapfcyfxiqdnxaaonp.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InppbWFwZmN5ZnhpcWRueGFhb25wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyMTE4NjEsImV4cCI6MjEwNDc4Nzg2MX0.n7UVMBY-5iBiaasKw34TkDdD04JgSTo9r7ombxXqnZk";
+let SUPABASE_URL = localStorage.getItem('uvira_supabase_url') || "https://zimapfcyfxiqdnxaaonp.supabase.co";
+let SUPABASE_KEY = localStorage.getItem('uvira_supabase_key') || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InppbWFwZmN5ZnhpcWRueGFhb25wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyMTE4NjEsImV4cCI6MjEwNDc4Nzg2MX0.n7UVMBY-5iBiaasKw34TkDdD04JgSTo9r7ombxXqnZk";
 
-// Resilient Storage & Database Client (Primary Local In-Memory / LocalStorage with full PostgREST-compatible API)
+let rawSupaClient = null;
+function initRawSupaClient() {
+    try {
+        if (window.supabase && window.supabase.createClient && SUPABASE_URL && SUPABASE_KEY) {
+            rawSupaClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        }
+    } catch(e) {
+        console.warn("Could not instantiate Supabase client:", e);
+    }
+}
+initRawSupaClient();
+
+// Resilient Cloud-First Hybrid Database Client (Syncs to Supabase Cloud when connected, uses LocalStorage cache seamlessly)
 const supaClient = {
     from: (table) => {
         const getTableData = () => {
-            try {
-                return JSON.parse(localStorage.getItem('mock_db_' + table) || '[]');
-            } catch(e) {
-                return [];
-            }
+            try { return JSON.parse(localStorage.getItem('mock_db_' + table) || '[]'); }
+            catch(e) { return []; }
         };
         const setTableData = (data) => {
-            try {
-                localStorage.setItem('mock_db_' + table, JSON.stringify(data));
-            } catch(e) {
-                console.error("Storage write error for table:", table, e);
-            }
+            try { localStorage.setItem('mock_db_' + table, JSON.stringify(data)); }
+            catch(e) { console.error("Storage write error for table:", table, e); }
         };
 
         const createQuery = () => {
-            let current = getTableData();
+            let localData = getTableData();
+            let filters = [];
+            let orderOpt = null;
+            let limitN = null;
+
+            const executeQuery = async () => {
+                // Try real Supabase Cloud first
+                if (rawSupaClient) {
+                    try {
+                        let query = rawSupaClient.from(table).select('*');
+                        filters.forEach(f => {
+                            if (f.type === 'eq') query = query.eq(f.col, f.val);
+                            if (f.type === 'like') query = query.like(f.col, f.val);
+                        });
+                        if (orderOpt) query = query.order(orderOpt.col, orderOpt.opts);
+                        if (limitN) query = query.limit(limitN);
+
+                        const res = await query;
+                        if (!res.error && res.data) {
+                            if (filters.length === 0 && !limitN) setTableData(res.data);
+                            return res;
+                        }
+                    } catch(err) {
+                        // Project paused or network failure, proceed to local fallback
+                    }
+                }
+
+                // Fallback to local cache
+                let current = localData;
+                filters.forEach(f => {
+                    if (f.type === 'eq') current = current.filter(x => x && x[f.col] === f.val);
+                    if (f.type === 'like') {
+                        const needle = String(f.val).replace(/%/g, '').toLowerCase();
+                        current = current.filter(x => x && x[f.col] && String(x[f.col]).toLowerCase().includes(needle));
+                    }
+                });
+                if (orderOpt) {
+                    current.sort((a, b) => (orderOpt.opts && orderOpt.opts.ascending ? (a[orderOpt.col] > b[orderOpt.col] ? 1 : -1) : (b[orderOpt.col] > a[orderOpt.col] ? 1 : -1)));
+                }
+                if (limitN) current = current.slice(0, limitN);
+                return { data: current, error: null };
+            };
+
             const queryObj = {
-                then: (resolve, reject) => {
-                    const res = { data: current, error: null };
-                    if (resolve) resolve(res);
-                    return Promise.resolve(res);
-                },
-                catch: (reject) => Promise.resolve({ data: current, error: null }),
-                like: (col, val) => {
-                    const needle = String(val).replace(/%/g, '').toLowerCase();
-                    current = current.filter(x => x && x[col] && String(x[col]).toLowerCase().includes(needle));
-                    return queryObj;
-                },
-                order: (col, opts = {}) => {
-                    current.sort((a, b) => (opts.ascending ? (a[col] > b[col] ? 1 : -1) : (b[col] > a[col] ? 1 : -1)));
-                    return queryObj;
-                },
-                limit: (n) => {
-                    current = current.slice(0, n);
-                    return queryObj;
-                },
+                then: (resolve, reject) => executeQuery().then(resolve, reject),
+                catch: (reject) => executeQuery().catch(reject),
+                like: (col, val) => { filters.push({ type: 'like', col, val }); return queryObj; },
+                order: (col, opts = {}) => { orderOpt = { col, opts }; return queryObj; },
+                limit: (n) => { limitN = n; return queryObj; },
                 eq: (col, val) => {
-                    current = current.filter(x => x && x[col] === val);
+                    filters.push({ type: 'eq', col, val });
                     return {
                         ...queryObj,
-                        single: () => Promise.resolve({ 
-                            data: current[0] || null, 
-                            error: current.length === 0 ? { message: 'Row not found', code: 'PGRST116' } : null 
-                        }),
-                        maybeSingle: () => Promise.resolve({ 
-                            data: current[0] || null, 
-                            error: null 
-                        })
+                        single: async () => {
+                            const res = await executeQuery();
+                            const item = res.data && res.data[0] ? res.data[0] : null;
+                            return { data: item, error: item ? null : { message: 'Row not found', code: 'PGRST116' } };
+                        },
+                        maybeSingle: async () => {
+                            const res = await executeQuery();
+                            return { data: (res.data && res.data[0]) ? res.data[0] : null, error: null };
+                        }
                     };
                 }
             };
@@ -558,14 +593,21 @@ const supaClient = {
 
         return {
             select: (cols = '*') => createQuery(),
-            insert: (arr) => {
+            insert: async (arr) => {
                 const items = Array.isArray(arr) ? arr : [arr];
                 let data = getTableData();
                 data.push(...items);
                 setTableData(data);
-                return Promise.resolve({ data: items, error: null });
+
+                if (rawSupaClient) {
+                    try {
+                        const res = await rawSupaClient.from(table).insert(items);
+                        if (!res.error) return res;
+                    } catch(e) {}
+                }
+                return { data: items, error: null };
             },
-            upsert: (arr) => {
+            upsert: async (arr) => {
                 const items = Array.isArray(arr) ? arr : [arr];
                 let data = getTableData();
                 items.forEach(item => {
@@ -574,10 +616,17 @@ const supaClient = {
                     else data.push(item);
                 });
                 setTableData(data);
-                return Promise.resolve({ data: items, error: null });
+
+                if (rawSupaClient) {
+                    try {
+                        const res = await rawSupaClient.from(table).upsert(items);
+                        if (!res.error) return res;
+                    } catch(e) {}
+                }
+                return { data: items, error: null };
             },
             update: (obj) => ({
-                eq: (col, val) => {
+                eq: async (col, val) => {
                     let data = getTableData();
                     let updated = [];
                     data = data.map(item => {
@@ -589,15 +638,29 @@ const supaClient = {
                         return item;
                     });
                     setTableData(data);
-                    return Promise.resolve({ data: updated, error: null });
+
+                    if (rawSupaClient) {
+                        try {
+                            const res = await rawSupaClient.from(table).update(obj).eq(col, val);
+                            if (!res.error) return res;
+                        } catch(e) {}
+                    }
+                    return { data: updated, error: null };
                 }
             }),
             delete: () => ({
-                eq: (col, val) => {
+                eq: async (col, val) => {
                     let data = getTableData();
                     data = data.filter(x => !x || x[col] !== val);
                     setTableData(data);
-                    return Promise.resolve({ error: null });
+
+                    if (rawSupaClient) {
+                        try {
+                            const res = await rawSupaClient.from(table).delete().eq(col, val);
+                            if (!res.error) return res;
+                        } catch(e) {}
+                    }
+                    return { error: null };
                 }
             })
         };
@@ -2386,6 +2449,7 @@ function navigateAdminTab(tabId) {
         const newPass = document.getElementById("admin-new-password");
         if (curPass) curPass.value = "";
         if (newPass) newPass.value = "";
+        if (typeof initCloudDbConfig === "function") initCloudDbConfig();
     }
 }
 
@@ -3527,6 +3591,167 @@ async function changeAdminPassword() {
     
     currentInp.value = "";
     newInp.value = "";
+}
+
+// --- CLOUD DATABASE (SUPABASE) MANAGEMENT ---
+function initCloudDbConfig() {
+    const urlInp = document.getElementById("admin-supabase-url");
+    const keyInp = document.getElementById("admin-supabase-key");
+    if (urlInp) urlInp.value = localStorage.getItem('uvira_supabase_url') || SUPABASE_URL || "";
+    if (keyInp) keyInp.value = localStorage.getItem('uvira_supabase_key') || SUPABASE_KEY || "";
+    testCloudDbConnection(false);
+}
+
+async function testCloudDbConnection(showAlert = false) {
+    const statusBox = document.getElementById("cloud-db-status");
+    const statusDot = document.getElementById("cloud-db-status-dot");
+    const statusText = document.getElementById("cloud-db-status-text");
+
+    if (statusBox && statusText) {
+        statusBox.style.background = "#FEF3C7";
+        statusBox.style.color = "#92400E";
+        statusBox.style.borderColor = "#FCD34D";
+        if (statusDot) statusDot.textContent = "⏳";
+        statusText.textContent = "Checking Supabase Cloud connection...";
+    }
+
+    const targetUrl = (document.getElementById("admin-supabase-url")?.value || SUPABASE_URL || "").trim().replace(/\/+$/, "");
+    const targetKey = (document.getElementById("admin-supabase-key")?.value || SUPABASE_KEY || "").trim();
+
+    if (!targetUrl || !targetKey) {
+        if (statusBox && statusText) {
+            statusBox.style.background = "#FEE2E2";
+            statusBox.style.color = "#991B1B";
+            statusBox.style.borderColor = "#F87171";
+            if (statusDot) statusDot.textContent = "❌";
+            statusText.textContent = "Missing Supabase Project URL or Public Anon API Key.";
+        }
+        if (showAlert) alert("Please enter both Supabase Project URL and Public Anon API Key.");
+        return false;
+    }
+
+    try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 6000);
+        
+        const resp = await fetch(`${targetUrl}/rest/v1/settings?select=key&limit=1`, {
+            method: 'GET',
+            headers: {
+                'apikey': targetKey,
+                'Authorization': `Bearer ${targetKey}`,
+                'Accept': 'application/json'
+            },
+            signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+
+        if (resp.ok) {
+            let host = "Cloud Database";
+            try { host = new URL(targetUrl).hostname; } catch(e) {}
+            if (statusBox && statusText) {
+                statusBox.style.background = "#ECFDF5";
+                statusBox.style.color = "#065F46";
+                statusBox.style.borderColor = "#A7F3D0";
+                if (statusDot) statusDot.textContent = "🟢";
+                statusText.textContent = `Connected to Live Supabase Cloud (${host}). Cloud sync active!`;
+            }
+            if (showAlert) alert(`Success! Connected to Supabase Cloud (${host}). User accounts and data are syncing directly to your cloud database.`);
+            return true;
+        } else {
+            const errText = await resp.text();
+            throw new Error(`HTTP ${resp.status}: ${errText.slice(0, 100)}`);
+        }
+    } catch(err) {
+        let host = "database";
+        try { host = new URL(targetUrl).hostname; } catch(e) {}
+        const isPausedOrOffline = err.name === 'AbortError' || err.message.includes('Failed to fetch') || err.message.includes('ENOTFOUND') || err.message.includes('NetworkError');
+        
+        if (statusBox && statusText) {
+            statusBox.style.background = "#FEF3C7";
+            statusBox.style.color = "#92400E";
+            statusBox.style.borderColor = "#FCD34D";
+            if (statusDot) statusDot.textContent = "⚠️";
+            statusText.textContent = isPausedOrOffline
+                ? `Supabase Project (${host}) is Paused or Unreachable. App is running on Offline Local Cache.`
+                : `Connection check failed: ${err.message}`;
+        }
+        if (showAlert) {
+            alert(`Could not reach Supabase Cloud (${host}).\n\nReason: ${err.message}\n\nNote: If this is a free Supabase project that was inactive, open supabase.com/dashboard and click 'Restore project' to reactivate it.`);
+        }
+        return false;
+    }
+}
+
+async function saveCloudDbConfig() {
+    const urlInp = document.getElementById("admin-supabase-url");
+    const keyInp = document.getElementById("admin-supabase-key");
+    if (!urlInp || !keyInp) return;
+
+    let url = urlInp.value.trim().replace(/\/+$/, "");
+    let key = keyInp.value.trim();
+
+    if (!url || !key) {
+        alert("Please enter both the Supabase URL and Anon Key.");
+        return;
+    }
+
+    localStorage.setItem('uvira_supabase_url', url);
+    localStorage.setItem('uvira_supabase_key', key);
+    SUPABASE_URL = url;
+    SUPABASE_KEY = key;
+
+    initRawSupaClient();
+    const ok = await testCloudDbConnection(false);
+    if (ok) {
+        alert("Supabase Cloud credentials updated and connected successfully!");
+    } else {
+        alert("Supabase credentials saved locally. However, the database server did not respond. If the project is paused, click 'Restore project' in your Supabase dashboard.");
+    }
+}
+
+async function syncLocalToCloudDb() {
+    if (!rawSupaClient) {
+        alert("Supabase client is not initialized or server is offline. Check connection first.");
+        return;
+    }
+
+    const isLive = await testCloudDbConnection(false);
+    if (!isLive) {
+        alert("Cannot sync: Supabase Cloud is currently unreachable or paused. Please restore the project on supabase.com first.");
+        return;
+    }
+
+    try {
+        let syncedUsers = 0;
+        let syncedOrders = 0;
+
+        // 1. Sync Settings & Users
+        const localSettings = JSON.parse(localStorage.getItem('mock_db_settings') || '[]');
+        if (localSettings.length > 0) {
+            for (const item of localSettings) {
+                if (item && item.key) {
+                    await rawSupaClient.from('settings').upsert([item], { onConflict: 'key' });
+                    if (item.key.startsWith('user_')) syncedUsers++;
+                }
+            }
+        }
+
+        // 2. Sync Orders
+        const localOrders = JSON.parse(localStorage.getItem('mock_db_orders') || '[]');
+        if (localOrders.length > 0) {
+            for (const o of localOrders) {
+                if (o && o.id) {
+                    await rawSupaClient.from('orders').upsert([o], { onConflict: 'id' });
+                    syncedOrders++;
+                }
+            }
+        }
+
+        alert(`Sync Complete!\n- User Accounts Synced: ${syncedUsers}\n- Orders Synced: ${syncedOrders}\n\nAll local records have been pushed to your Supabase Cloud Database!`);
+    } catch(err) {
+        console.error("Cloud sync error:", err);
+        alert("Error syncing to cloud: " + err.message);
+    }
 }
 
 // --- ADMIN AUTH MODAL ENGINE ---
